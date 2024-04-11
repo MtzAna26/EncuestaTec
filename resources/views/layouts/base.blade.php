@@ -1,41 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
+
 <head>
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EncuestaTec</title>
-    <!--Estilos -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <meta charset="UTF-8">
+    
+    <!-- Estilos de bootstrap -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet" >
 
-    <!--Estilos css generales --->
-    <link href="{{ asset( 'css/base/css/general.css' )}}" rel="stylesheet">
-    <link href="{{ asset( 'css/base/css/menu.css' )}}" rel="stylesheet">
-    <link href="{{ asset( 'css/base/css/footer.css' )}}" rel="stylesheet">
 
-    <!--Estilos cambiantes -->
+    <!-- Estilos css generales -->
+    <link href="{{ asset('css/base/css/general.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/base/css/menu.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/base/css/footer.css') }}" rel="stylesheet">
+
+    <!-- Estilos cambiantes -->
     @yield('styles')
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>
-        @yield('title')
-    </title>
+    <title>@yield('title')</title>
+</head>
+
+<body>
+
     <div class="content">
-        <!--- Incluir menu --->
+        <!-- Incluir menú -->
         @include('layouts.menu')
         <section class="section">
-            @yield('content')
+        @yield('content')
         </section>
 
-        <!--incluir footer-->
-        @include('layouts.footer')
+        <!-- Incluir footer -->
+        
     </div>
     @yield('scripts')
-    <!-- scripts -->
-    <script src="{{ minx ('js/app.js') }}"></script>
-    <body>
-        
-    </body>
+    <!-- Scripts de bootstrap -->
+    <script src="{{ mix('js/app.js') }}"></script>
+</body>
 
-</head>
 </html>
