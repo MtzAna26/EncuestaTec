@@ -10,7 +10,6 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/registro/css/registro.css') }}">
     <title>@yield('title', 'Iniciar Sesión')</title>
-    
 </head>
 <body>
     <div class="container-form">
@@ -18,7 +17,7 @@
             <div class="info-childs">
                 <h1>EncuestaTec</h1>
                 <p>Bienvenido de vuelta, inicia sesión para continuar</p>
-                <!--- <input type="button" value="Iniciar Sesión" id="sign-in"> --->
+                <input type="button" value="Agregar Nuevo Usuario" id="sign-in" onclick="window.location.href='{{ route('register') }}'">
             </div>
         </div>
         <div class="form-information">
