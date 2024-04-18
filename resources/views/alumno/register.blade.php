@@ -22,17 +22,21 @@
     
     <br>
     <div class="container">
-        <form id="registration-form" method="POST" action="{{ route('register') }}">
+        <!-- Si se coloca register manda los datos del controlador
+            alumno.register
+            pero si pongo login me manda a la pagina de login 
+            pero a un no guarda en la bdd--->
+        <form id="registration-form" method="POST" action="{{ route('alumno.register') }}">
             @csrf {{-- Directiva Blade para protección CSRF --}}
 
-            <label for="username">No.Control:</label>
-            <input type="text" id="username" name="username" required>
+            <label for="no_control">No.Control:</label>
+            <input type="text" id="no_control" name="no_control" required>
             
-            <label for="password">NIP:</label>
-            <input type="password" id="password" name="password" required>
+            <label for="nip">NIP:</label>
+            <input type="password" id="nip" name="nip" required>
 
-            <label for="career">Carrera:</label>
-            <select id="career" name="career" required>
+            <label for="carrera">Carrera:</label>
+            <select id="carrera" name="carrera" required>
                 <option value="">Seleccionar Carrera</option>
                 <option value="Ingenieria Industrial">Ingenieria Industrial (Escolarizado)</option>
                 <option value="Ingenieria en Mineria">Ingenieria en Mineria (Escolarizado)</option>
@@ -44,20 +48,21 @@
                 <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
             </select>
 
-            <label for="semester">Semestre:</label>
-        <select id="semester" name="semester" required>
+            <label for="semestre">Semestre:</label>
+        <select id="semestre" name="semestre" required>
             <option value="">Seleccionar Semestre</option>
-            <option value="1">Primer Semestre</option>
-            <option value="2">Segundo Semestre</option>
-            <option value="3">Tercer Semestre</option>
-            <option value="4">Cuarto Semestre</option>
-            <option value="5">Quinto Semestre</option>
-            <option value="6">Sexto Semestre</option>
-            <option value="7">Septimo Semestre</option>
-            <option value="8">Octavo Semestre</option>
-            <option value="9">Noveno Semestre</option>
+            <option value="Primer_Semestre">Primer Semestre</option>
+            <option value="Segundo_Semestre">Segundo Semestre</option>
+            <option value="Tercer_Semestre">Tercer Semestre</option>
+            <option value="Cuarto_Semestre">Cuarto Semestre</option>
+            <option value="Quinto_Semestre">Quinto Semestre</option>
+            <option value="Sexto_Semestre">Sexto Semestre</option>
+            <option value="Septimo_Semestre">Septimo Semestre</option>
+            <option value="Octavo_Semestre">Octavo Semestre</option>
+            <option value="Noveno_Semestre">Noveno Semestre</option>
         </select>
-            <input type="submit" value="Registrarse">
+        <input type="submit" value="Registrarse">
         </form>
+
     </div>
-    </div>
+</div>

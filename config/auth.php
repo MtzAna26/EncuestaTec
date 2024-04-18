@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+
+        // Definir guard called "alumno" para autenticacion del alumno
+        'alumno' => [
+            'driver' => 'session',
+            'provider' => 'alumnos',
+        ]
     ],
 
     /*
@@ -62,9 +68,15 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => env('AUTH_MODEL', App\Models\User::class),
+            //'model' => env('AUTH_MODEL', App\Models\User::class),
+            'model' => App\Models\User::class,
         ],
 
+        // Definir a provider called "alumnos"
+        'alumnos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Alumno::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

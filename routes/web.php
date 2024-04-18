@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
+///use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuthAlumnoRegisterController;
+use App\Http\Controllers\AuthAlumnoLoginController;
+use App\Http\Controllers\EncuestaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -24,5 +26,15 @@ Route::get('/registro/alumno', [AuthAlumnoRegisterController::class, 'showRegist
 
 // Ruta para procesar el registro de alumno
 Route::post('/registro/alumno', [AuthAlumnoRegisterController::class, 'register']);
+
+// Ruta para alumno
+Route::get('/alumno/login', [AuthAlumnoLoginController::class, 'showLoginForm'])->name('alumno.login');
+Route::post('/alumno/login', [AuthAlumnoLoginController::class, 'login'])->name('alumno.login');
+
+// Ruta para encuestas
+Route::post('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
+Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
+
+
 
 require __DIR__.'/auth.php';

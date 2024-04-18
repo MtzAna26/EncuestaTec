@@ -1,0 +1,108 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #7A0611;
+    color: #fff;
+    padding: 20px;
+    font-family: 'Britannic Bold';
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 20%; /* Tamaño de la imagen, ajusta según necesites */
+    margin-right: 20px; /* Espacio a la derecha de la imagen */
+}
+
+.titles {
+    flex: 1; /* Permite que los títulos ocupen el espacio restante */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+h1, h2, h3 {
+    margin: 10px; /* Agrega espacio entre los títulos */
+    padding: 0; /* Eliminar relleno */
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h1 {
+    font-size: 24px;
+}
+/* Estilos para el formulario de inicio de sesión */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sub-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.guinda {
+    color: #7A0611;
+}
+
+.sub-header {
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    flex: 1;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #7A0611;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #5a0410;
+}

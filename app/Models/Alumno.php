@@ -7,11 +7,24 @@ use Illuminate\Database\Eloquent\Model;
 
 class Alumno extends Model
 {
-    protected $guarded = 
-    [
-    'nip', 
-    'no_control', 
-    'carrera', 
-    'semestre'
+    use HasFactory;
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'alumnos';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'nip', 
+        'no_control', 
+        'carrera', 
+        'semestre'
     ];
 }
