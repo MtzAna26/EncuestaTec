@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #7A0611;
+    color: #fff;
+    padding: 20px;
+    font-family: 'Britannic Bold';
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+}
+
+img {
+    width: 20%; /* Tamaño de la imagen, ajusta según necesites */
+    margin-right: 20px; /* Espacio a la derecha de la imagen */
+}
+
+.titles {
+    flex: 1; /* Permite que los títulos ocupen el espacio restante */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+h1, h2, h3 {
+    margin: 10px; /* Agrega espacio entre los títulos */
+    padding: 0; /* Eliminar relleno */
+}
+
+h2 {
+    font-size: 24px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
+h1 {
+    font-size: 24px;
+}
+/* Estilos para el formulario del login */
+/* Estilos para el contenedor del formulario de inicio de sesión */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh; /* Hacer que el contenedor del formulario de inicio de sesión ocupe el 60% de la altura de la ventana */
+}
+
+/* Estilos para el formulario de inicio de sesión */
+/* Estilos para el contenedor principal */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh; /* Cambiar a min-height para evitar la barra de desplazamiento */
+    background-color: #f5f5f5;
+}
+
+/* Estilos para el contenedor interno */
+.container {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Aumentar el margen inferior */
+}
+
+/* Estilos para el subencabezado */
+.sub-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sub-header h1 {
+    color: #8b0000; /* Color guinda */
+    margin-bottom: 10px;
+}
+
+.sub-header h2 {
+    color: #666666; /* Color de texto gris */
+    font-size: 16px;
+}
+
+/* Estilos para el formulario de inicio de sesión */
+.login-form {
+    margin-bottom: 20px;
+}
+
+/* Estilos para las etiquetas */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #8b0000; /* Color guinda */
+}
+
+/* Estilos para los campos de entrada */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón de enviar */
+#btn-iniciar-sesion {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8b0000; /* Color guinda */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#btn-iniciar-sesion:hover {
+    background-color: #811b1b; /* Color guinda más oscuro */
+}
+
+/* Estilos responsivos */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 90%; /* Reducir el ancho del contenedor en pantallas pequeñas */
+    }
+
+    .sub-header h1 {
+        font-size: 20px; /* Reducir el tamaño del título principal */
+    }
+
+    .sub-header h2 {
+        font-size: 14px; /* Reducir el tamaño del subtitulo */
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: calc(100% - 20px); /* Reducir el ancho de los campos de entrada */
+    }
+
+    #btn-iniciar-sesion {
+        width: calc(100% - 20px); /* Reducir el ancho del botón de enviar */
+    }
+}

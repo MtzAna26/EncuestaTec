@@ -20,5 +20,11 @@
         </div>
     </header>
     <br>
-    <h1>Holaaaa</h1>
+    <h1>DEPARTAMENTOS</h1>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
+    <button></button>
 </body>

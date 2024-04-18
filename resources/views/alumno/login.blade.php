@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <!-- Enlace a tus estilos CSS -->
-    <link rel="stylesheet" href="{{ asset('css/alumno/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/alumno/css/Login.css') }}">
 </head>
 <body>
     <header>
@@ -20,7 +20,7 @@
         </div>
     </header>
     <br>
-
+    <br>
     <div class="login-container">
         <div class="container">
             <div class="sub-header">
@@ -30,16 +30,11 @@
             <div class="login-form">
                 <form id="login-form" method="POST" action="{{ route('encuestas.menu') }}">
                     @csrf
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="no_control">No.Control:</label>
-                            <input type="text" id="no_control" name="no_control" required>                                    
-                        </div>
-                        <div class="form-group">
-                            <label for="nip">NIP:</label>
-                            <input type="password" id="nip" name="nip" required>
-                        </div>
-                    </div>
+                    <label for="no_control">No.Control:</label>
+            <input type="text" id="no_control" name="no_control" required>
+            
+            <label for="nip">NIP:</label>
+            <input type="password" id="nip" name="nip" required>
                     <div class="form-group">
                         <button type="submit" id="btn-iniciar-sesion" class="iniciar-sesion">Iniciar Sesión</button>
                     </div>

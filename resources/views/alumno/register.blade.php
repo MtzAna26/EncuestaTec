@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <!-- Enlace a tus estilos CSS -->
-    <link rel="stylesheet" href="{{ asset('css/alumno/registro.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/alumno/css/Registro.css') }}">
+    
 </head>
 <body>
     <header>
@@ -49,20 +50,20 @@
             </select>
 
             <label for="semestre">Semestre:</label>
-        <select id="semestre" name="semestre" required>
-            <option value="">Seleccionar Semestre</option>
-            <option value="Primer_Semestre">Primer Semestre</option>
-            <option value="Segundo_Semestre">Segundo Semestre</option>
-            <option value="Tercer_Semestre">Tercer Semestre</option>
-            <option value="Cuarto_Semestre">Cuarto Semestre</option>
-            <option value="Quinto_Semestre">Quinto Semestre</option>
-            <option value="Sexto_Semestre">Sexto Semestre</option>
-            <option value="Septimo_Semestre">Septimo Semestre</option>
-            <option value="Octavo_Semestre">Octavo Semestre</option>
-            <option value="Noveno_Semestre">Noveno Semestre</option>
-        </select>
-        <input type="submit" value="Registrarse">
+            <select id="semestre" name="semestre" required>
+                <option value="">Seleccionar Semestre</option>
+                <option value="Primer_Semestre">Primer Semestre</option>
+                <option value="Segundo_Semestre">Segundo Semestre</option>
+                <option value="Tercer_Semestre">Tercer Semestre</option>
+                <option value="Cuarto_Semestre">Cuarto Semestre</option>
+                <option value="Quinto_Semestre">Quinto Semestre</option>
+                <option value="Sexto_Semestre">Sexto Semestre</option>
+                <option value="Septimo_Semestre">Septimo Semestre</option>
+                <option value="Octavo_Semestre">Octavo Semestre</option>
+                <option value="Noveno_Semestre">Noveno Semestre</option>
+            </select>
+            <input type="submit" value="Registrarse">
         </form>
-
     </div>
-</div>
+</body>
+</html>
