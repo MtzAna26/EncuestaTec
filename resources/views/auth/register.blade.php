@@ -48,6 +48,13 @@
                         <i class='bx bx-lock-alt' ></i>
                         <input type="password" name="password_confirmation" placeholder="Confirmar Contraseña">
                     </label>
+                    <label>
+                        <select name="role">
+                            <i class='bx bx-lock-alt' ></i>
+                            <option value="admin">Administrador</option>
+                            <option value="departamento">Departamento</option>
+                        </select>
+                    </label>
                     <input type="submit" value="Registrarse">
                 </form>
             </div>

@@ -16,18 +16,18 @@ header {
 }
 
 img {
-    width: 20%; /* Tamaño de la imagen, ajusta según necesites */
-    margin-right: 20px; /* Espacio a la derecha de la imagen */
+    width: 20%;
+    margin-right: 20px;
 }
 
 .titles {
-    flex: 1; /* Permite que los títulos ocupen el espacio restante */
-    text-align: center; /* Centra el texto horizontalmente */
+    flex: 1;
+    text-align: center;
 }
 
 h1, h2, h3 {
-    margin: 10px; /* Agrega espacio entre los títulos */
-    padding: 0; /* Eliminar relleno */
+    margin: 10px;
+    padding: 0;
 }
 
 h2 {
@@ -44,30 +44,39 @@ h1 {
 
 .additional-text {
     display: flex;
-    justify-content: center; /* Centrar horizontalmente */
+    justify-content: center;
 }
 
 .button {
-    margin-right: 20px; /* Espacio entre botones */
-    padding: 5px 10px; /* Padding para hacerlos parecer botones */
-    background-color: #fdfdfd; /* Color de fondo */
-    border: 1px solid #fffcfc; /* Borde */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cursor al pasar por encima */
-    text-decoration: none; /* Quitar subrayado de los enlaces */
-    color: #000000; /* Color del texto */
+    margin-right: 20px;
+    padding: 5px 10px;
+    background-color: #fdfdfd;
+    border: 1px solid #fffcfc;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000000;
 }
 
 .button:hover {
-    background-color: #e0e0e0; /* Cambio de color al pasar por encima */
+    background-color: #e0e0e0;
 }
 
+/* Estilos para el select de departamentos */
+#departamentosContainer {
+    margin-top: 20px; /* Espacio superior */
+}
 
-
-
+.select-departamento {
+    padding: 5px 10px; /* Padding interno */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
+    font-size: 16px; /* Tamaño de fuente */
+    width: 100%; /* Ancho completo */
+    max-width: 300px; /* Ancho máximo */
+}
 
 /* Estilos responsivos */
-
 @media only screen and (max-width: 768px) {
     .header-content {
         flex-direction: column; /* Cambia la dirección del flex para apilar los elementos en columnas */
@@ -79,8 +88,10 @@ h1 {
         margin-bottom: 20px; /* Agrega espacio debajo de la imagen */
     }
 
-    .button, .logout-button {
-        margin: 10px 0; /* Agrega espacio entre los botones */
-        width: 100%; /* Ajusta el ancho de los botones al 100% */
+    .button,
+    .logout-button,
+    .select-departamento {
+        margin: 10px 0; /* Agrega espacio entre los elementos */
+        width: 100%; /* Ajusta el ancho al 100% */
     }
 }
