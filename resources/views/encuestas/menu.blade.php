@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <!-- Enlace a tus estilos CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/encuestas/css/encuestas.css') }}">
 </head>
 <body>
@@ -20,19 +21,47 @@
         </div>
     </header>
     <br>
-    <h1>DEPARTAMENTOS</h1>
-    <section class="buttons">
-    <button>CENTRO DE INFORMACIÓN</button>
-    <button>COORDINACIÓN DE CARRERAS</button>
-    <button>RECURSOS FINANCIEROS</button>
-    <button>RESIDENCIAS PROFESIONALES</button>
-    <button>CENTRO DE CÓMPUTO</button>
-    <button>SERVICIO SOCIAL</button>
-    <button>SERVICIOS ESCOLARES</button>
-    <button>BECAS</button>
-    <button>TALLERES Y LABORATORIOS</button>
-    <button>CAFETERIA</button>
-    <button>SERVICIO MÉDICO</button>
-    <button>ACTIVIDADES CULTURALES Y DEPORTIVAS</button>
-    </section>
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-semibold mb-4">DEPARTAMENTOS</h1>
+        <div class="grid grid-cols-3 gap-4">
+            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">CENTRO DE INFORMACIÓN</button>
+            </div>
+            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">COORDINACIÓN DE CARRERAS</button>
+            </div>
+            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">RECURSOS FINANCIEROS</button>
+            </div>
+            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">RESIDENCIAS PROFESIONALES</button>
+            </div>
+            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">CENTRO DE CÓMPUTO</button>
+            </div>
+            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">SERVICIO SOCIAL</button>
+            </div>
+            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">SERVICIOS ESCOLARES</button>
+            </div>
+            <div class="bg-red-700 text-white py-4 px-6  rounded-lg text-center">
+                <button class="text-lg font-semibold">BECAS</button>
+            </div>
+            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">TALLERES Y LABORATORIOS</button>
+            </div>
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">CAFETERÍA</button>
+            </div>
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">SERVICIO MÉDICO</button>
+            </div>
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
+                <button class="text-lg font-semibold">ACTIVIDADES CULTURALES Y DEPORTIVAS</button>
+            </div>
+        </div>
+        
+    </div>
 </body>
+</html>

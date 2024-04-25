@@ -45,7 +45,14 @@ return [
         'alumno' => [
             'driver' => 'session',
             'provider' => 'alumnos',
-        ]
+        ],
+
+        // Definir guard para el departamento
+    'departamento' => [
+        'driver' => 'session',
+        'provider' => 'departamentos',
+    ],
+        
     ],
 
     /*
@@ -81,6 +88,10 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+        'departamentos' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Departamento::class,
+        ],
     ],
 
     /*

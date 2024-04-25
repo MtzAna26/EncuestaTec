@@ -64,9 +64,22 @@ h1 {
 
 /*Estilo de encuestas*/
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto; /* Para centrar la tabla horizontalmente */
+}
 
+th, td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
 
-
+th {
+    background-color: #9e3636;
+    color: #333;
+}
 /* Estilos responsivos */
 
 @media only screen and (max-width: 768px) {

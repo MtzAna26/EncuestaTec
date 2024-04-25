@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
+
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
 </head>
 <body>
@@ -45,6 +46,7 @@
 
             // Agregar opciones de departamentos
             const departamentos = [
+                'SELECCIONA DEPARTAMENTO',
                 'CENTRO DE INFORMACIÓN',
                 'COORDINACIÓN DE CARRERAS',               
                 'RECURSOS FINANCIEROS',
