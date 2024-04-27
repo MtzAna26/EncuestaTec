@@ -24,31 +24,31 @@
     <div class="container mx-auto px-4">
         <h1 class="text-3xl font-semibold mb-4">DEPARTAMENTOS</h1>
         <div class="grid grid-cols-3 gap-4">
-            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">CENTRO DE INFORMACIÓN</button>
             </div>
-            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">COORDINACIÓN DE CARRERAS</button>
             </div>
-            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">RECURSOS FINANCIEROS</button>
             </div>
-            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">RESIDENCIAS PROFESIONALES</button>
             </div>
-            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">CENTRO DE CÓMPUTO</button>
             </div>
-            <div class="bg-red-400 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">SERVICIO SOCIAL</button>
             </div>
-            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">SERVICIOS ESCOLARES</button>
             </div>
-            <div class="bg-red-700 text-white py-4 px-6  rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6  rounded-lg text-center">
                 <button class="text-lg font-semibold">BECAS</button>
             </div>
-            <div class="bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">
                 <button class="text-lg font-semibold">TALLERES Y LABORATORIOS</button>
             </div>
             <div class="bg-red-900 text-white py-4 px-6 rounded-lg text-center">

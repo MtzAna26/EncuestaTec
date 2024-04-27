@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -14,12 +15,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
-    public function create(): View
+    public function showRegistrationForm(): View
     {
-        return view('auth.register');
+        return view('dashboard');
     }
 
     /**
@@ -28,25 +26,29 @@ class RegisteredUserController extends Controller
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request): RedirectResponse
-    {
+{
+    try {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:admin,departamento'], // Guardar el rol del usuario
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'role' => ['required', 'string', 'in:admin,departamento'], 
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role, 
-        ]);
+        $user = new User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = Hash::make($request->input('password'));
+        $user->role = $request->input('role');
+        $user->save();
 
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        Session::flash('success', '¡Usuario registrado exitosamente!');
+        return redirect()->route('dashboard');
+    } catch (\Exception $e) {
+        // Manejo de errores
+        Session::flash('error', 'Hubo un problema al registrar el usuario. Por favor, inténtalo de nuevo.');
+        return redirect()->back();
     }
+}
+
 }

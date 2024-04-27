@@ -2,6 +2,7 @@
 
 ///use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthAlumnoRegisterController;
 use App\Http\Controllers\AuthAlumnoLoginController;
 use App\Http\Controllers\Auth\DepartamentoLoginController;
@@ -23,6 +24,15 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/register', [RegisteredUserController::class, 'create'])
+        ->middleware('guest')
+        ->name('register');
+
+Route::post('/register', [RegisteredUserController::class, 'store'])
+        ->middleware('guest');
+        
+Route::post('/users', [RegisteredUserController::class, 'store'])->name('users.store');
+
 
 // Ruta para mostrar el formulario de registro de alumno
 Route::get('/registro/alumno', [AuthAlumnoRegisterController::class, 'showRegistrationForm'])->name('alumno.register');

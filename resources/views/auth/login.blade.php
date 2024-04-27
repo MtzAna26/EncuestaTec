@@ -17,7 +17,6 @@
             <div class="info-childs">
                 <h1>EncuestaTec</h1>
                 <p>Bienvenido de vuelta, inicia sesión para continuar</p>
-                <input type="button" value="Agregar Nuevo Usuario" id="sign-in" onclick="window.location.href='{{ route('register') }}'">
             </div>
         </div>
         <div class="form-information">
