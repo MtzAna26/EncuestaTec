@@ -6,15 +6,16 @@
     <title>EncuestaTec</title>
 
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-content">
             <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
             <div class="titles">
-                <h2>SISTEMA DE ENCUESTAS</h2>
-                <h3>EncuestaTec</h3>
-                <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
+                <h2 class="text-4xl font-bold text-white">SISTEMA DE ENCUESTAS</h2>
+                <h3 class="text-2xl text-white">EncuestaTec</h3>
+                <h1 class="text-5xl font-bold text-white">INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
             
             <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
@@ -23,7 +24,6 @@
     <br>
 
     <div class="additional-text">
-        
         
         <!-- Enlace para seleccionar departamento -->
         <a id="seleccionarDepartamento" href="#" class="button">DEPARTAMENTO</a>

@@ -47,16 +47,9 @@ Route::post('/alumno/login', [AuthAlumnoLoginController::class, 'login'])->name(
 Route::post('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
 Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
 
-// Ruta para seleccionar departamento, esta ruta se encarga de redirigir a la vista correspondiente al departamento
-//Route::get('/departamentos/{departamento}', 'DepartamentoController@show')->name('departamento.show');
-
-
-// Rutas para el inicio de sesión del departamento
-Route::get('/departamento/login', [DepartamentoLoginController::class, 'showLoginForm'])->name('departamento.login');
-Route::post('/departamento/login', [DepartamentoLoginController::class, 'login']);
-
-// Ruta para el cierre de sesión del departamento
-Route::post('/departamento/logout', [DepartamentoLoginController::class, 'logout'])->name('departamento.logout');
+// Rutas de departamento
+Route::get('/departamento/login', [DepartamentoController::class, 'showLoginForm'])->name('departamento.login');
+Route::post('/departamento/login', [DepartamentoController::class, 'login']);
 
 // Ruta para encuestas
 

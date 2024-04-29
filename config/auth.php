@@ -48,10 +48,10 @@ return [
         ],
 
         // Definir guard para el departamento
-    'departamento' => [
-        'driver' => 'session',
-        'provider' => 'departamentos',
-    ],
+        'departamento' => [
+            'driver' => 'session',
+            'provider' => 'departamentos',
+        ],
         
     ],
 
