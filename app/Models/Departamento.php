@@ -11,7 +11,11 @@ class Departamento extends Model
 
     protected $fillable = [
         
-        'usuario',
+        'email',
         'password',
     ];
+    public function encuestas()
+    {
+        return $this->hasMany(Encuesta::class);
+    }
 }

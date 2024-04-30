@@ -50,8 +50,10 @@ Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encues
 // Rutas de departamento
 Route::get('/departamento/login', [DepartamentoController::class, 'showLoginForm'])->name('departamento.login');
 Route::post('/departamento/login', [DepartamentoController::class, 'login']);
+Route::get('/departamento/dashboard', [DepartamentoController::class, 'dashboard'])->name('departamento.dashboard');
 
 // Ruta para encuestas
+Route::get('/comenzar-encuestas/centro-de-informacion', [EncuestaController::class, 'comenzarEncuestasCentroDeInformacion'])->name('encuestas.centro_informacion');
 
 
 require __DIR__.'/auth.php';

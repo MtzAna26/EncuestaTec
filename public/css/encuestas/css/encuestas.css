@@ -29,7 +29,9 @@ h1, h2, h3 {
     margin: 10px; /* Agrega espacio entre los títulos */
     padding: 0; /* Eliminar relleno */
 }
-
+th {
+    color: black;
+}
 h2 {
     font-size: 24px;
 }

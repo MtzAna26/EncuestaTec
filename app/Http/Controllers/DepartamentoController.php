@@ -10,7 +10,12 @@ use App\Models\Departamento;
 
 class DepartamentoController extends Controller
 {
-
+    public function dashboard()
+    {
+        // Lógica para mostrar el panel de control del departamento
+        return view('departamento.dashboard');
+    }
+    
     /**
      * Muestra la vista del departamento especificado.
      *
@@ -51,8 +56,8 @@ class DepartamentoController extends Controller
 
         // Crear un usuario de departamento correspondiente
         $usuarioDepartamento = User::create([
-            'name' => $request->usuario, // Puedes utilizar el nombre del departamento como nombre de usuario
-            'email' => $request->usuario.'@example.com', // Opcional: crear un correo electrónico único para el departamento
+            'name' => $request->usuario, 
+            'email' => $request->usuario.'@example.com', 
             'password' => bcrypt($request->password),
             'role' => 'departamento',
         ]);
@@ -62,23 +67,22 @@ class DepartamentoController extends Controller
     }
     
     return redirect()->route('departamento.dashboard');
+
 }
 
     public function login(Request $request)
     {
     $credentials = $request->validate([
-        'usuario' => 'required|string',
+        'email' => 'required|string',
         'password' => 'required|string',
     ]);
 
-    // Intenta autenticar al usuario usando el modelo Departamento
-    if (Auth::guard('departamento')->attempt($credentials)) {
+    if (Auth::attempt($credentials)) {
         // Autenticación exitosa, redirigir al área protegida del departamento o a la página de destino
         $redirectTo = Session::pull('departamento.redirect', route('departamento.dashboard'));
         return redirect()->intended($redirectTo);
     }
 
-    // Si la autenticación falla, redirigir de vuelta con un mensaje de error
     return back()->withErrors(['usuario' => 'Credenciales incorrectas.'])->withInput();
     }
 }

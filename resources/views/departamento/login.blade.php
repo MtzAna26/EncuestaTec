@@ -32,12 +32,12 @@
                     <h2 class="sub-header">Introduce los datos correspondientes:</h2>
                 </div>
                 <div class="login-form">
-                    <label for="usuario">Usuario:</label>
-                    <input type="text" id="usuario" name="usuario" required>
-                    
+                    <label for="email">Usuario:</label>
+                    <input type="text" id="email" name="email" required>
+
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required>
-                    
+                                        
                     <div class="form-group">
                         <button type="submit" id="btn-iniciar-sesion" class="iniciar-sesion">Iniciar Sesión</button>
                     </div>

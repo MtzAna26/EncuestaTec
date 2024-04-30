@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Encuesta extends Model
+class Pregunta extends Model
 {
-    public function departamento()
+    protected $fillable = ['texto', 'encuesta_id'];
+
+    public function encuesta()
     {
-        return $this->belongsTo(Departamento::class);
+        return $this->belongsTo(Encuesta::class);
     }
 
     public function respuestas()
     {
         return $this->hasMany(Respuesta::class);
     }
-
 }
