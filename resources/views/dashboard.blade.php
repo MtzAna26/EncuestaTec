@@ -382,9 +382,123 @@
             </div>
         </div>
     </div>
-    <div class="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-    <div class="container mx-auto mt-8">
+
+    <!--Carrera-->
+    <br>
+<div class="bg-white p-6 rounded-lg shadow-md">
+    <h2 class="text-xl font-semibold mb-4">Selecciona Carrera</h2>
+    <div class="overflow-y-auto max-h-96">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Carrera</th>
+                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingeniería Industrial (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingeniería en Minería (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Agronomia (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Licenciatura en Administracion (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Gestion Empresarial (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Sistemas Computacionales (Escolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria Informática (Semiescolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Gestion Empresarial (Semiescolarizado)</td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                            Ver
+                        </button>
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            PDF
+                        </button>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    
+</div>
     <!---
     <div class="container mx-auto mt-8">
         <div class="bg-white p-6 rounded-lg shadow-md">

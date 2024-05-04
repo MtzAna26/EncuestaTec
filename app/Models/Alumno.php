@@ -27,4 +27,10 @@ class Alumno extends Model
         'carrera', 
         'semestre'
     ];
+
+    public function centroInformacion()
+    {
+        return $this->hasOne(CentroInformacion::class, 'alumno_id');
+    }
+    
 }
