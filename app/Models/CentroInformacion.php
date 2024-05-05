@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class CentroInformacion extends Model
 {
     use HasFactory;
+    
     protected $table = 'dep_centro_informacion';
+    
     protected $fillable = [
         'alumno_id',
         'no_control',
@@ -31,7 +33,6 @@ class CentroInformacion extends Model
 
     public function alumno()
     {
-        return $this->belongsTo(Alumno::class);
+        return $this->belongsTo(Alumno::class, 'alumno_id');
     }
-    
 }

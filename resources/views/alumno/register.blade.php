@@ -23,10 +23,7 @@
     
     <br>
     <div class="container">
-        <!-- Si se coloca register manda los datos del controlador
-            alumno.register
-            pero si pongo login me manda a la pagina de login 
-            pero a un no guarda en la bdd--->
+        
         <form id="registration-form" method="POST" action="{{ route('alumno.register') }}">
             @csrf {{-- Directiva Blade para protección CSRF --}}
 

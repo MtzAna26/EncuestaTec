@@ -30,12 +30,9 @@
             Recuerda que tus respuestas son confidenciales.</p>
             
             <form action="{{ route('guardar_evaluacion') }}" method="POST">
-            <input type="hidden" name="no_control" value="{{ isset($alumno) ? $alumno->no_control : '' }}">
-<input type="hidden" name="carrera" value="{{ isset($alumno) ? $alumno->carrera : '' }}">
-
-
+                <input type="hidden" name="alumno_id" value="{{ Auth::id() }}">
+                <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 @csrf
-                
 
     <table class="w-full">
         <tr>

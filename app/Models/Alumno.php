@@ -28,9 +28,9 @@ class Alumno extends Model
         'semestre'
     ];
 
-    public function centroInformacion()
+    public function centroinformacion()
     {
-        return $this->hasOne(CentroInformacion::class, 'alumno_id');
+        return $this->hasOne('App\Models\CentroInformacion');
     }
     
 }

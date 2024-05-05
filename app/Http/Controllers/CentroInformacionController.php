@@ -2,17 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CentroInformacion;
 use App\Models\Alumno;
+use App\Models\CentroInformacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class CentroInformacionController extends Controller
 {
-    public function __construct()
-    {
-        
-    }
 
     public function mostrarFormulario()
     {
@@ -39,16 +35,11 @@ class CentroInformacionController extends Controller
             'comentario' => 'required',
         ]);
 
-        $alumno = Auth::user();
+        $alumnoId = Alumno::first()->id;
+        $no_control = Alumno::first()->no_control;
+        $carrera = Alumno::first()->carrera;
+
         $evaluacion = new CentroInformacion();
-        
-        if ($alumno != null) {
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-        }
-        
-        
 
         $evaluacion->Serpregunta_1 = $request->Serpregunta_1;
         $evaluacion->Serpregunta_2 = $request->Serpregunta_2;
@@ -64,8 +55,14 @@ class CentroInformacionController extends Controller
         $evaluacion->Estrucpregunta_5 = $request->Estrucpregunta_5;
         $evaluacion->Estrucpregunta_6 = $request->Estrucpregunta_6;
         $evaluacion->comentario = $request->comentario;
+    
+
+        $evaluacion->alumno_id = $alumnoId;
+        $evaluacion->no_control = $no_control;
+        $evaluacion->carrera = $carrera;
         $evaluacion->save();
 
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
     }
 }
+
