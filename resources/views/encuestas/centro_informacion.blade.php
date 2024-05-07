@@ -32,6 +32,7 @@
             <form action="{{ route('guardar_evaluacion') }}" method="POST">
                 <input type="hidden" name="alumno_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
+                <input type="hidden" name="carrera" value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
                 @csrf
 
     <table class="w-full">

@@ -16,8 +16,8 @@ class CreateCentroInformacionTable extends Migration
                 ->on('alumnos')
                 ->onDelete('cascade');
             
-            $table->string('no_control')->nullable()->default('Valor Predeterminado');
-            $table->string('carrera')->nullable()->default('Valor Predeterminado');
+            $table->string('no_control');
+            $table->string('carrera');
             $table->integer('Serpregunta_1')->nullable();
             $table->integer('Serpregunta_2')->nullable();
             $table->integer('Serpregunta_3')->nullable();

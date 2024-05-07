@@ -43,7 +43,7 @@
                 <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Escolarizado)</option>
                 <option value="Ingenieria en Sistemas Computacionales">Ingenieria en Sistemas Computacionales (Escolarizado)</option>
                 <option value="Ingenieria Informática">Ingenieria Informática (Semiescolarizado)</option>
-                <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
+                <option value="Ingenieria en Gestion Empresarial(Semiescolarizado)">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
             </select>
 
             <label for="semestre">Semestre:</label>
