@@ -11,6 +11,10 @@ use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BuzonController;
 
+use App\Http\Controllers\DepartamentoInicio;
+use App\Http\Controllers\DepartamentoTablas;
+use App\Http\Controllers\login;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -72,6 +76,9 @@ Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mo
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
 
-
+// Depatamento
+Route::get('/departamento/inicio/{Departamento}',[DepartamentoInicio::class, 'inicio'])->name('DepartamentoInio');
+Route::get('/departamento/tablas/{Departamento}/{ciclo}',[DepartamentoTablas::class, 'inicio'])->name('DepartamentoTablas');
+Route::post('/departamento/login2',[login::class, 'login'])->name('Departamentologin');
 
 require __DIR__.'/auth.php';

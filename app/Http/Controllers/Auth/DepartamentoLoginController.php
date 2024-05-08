@@ -24,8 +24,10 @@ class DepartamentoLoginController extends Controller
     
        // Intentar autenticar al departamento utilizando el guard 'departamento'
     if (Auth::guard('departamento')->attempt($credentials)) {
+        
         // Autenticación exitosa, obtener el departamento actual
         $departamento = Auth::guard('departamento')->user();
+        //return redirect('http://127.0.0.1:8000/departamento/inicio/'.$departamento);
 
         // Redirigir al área protegida del departamento correspondiente
         return redirect()->route("departamento.show", $departamento->nombre); // Aquí asumo que el departamento tiene un atributo "nombre"
