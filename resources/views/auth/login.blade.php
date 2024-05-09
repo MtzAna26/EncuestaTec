@@ -33,6 +33,7 @@
                         <input type="password" name="password" placeholder="Contraseña" required>
                     </label>
                     <input type="submit" value="Iniciar Sesión">
+                    
                 </form>
             </div>
         </div>

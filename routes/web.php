@@ -61,18 +61,22 @@ Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encues
 
 // Departamento centro de informacion (encuesta)
 Route::get('/formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('formulario');
-Route::post('/guardar-evaluacion', [CentroInformacionController::class, 'guardarRespuestas'])->name('guardar_evaluacion');
+Route::post('/guardar-respuestas', [CentroInformacionController::class, 'guardarRespuestas'])->name('guardar_evaluacion');
 
-// Define tus rutas y el middleware 'auth' aquí
+// Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
+Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
+Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'editar'])->name('centros-informacion.editar');
+
+
+// Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
-    // Rutas que requieren autenticación
-    Route::get('/mostrar-formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('mostrar.formulario');
-    Route::post('/guardar-respuestas', [CentroInformacionController::class, 'guardarRespuestas'])->name('guardar.respuestas');
+    Route::get('/mostrar-formulario-auth', [CentroInformacionController::class, 'mostrarFormulario'])->name('auth.mostrar_formulario');
+    Route::post('/guardar-respuestas-auth', [CentroInformacionController::class, 'guardarRespuestas'])->name('auth.guardar_respuestas');
 });
 
 // Departamento de coordinacion de carreras (encuesta)
-
 Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mostrarFormulario'])->name('encuestas.coordinacion_carreras');
+
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
 

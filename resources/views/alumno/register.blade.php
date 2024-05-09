@@ -23,10 +23,7 @@
     
     <br>
     <div class="container">
-        <!-- Si se coloca register manda los datos del controlador
-            alumno.register
-            pero si pongo login me manda a la pagina de login 
-            pero a un no guarda en la bdd--->
+        
         <form id="registration-form" method="POST" action="{{ route('alumno.register') }}">
             @csrf {{-- Directiva Blade para protección CSRF --}}
 
@@ -46,7 +43,7 @@
                 <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Escolarizado)</option>
                 <option value="Ingenieria en Sistemas Computacionales">Ingenieria en Sistemas Computacionales (Escolarizado)</option>
                 <option value="Ingenieria Informática">Ingenieria Informática (Semiescolarizado)</option>
-                <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
+                <option value="Ingenieria en Gestion Empresarial(Semiescolarizado)">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
             </select>
 
             <label for="semestre">Semestre:</label>

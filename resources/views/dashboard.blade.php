@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
-    <!-- Enlace al archivo de estilos de Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
@@ -81,13 +80,15 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CENTRO DE INFORMACIÓN</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.centro_informacion') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Editar -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Editar
                                 </button>
+                                &nbsp;
                                 <!-- Botón PDF -->
                                 <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
                                     PDF
