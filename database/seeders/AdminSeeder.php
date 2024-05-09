@@ -14,10 +14,10 @@ class AdminSeeder extends Seeder
      */
     public function run()
 {
-    // Verifica si hay al menos un administrador en la base de datos
+    
     $existingAdmin = User::where('role', 'admin')->first();
 
-    // Si no hay ningún administrador, crea uno
+    
     if (!$existingAdmin) {
         User::create([
             'name' => 'Victor Muñoz',

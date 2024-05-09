@@ -59,6 +59,11 @@ Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encues
 Route::get('/formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('formulario');
 Route::post('/guardar-respuestas', [CentroInformacionController::class, 'guardarRespuestas'])->name('guardar_evaluacion');
 
+// Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
+Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
+Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'editar'])->name('centros-informacion.editar');
+
+
 // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
     Route::get('/mostrar-formulario-auth', [CentroInformacionController::class, 'mostrarFormulario'])->name('auth.mostrar_formulario');
