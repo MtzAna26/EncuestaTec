@@ -68,6 +68,15 @@
         <!-- Lista de Departamentos -->
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold mb-4">Agregar Encuesta</h2>
+            <a href="#">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Buzón de Quejas
+                </button>
+                &nbsp;
+                <button class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">
+                    Comparativas Semestres
+                </button>               
+            </a>
             
             <div class="overflow-y-auto max-h-96">
                 <table class="min-w-full divide-y divide-gray-200">
@@ -75,6 +84,7 @@
                         <tr>
                             <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Departamento</th>
                         </tr>
+                        
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>

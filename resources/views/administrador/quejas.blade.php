@@ -1,0 +1,1 @@
+<h1>Aqui es la vista del administrador para las quejas</h1>

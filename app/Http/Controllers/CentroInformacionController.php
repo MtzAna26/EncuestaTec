@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use App\Models\CentroInformacion;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CentroInformacionController extends Controller

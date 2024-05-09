@@ -59,6 +59,21 @@ Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encues
 Route::get('/formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('formulario');
 Route::post('/guardar-respuestas', [CentroInformacionController::class, 'guardarRespuestas'])->name('guardar_evaluacion');
 
+// Buzon de quejas 
+Route::get('quejas', [BuzonController::class, 'quejas'])->name('quejas.form');
+Route::post('quejas', [BuzonController::class, 'create'])->name('quejas.create');
+
+
+// Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
+Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
+Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'update'])->name('centros-informacion.editar');
+
+// Ruta para que el admin pueda ver las comparativas del semestre
+//Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
+//Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
+
+
+
 // Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
 Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
 Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'editar'])->name('centros-informacion.editar');

@@ -25,7 +25,7 @@
     <div class="container">
         
         <form id="registration-form" method="POST" action="{{ route('alumno.register') }}">
-            @csrf {{-- Directiva Blade para protección CSRF --}}
+            @csrf 
 
             <label for="no_control">No.Control:</label>
             <input type="text" id="no_control" name="no_control" required>

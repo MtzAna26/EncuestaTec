@@ -19,7 +19,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role', // Agrega el campo 'role' al array de atributos asignables
+        'role',
     ];
 
     /**

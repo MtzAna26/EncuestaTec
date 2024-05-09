@@ -176,8 +176,9 @@
 
         <tr>
             <td colspan="6" class="py-4">
-                <label for="comentario" class="block mb-2">Comentario:</label>
-                <p>Si desea expresar algún comentario, sugerencia o recomendación utilizael espacio destinado para ello. </p>
+                <label for="comentario" class="block mb-2"><b>Comentario:</b></label>
+
+                <p>Si desea expresar algún comentario, sugerencia o recomendación utiliza el espacio destinado para ello. </p>
                 <textarea id="comentario" name="comentario" class="w-full px-3 py-2 border rounded-md focus:outline-none focus:border-blue-500"></textarea>
             </td>
         </tr>
