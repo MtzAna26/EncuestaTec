@@ -69,9 +69,10 @@
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold mb-4">Agregar Encuesta</h2>
             <a href="#">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <a href="{{ route('admin.quejas') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                     Buzón de Quejas
-                </button>
+                </a>
+                
                 &nbsp;
                 <button class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">
                     Comparativas Semestres
@@ -104,7 +105,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -129,7 +130,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -154,7 +155,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -179,7 +180,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -204,7 +205,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -229,7 +230,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -254,7 +255,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -279,7 +280,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -304,7 +305,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -329,7 +330,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -354,7 +355,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->
@@ -379,7 +380,7 @@
                                     PDF
                                 </button>
                                 <!-- Botón Activar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
                                 <!-- Botón Desactivar -->

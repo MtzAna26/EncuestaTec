@@ -66,7 +66,7 @@ Route::post('/guardar-respuestas', [CentroInformacionController::class, 'guardar
 // Buzon de quejas 
 Route::get('quejas', [BuzonController::class, 'quejas'])->name('quejas.form');
 Route::post('quejas', [BuzonController::class, 'create'])->name('quejas.create');
-
+Route::get('admin/ver-quejas', [BuzonController::class, 'verQuejas'])->name('admin.quejas');
 
 // Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
 Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');

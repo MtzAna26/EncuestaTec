@@ -30,12 +30,9 @@ class DepartamentoController extends Controller
     
     public function show($departamento)
     {
-        // Verificar si existe una vista para el departamento
         if (view()->exists("departamentos.$departamento")) {
-            // Si existe, mostrar la vista del departamento
             return view("departamentos.$departamento");
         } else {
-            // Si no existe, redirigir a una página de error o a una vista por defecto
             abort(404);
         }
     }
@@ -51,10 +48,10 @@ class DepartamentoController extends Controller
     try {
         $departamento = Departamento::create([
             'usuario' => $request->usuario,
-            'password' => bcrypt($request->password), // Asegurar el hash de la contraseña
+            'password' => bcrypt($request->password), 
         ]);
 
-        // Crear un usuario de departamento correspondiente
+
         $usuarioDepartamento = User::create([
             'name' => $request->usuario, 
             'email' => $request->usuario.'@example.com', 
@@ -78,7 +75,7 @@ class DepartamentoController extends Controller
     ]);
 
     if (Auth::attempt($credentials)) {
-        // Autenticación exitosa, redirigir al área protegida del departamento o a la página de destino
+        
         $redirectTo = Session::pull('departamento.redirect', route('departamento.dashboard'));
         return redirect()->intended($redirectTo);
     }

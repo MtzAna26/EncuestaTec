@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('buzon_quejas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); 
+            /*$table->unsignedBigInteger('user_id'); 
             
-            $table->foreign('user_id')->references('id')
+            /*$table->foreign('user_id')->references('id')
             ->on('users')
-            ->onDelete('cascade'); 
+            ->onDelete('cascade'); */
 
             $table->string('carrera');
             $table->string('tipo_comentario');

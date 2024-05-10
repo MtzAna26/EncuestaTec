@@ -17,5 +17,6 @@ class Buzon extends Model
         'departamento',
         'contacto',
         'mensaje',
+
     ];
 }
