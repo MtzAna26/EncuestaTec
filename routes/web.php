@@ -8,6 +8,7 @@ use App\Http\Controllers\AuthAlumnoRegisterController;
 use App\Http\Controllers\AuthAlumnoLoginController;
 use App\Http\Controllers\Auth\DepartamentoLoginController;
 use App\Http\Controllers\EncuestaController;
+
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BuzonController;
 
@@ -71,6 +72,12 @@ Route::get('admin/ver-quejas', [BuzonController::class, 'verQuejas'])->name('adm
 // Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
 Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
 Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'update'])->name('centros-informacion.editar');
+
+
+// Ruta para que el admin  pueda ver carrera de los alumnos 
+Route::get('/carreras/{carrera}/semestres/{semestre}', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre'])->name('carreras.semestres.alumnos.lista');
+Route::get('/alumnos/{carrera}/{semestre}', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre']);
+Route::get('/carreras/{carrera}/semestres/{semestre}/alumnos', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre'])->name('carreras.semestres.alumnos.lista');
 
 // Ruta para que el admin pueda ver las comparativas del semestre
 //Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');

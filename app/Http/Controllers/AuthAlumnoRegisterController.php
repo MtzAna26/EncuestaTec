@@ -38,4 +38,14 @@ class AuthAlumnoRegisterController extends Controller
         return back()->withInput()->withErrors(['error' => 'Hubo un problema al guardar el registro. Por favor, intenta de nuevo.']);
     }
 }
+
+public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)
+    {
+    // Obtener los alumnos para la carrera y el semestre específico
+    $alumnos = Alumno::where('carrera', $carrera)
+                        ->where('semestre', $semestre)
+                        ->get();
+                        $alumnos = Alumno::all();
+                        return view('alumno.lista', compact('alumnos', 'carrera', 'semestre'));
+    }
 }

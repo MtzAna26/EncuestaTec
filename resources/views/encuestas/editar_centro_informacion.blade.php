@@ -34,7 +34,7 @@
                 <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 <input type="hidden" name="carrera" value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
                 @csrf
-
+<h1>Editar Formulario</h1>
     <table class="w-full">
         <tr>
             <th>EVALUACION AL SERVICIO</th>

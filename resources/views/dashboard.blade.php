@@ -32,7 +32,8 @@
                 </div>
             @endif
 
-            <h2 class="text-xl font-semibold mb-4">Agregar Usuario</h2>              
+            <h2 class="text-xl font-semibold mb-4">Agregar Usuario</h2>   
+                    
             <form method="POST" action="{{ route('users.store') }}" class="space-y-4">
                 @csrf
                 <div>
@@ -76,7 +77,11 @@
                 &nbsp;
                 <button class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">
                     Comparativas Semestres
-                </button>               
+                </button>  
+                &nbsp;
+                <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mr-2">
+                    Buscar Alumno
+                </a>              
             </a>
             
             <div class="overflow-y-auto max-h-96">
@@ -395,7 +400,9 @@
         </div>
     </div>
 
+    
     <!--Carrera-->
+    <!---
     <br>
 <div class="bg-white p-6 rounded-lg shadow-md">
     <h2 class="text-xl font-semibold mb-4">Selecciona Carrera</h2>
@@ -411,7 +418,7 @@
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap">Ingeniería Industrial (Escolarizado)</td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             Ver
                         </button>
                         <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
@@ -508,6 +515,7 @@
         </table>
     </div>
 </div>
+--->
 
     
 </div>
