@@ -70,16 +70,17 @@
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold mb-4">Agregar Encuesta</h2>
             <a href="#">
-                <a href="{{ route('admin.quejas') }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <a href="{{ route('admin.quejas') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                     Buzón de Quejas
                 </a>
                 
                 &nbsp;
-                <button class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">
+                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                     Comparativas Semestres
                 </button>  
                 &nbsp;
-                <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mr-2">
+                
+                <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-2">
                     Buscar Alumno
                 </a>              
             </a>

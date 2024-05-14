@@ -49,4 +49,13 @@ class CentroInformacionController extends Controller
         $evaluacion->save();
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+    public function editar($centroInformacion)
+    {
+        $centroInformacion = CentroInformacion::findOrFail($centroInformacion);
+        return view('encuestas.editar_centro_informacion', compact('centroInformacion'));
+    }
+
+    
+
 }

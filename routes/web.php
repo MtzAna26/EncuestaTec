@@ -8,10 +8,8 @@ use App\Http\Controllers\AuthAlumnoRegisterController;
 use App\Http\Controllers\AuthAlumnoLoginController;
 use App\Http\Controllers\Auth\DepartamentoLoginController;
 use App\Http\Controllers\EncuestaController;
-
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BuzonController;
-
 use App\Http\Controllers\DepartamentoInicio;
 use App\Http\Controllers\DepartamentoTablas;
 use App\Http\Controllers\login;
@@ -69,25 +67,31 @@ Route::get('quejas', [BuzonController::class, 'quejas'])->name('quejas.form');
 Route::post('quejas', [BuzonController::class, 'create'])->name('quejas.create');
 Route::get('admin/ver-quejas', [BuzonController::class, 'verQuejas'])->name('admin.quejas');
 
-// Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
-Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
-Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'update'])->name('centros-informacion.editar');
 
-
-// Ruta para que el admin  pueda ver carrera de los alumnos 
+// Ruta para que el admin  pueda ver, y buscar  carrera de los alumnos 
 Route::get('/carreras/{carrera}/semestres/{semestre}', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre'])->name('carreras.semestres.alumnos.lista');
 Route::get('/alumnos/{carrera}/{semestre}', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre']);
 Route::get('/carreras/{carrera}/semestres/{semestre}/alumnos', [AuthAlumnoRegisterController::class, 'mostrarAlumnosPorCarreraYSemestre'])->name('carreras.semestres.alumnos.lista');
+// Ruta para eliminar alumnos seleccionados
+Route::post('/carreras/{carrera}/semestres/{semestre}/alumnos/eliminar', [AuthAlumnoRegisterController::class, 'eliminarAlumnosSeleccionados'])->name('alumnos.eliminar');
 
 // Ruta para que el admin pueda ver las comparativas del semestre
 //Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
 //Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
 
 
-
 // Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
 Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
+Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'update'])->name('centros-informacion.editar');
+
+
+// Ruta para que el admin pueda editar encuesta del dep.centro de informacion 
+Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
 Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'editar'])->name('centros-informacion.editar');
+Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'mostrarFormulario'])->name('centros-informacion.editar');
+
+
+
 
 
 // Rutas que requieren autenticación

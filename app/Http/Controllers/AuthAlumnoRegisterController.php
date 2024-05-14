@@ -13,7 +13,7 @@ class AuthAlumnoRegisterController extends Controller
     }
 
     public function register(Request $request)
-{
+    {
     
     $request->validate([
         'nip' => 'required|unique:alumnos,nip',
@@ -37,15 +37,27 @@ class AuthAlumnoRegisterController extends Controller
         
         return back()->withInput()->withErrors(['error' => 'Hubo un problema al guardar el registro. Por favor, intenta de nuevo.']);
     }
-}
+    }
 
-public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)
+
+    // Para el administrador
+    public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)
     {
-    // Obtener los alumnos para la carrera y el semestre específico
     $alumnos = Alumno::where('carrera', $carrera)
                         ->where('semestre', $semestre)
                         ->get();
                         $alumnos = Alumno::all();
                         return view('alumno.lista', compact('alumnos', 'carrera', 'semestre'));
+    }
+
+    public function eliminarAlumnosSeleccionados(Request $request, $carrera, $semestre)
+    {
+        $alumnosSeleccionados = $request->input('alumnosSeleccionados', []);
+        $alumnos = Alumno::whereIn('id', $alumnosSeleccionados)->get();
+        foreach ($alumnos as $alumno) {
+            $alumno->delete();
+        }
+        return redirect()->route('carreras.semestres.alumnos.lista', ['carrera' => $carrera, 'semestre' => $semestre])
+                        ->with('success', 'Alumnos eliminados correctamente.');
     }
 }
