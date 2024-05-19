@@ -10,6 +10,7 @@ use App\Http\Controllers\Auth\DepartamentoLoginController;
 use App\Http\Controllers\EncuestaController;
 use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\BuzonController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\DepartamentoInicio;
 use App\Http\Controllers\DepartamentoTablas;
 use App\Http\Controllers\login;
@@ -53,6 +54,11 @@ Route::get('/departamento/login', [DepartamentoController::class, 'showLoginForm
 Route::post('/departamento/login', [DepartamentoController::class, 'login']);
 Route::get('/departamento/dashboard', [DepartamentoController::class, 'dashboard'])->name('departamento.dashboard');
 
+// Depatamento
+Route::get('/departamento/inicio/{Departamento}',[DepartamentoInicio::class, 'inicio'])->name('DepartamentoInio');
+Route::get('/departamento/tablas/{Departamento}/{ciclo}',[DepartamentoTablas::class, 'inicio'])->name('DepartamentoTablas');
+Route::post('/departamento/login2',[login::class, 'login'])->name('Departamentologin');
+
 // Ruta para encuestas
 Route::get('/comenzar-encuestas/centro-de-informacion', [EncuestaController::class, 'comenzarEncuestasCentroDeInformacion'])->name('encuestas.centro_informacion');
 Route::post('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
@@ -75,26 +81,28 @@ Route::get('/carreras/{carrera}/semestres/{semestre}/alumnos', [AuthAlumnoRegist
 // Ruta para eliminar alumnos seleccionados
 Route::post('/carreras/{carrera}/semestres/{semestre}/alumnos/eliminar', [AuthAlumnoRegisterController::class, 'eliminarAlumnosSeleccionados'])->name('alumnos.eliminar');
 
-// Ruta para que el admin pueda ver las comparativas del semestre
-//Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
-//Route::get('/comparativas/semestres', [EncuestaController::class, 'comparativasSemestres'])->name('comparativas.semestres');
 
+// Ruta para que el admin pueda ver y editar encuesta del dep.centro de informacion 
+// Ruta para graficas de centro de informacion
+Route::get('/centros-informacion/grafica', [CentroInformacionController::class, 'mostrarFormularioGrafica'])
+    ->name('centros-informacion.grafica');
 
-// Ruta para que el admin pueda ver encuesta del dep.centro de informacion 
-Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
-Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'update'])->name('centros-informacion.editar');
+// Ruta para obtener todas las respuestas
+Route::get('/obtenerRespuestas', [CentroInformacionController::class, 'obtenerRespuestas']);
 
+// Ruta para la vista que muestra la gráfica
+Route::get('/grafica-respuestas', function () {
+    return view('graficaRespuestas');
+});
 
-// Ruta para que el admin pueda editar encuesta del dep.centro de informacion 
-Route::get('/centros-informacion', [CentroInformacionController::class, 'index'])->name('centros-informacion.index');
-Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'editar'])->name('centros-informacion.editar');
-Route::get('/centros-informacion/{centroInformacion}/editar', [CentroInformacionController::class, 'mostrarFormulario'])->name('centros-informacion.editar');
+// Ruta para PDF Dep_Centro_Informacion 
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport']);
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
+Route::get('/download-question-report', [PDFController::class, 'downloadQuestionReport']);
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
+Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
 
-
-
-
-
-// Rutas que requieren autenticación
+    // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
     Route::get('/mostrar-formulario-auth', [CentroInformacionController::class, 'mostrarFormulario'])->name('auth.mostrar_formulario');
     Route::post('/guardar-respuestas-auth', [CentroInformacionController::class, 'guardarRespuestas'])->name('auth.guardar_respuestas');
@@ -106,9 +114,9 @@ Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mo
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
 
-// Depatamento
-Route::get('/departamento/inicio/{Departamento}',[DepartamentoInicio::class, 'inicio'])->name('DepartamentoInio');
-Route::get('/departamento/tablas/{Departamento}/{ciclo}',[DepartamentoTablas::class, 'inicio'])->name('DepartamentoTablas');
-Route::post('/departamento/login2',[login::class, 'login'])->name('Departamentologin');
+// Rutas para gráficas
+
+Route::get('/graficas-semestre/{carrera}/{semestre}', [AuthAlumnoRegisterController::class, 'GraficasSemestre'])->name('graficas.semestre');
+Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
 require __DIR__.'/auth.php';

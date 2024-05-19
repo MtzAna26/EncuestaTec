@@ -41,6 +41,7 @@ class AuthAlumnoRegisterController extends Controller
 
 
     // Para el administrador
+
     public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)
     {
     $alumnos = Alumno::where('carrera', $carrera)
@@ -60,4 +61,46 @@ class AuthAlumnoRegisterController extends Controller
         return redirect()->route('carreras.semestres.alumnos.lista', ['carrera' => $carrera, 'semestre' => $semestre])
                         ->with('success', 'Alumnos eliminados correctamente.');
     }
+
+    // Graficas 
+    public function GraficasSemestre($carrera, $semestre)
+    {
+    $alumnos = Alumno::where('carrera', $carrera)
+                        ->where('semestre', $semestre)
+                        ->get();
+
+    return view('administrador.comparativas', compact('alumnos', 'carrera', 'semestre'));
+    }
+
+    // Para obtener el periodo
+
+    public function obtenerAlumnosPorSemestre(Request $request) {
+        $semestre = $request->input('semestre');
+        
+        // Define los semestres correspondientes para cada rango
+        $semestresEneroJunio = ['Segundo_Semestre', 'Cuarto_Semestre', 'Sexto_Semestre', 'Octavo_Semestre'];
+        $semestresAgostoDiciembre = ['Primer_Semestre', 'Tercer_Semestre', 'Quinto_Semestre', 'Septimo_Semestre'];
+        
+        // Filtrar los alumnos según el semestre seleccionado
+        if ($semestre === 'enero-junio') {
+            $alumnos = Alumno::whereIn('semestre', $semestresEneroJunio)->get(['nombre']);
+        } else if ($semestre === 'agosto-diciembre') {
+            $alumnos = Alumno::whereIn('semestre', $semestresAgostoDiciembre)->get(['nombre']);
+        } else {
+            // Si no se encuentra ningún semestre coincidente, devuelve un array vacío
+            $alumnos = [];
+        }
+        
+        if ($request->ajax()) {
+            // Si la solicitud es una solicitud AJAX, devuelve los datos en formato JSON
+            return response()->json($alumnos);
+        } else {
+            // Si es una solicitud web normal, redirige o renderiza una vista según lo necesites
+            // Por ejemplo, puedes redirigir a una vista que muestre los datos en formato tabular
+            // o renderizar una vista con las gráficas directamente
+            return view('administrador.comparativas', compact('alumnos'));
+        }
+    }
+    
+    
 }

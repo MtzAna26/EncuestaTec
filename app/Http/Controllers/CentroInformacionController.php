@@ -50,12 +50,23 @@ class CentroInformacionController extends Controller
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
     }
 
-    public function editar($centroInformacion)
+
+    //Para el admin
+    public function mostrarFormularioGrafica()
     {
-        $centroInformacion = CentroInformacion::findOrFail($centroInformacion);
-        return view('encuestas.editar_centro_informacion', compact('centroInformacion'));
+        return view('encuestas.grafica_centro_informacion');
+    }
+    
+
+    public function obtenerRespuestas()
+    {
+        $respuestas = CentroInformacion::all();
+        if ($respuestas->isNotEmpty()) {
+            return response()->json($respuestas);
+        } else {
+            return response()->json(['error' => 'No se encontraron respuestas'], 404);
+        }
     }
 
     
-
 }

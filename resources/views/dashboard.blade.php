@@ -75,11 +75,8 @@
                 </a>
                 
                 &nbsp;
-                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                    Comparativas Semestres
-                </button>  
+                <a href="{{ route('graficas.semestre', ['carrera' => 'carrera', 'semestre' => 'semestre']) }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Comparativas Semestres</a>
                 &nbsp;
-                
                 <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-2">
                     Buscar Alumno
                 </a>              
@@ -97,19 +94,25 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CENTRO DE INFORMACIÓN</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.centro_informacion') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.centro_informacion') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
-                                <!-- Botón Editar -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
-                                </button>
+                                <!-- Botón Grafica -->                                 
+                                <script>
+                                    function confirmarEditar() {
+                                        if (confirm('¿Estás seguro de que deseas ver esta encuesta?')) {
+                                            window.location.href = "{{ route('centros-informacion.grafica') }}";
+                                        }
+                                    }
+                                </script>
+                                <a href="#" onclick="confirmarEditar()">
+                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
+                                </a>
                                 &nbsp;
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -124,17 +127,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">COORDINACIÓN DE CARRERAS</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -149,17 +149,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">RECURSOS FINANCIEROS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -174,17 +171,15 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">RESIDENCIAS PROFESIONALES</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica-->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
                                 <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -199,17 +194,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CENTRO DE CÓMPUTO</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -224,17 +216,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIO SOCIAL</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                        
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -249,17 +238,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIOS ESCOLARES</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -274,17 +260,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">BECAS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                                
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -299,17 +282,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">TALLERES Y LABORATORIOS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                            
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -324,17 +304,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CAFETERIA</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                            
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -349,17 +326,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIO MÉDICO</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                            
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -377,14 +351,11 @@
                                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </button>
-                                <!-- Botón Editar -->
+                                <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Editar
+                                    Gráfica
                                 </button>
-                                <!-- Botón PDF -->
-                                <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                                    PDF
-                                </button>
+                            
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
