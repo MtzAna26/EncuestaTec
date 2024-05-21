@@ -32,5 +32,23 @@ class Alumno extends Model
     {
         return $this->hasOne('App\Models\CentroInformacion');
     }
+
+    public function coordinacioncarreras()
+    {
+        return $this->hasOne('App\Models\CoordinacionCarreras');
+    }
+
+    public function recursosfinancieros()
+    {
+        return $this->hasOne('App\Models\RecursosFinancieros');
+    }
     
+    public function residenciasprofesionales()
+    {
+        return $this->hasOne('App\Models\ResidenciasProfesionales');
+    }
+    
+    public function centrocomputo(){
+        return $this->hasOne('App\Models\CentroComputo');
+    }
 }

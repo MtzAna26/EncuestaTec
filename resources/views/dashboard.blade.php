@@ -127,14 +127,24 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">COORDINACIÓN DE CARRERAS</td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </button>
+                            <a href="{{ route('encuestas.coordinacion_carreras') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                Ver
+                            </a>
+                            &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
-                                
+                                <script>
+                                    function confirmarEncuesta() {
+                                        if (confirm('¿Estás seguro de que deseas ver esta encuesta?')) {
+                                            window.location.href = "{{ route('encuestas.grafica_coordinacion_carreras') }}";
+                                        }
+                                    }
+                                </script>
+                                <a href="#" onclick="confirmarEncuesta()">
+                                    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
@@ -149,9 +159,10 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">RECURSOS FINANCIEROS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.recursos_financieros') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
                                 <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Gráfica

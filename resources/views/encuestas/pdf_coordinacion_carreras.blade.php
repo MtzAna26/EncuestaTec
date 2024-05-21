@@ -5,20 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
-    <title>Reporte Departamento Centro de Información </title>
+    <script src="{{ asset('js/graficaCoordinacionCarreras.js') }}"></script>
+    <title>Reporte Departamento Coordinación de Carreras </title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
-        <h1 class="text-center text-3xl font-bold mb-8">Reporte Centro de Información</h1>
-        @if (!request()->is('download-question-report')) <!-- Verifica si no se está descargando el PDF -->
-            <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                Imprimir PDF
-            </button>
-            <a href="{{ route('download-question-report') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
-                Descargar PDF
-            </a>
+        <h1 class="text-center text-3xl font-bold mb-8">Reporte Coordinación de Carreras</h1>
+            @if (!request()->is('download-question-report')) <!-- Verifica si no se está descargando el PDF -->
+        <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Imprimir PDF
+        </button>
+        <a href="{{ route('download-coordinacion-carreras') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+            Descargar PDF
+        </a>
         @endif
+
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">
                 <thead>

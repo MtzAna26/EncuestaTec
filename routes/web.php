@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\CentroInformacionController;
 use App\Http\Controllers\CoordinacionCarrerasController;
+use App\Http\Controllers\RecursosFinancierosController;
+use App\Http\Controllers\ResidenciasProfesionalesController;
+use App\Http\Controllers\CentroComputoController;
+use App\Http\Controllers\ServicioSocialController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthAlumnoRegisterController;
@@ -86,21 +90,21 @@ Route::post('/carreras/{carrera}/semestres/{semestre}/alumnos/eliminar', [AuthAl
 // Ruta para graficas de centro de informacion
 Route::get('/centros-informacion/grafica', [CentroInformacionController::class, 'mostrarFormularioGrafica'])
     ->name('centros-informacion.grafica');
-
 // Ruta para obtener todas las respuestas
 Route::get('/obtenerRespuestas', [CentroInformacionController::class, 'obtenerRespuestas']);
+// Ruta para PDF Dep_Centro_Informacion 
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport']);
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
+Route::get('/download-question-report', [PDFController::class, 'downloadQuestionReport']);
+
+Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
+Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
 
 // Ruta para la vista que muestra la gráfica
 Route::get('/grafica-respuestas', function () {
     return view('graficaRespuestas');
 });
 
-// Ruta para PDF Dep_Centro_Informacion 
-Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport']);
-Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
-Route::get('/download-question-report', [PDFController::class, 'downloadQuestionReport']);
-Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
-Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
 
     // Rutas que requieren autenticación
 Route::middleware('auth')->group(function () {
@@ -110,6 +114,34 @@ Route::middleware('auth')->group(function () {
 
 // Departamento de coordinacion de carreras (encuesta)
 Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mostrarFormulario'])->name('encuestas.coordinacion_carreras');
+Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mostrarFormulario'])->name('encuestas.coordinacion_carreras');
+Route::post('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'guardarRespuestas'])->name('encuestas.guardar_coordinacion_carreras');
+// Departamento de coordinacion de carreras (gráficas)
+Route::get('/coordinacion_carreras/grafica', [CoordinacionCarrerasController::class, 'mostrarFormularioGrafica'])->name('encuestas.grafica_coordinacion_carreras');
+// Departamento de coordinacion de carreras (PDF)
+Route::get('/coordinacion_carreras/pdf', [PDFController::class, 'generateCoordinacionCarrerasPDF'])->name('generate_coordinacion_carreras_pdf');
+Route::get('/downloadCoordinacionCarreras', [PDFController::class, 'downloadCoordinacionCarreras'])->name('download-coordinacion-carreras');
+Route::post('/downloadCoordinacionCarreras', [PDFController::class, 'downloadCoordinacionCarreras'])->name('download-coordinacion-carreras');
+
+// Departamento de recursos finacieros (encuesta)
+Route::get('/recursos_financieros', [RecursosFinancierosController::class, 'mostrarFormulario'])->name('encuestas.recursos_financieros');
+Route::get('/recursos_financieros', [RecursosFinancierosController::class, 'mostrarFormulario'])->name('encuestas.recursos_financieros');
+Route::post('/recursos_financieros', [RecursosFinancierosController::class, 'guardarRespuestas'])->name('encuestas.guardar_recursos_financieros');
+
+// Departamento de residencias profesionales (encuestas)
+Route::get('/residencias_profesionales', [ResidenciasProfesionalesController::class, 'mostrarFormulario'])->name('encuestas.residencias_profesionales');
+Route::post('/residencias_profesionales', [ResidenciasProfesionalesController::class, 'guardarRespuestas'])->name('encuestas.guardar_residencias_profesionales');
+
+// Departamento de centro de computo (encuestas)
+Route::get('/centro_computo', [CentroComputoController::class, 'mostrarFormulario'])->name('encuestas.centro_computo');
+Route::post('/centro_computo', [CentroComputoController::class, 'guardarRespuestas'])->name('encuestas.guardar_centro_computo');
+
+
+// Departamento de Servicio Social (encuetas)
+Route::get('/servicio_social', [ServicioSocialController::class, 'mostrarFormulario'])->name('encuestas.servicio_social');
+//Route::get('/servicio_social', [ServicioSocialController::class, 'mostrarFormulario'])->name('encuestas.servicio_social');
+//Route::post('/servicio_social', [ServicioSocialController::class, 'guardarRespuestas'])->name('encuestas.guardar_servicio_social');
+
 
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
