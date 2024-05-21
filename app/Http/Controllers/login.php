@@ -2,26 +2,38 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-use Auth;
+use App\Models\User;
+
 
 class login extends Controller
 {
-    public function login()
+    public function login(Request $request)
     {
-        return response()->json(['message' => 'Logged in successfully'], 200);
-         //return redirect('/departamento/inicio/CAFETERIA');
-        /*$credentials = $request->only('usuario', 'password');
+        $Autenticado = false;
+        $credentials = $request->only('usuario', 'password');
+        $registros = User::all();
 
-        if (Auth::attempt($credentials)) {
-            // Autenticación exitosa
-            return response()->json(['message' => 'Logged in successfully'], 200);
-        } else {
-            // Autenticación fallida
-            return response()->json(['message' => 'Invalid credentials'], 401);
-        }*/
+        
+        foreach ($registros as $item) {
+            if( $item->email == $credentials['usuario']){
+                if ($item->password == $credentials['password']) {
+                    $Autenticado = true;
+                    break;
+                }
+            }
+        }
+
+        if ($Autenticado) {
+            $request->session()->put('user',$credentials['usuario']);
+            return response()->json(['message' => 'Logged in successfully']);
+            
+        }else {
+            return response()->json(['message' => 'Invalid credentials']);
+        }
     }
 
     public function logout()

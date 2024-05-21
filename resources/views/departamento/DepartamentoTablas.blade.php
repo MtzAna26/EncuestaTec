@@ -51,6 +51,8 @@
                         <th scope="col">1.-Malo</th>
                         <th scope="col">2.-regular</th>
                         <th scope="col">3.-bueno</th>
+                        <th scope="col">4.-bueno</th>
+                        <th scope="col">5.-bueno</th>
                         <th scope="col">Promedio</th>
                         </tr>
                     </thead>
@@ -61,7 +63,9 @@
                             <td>{{ $valor[0] }}</td>
                             <td>{{ $valor[1] }}</td>
                             <td>{{ $valor[2] }}</td>
-                            <td>{{  (($valor[0]*1)+($valor[1]*2)+($valor[2]*3))/100 }}</td>
+                            <td>{{ $valor[3] }}</td>
+                            <td>{{ $valor[4] }}</td>
+                            <td>{{(($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) }}</td>
                     </tr>
                     @endforeach
                     </tbody>
