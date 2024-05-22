@@ -15,8 +15,7 @@ class Encuesta extends Model
         'alumno_id',
         'comentario',
         'departamento_id',
-        'puntaje',
-        'rating', 
+
     ];
 
     public function departamento()

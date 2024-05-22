@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use App\Models\CentroInformacion;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class CentroInformacionController extends Controller
@@ -48,4 +49,24 @@ class CentroInformacionController extends Controller
         $evaluacion->save();
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+
+    //Para el admin
+    public function mostrarFormularioGrafica()
+    {
+        return view('encuestas.grafica_centro_informacion');
+    }
+    
+
+    public function obtenerRespuestas()
+    {
+        $respuestas = CentroInformacion::all();
+        if ($respuestas->isNotEmpty()) {
+            return response()->json($respuestas);
+        } else {
+            return response()->json(['error' => 'No se encontraron respuestas'], 404);
+        }
+    }
+
+    
 }

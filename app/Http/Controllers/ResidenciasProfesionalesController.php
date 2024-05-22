@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CoordinacionCarreras;
-use App\Models\User;
+use App\Models\ResidenciasProfesionales;
 use App\Models\Alumno;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class CoordinacionCarrerasController extends Controller
+class ResidenciasProfesionalesController extends Controller
 {
     public function mostrarFormulario()
     {
-        return view('encuestas.coordinacion_carreras');
+        return view('encuestas.residencias_profesionales');
     }
 
     public function guardarRespuestas(Request $request)
@@ -27,6 +27,8 @@ class CoordinacionCarrerasController extends Controller
             'Serpregunta_5' => 'required|integer',
             'Serpregunta_6' => 'required|integer',
             'Serpregunta_7' => 'required|integer',
+            'Serpregunta_8' => 'required|integer',
+            'Serpregunta_9' => 'required|integer',
             'comentario' => 'required|string',
         ]);
     
@@ -34,7 +36,7 @@ class CoordinacionCarrerasController extends Controller
         $alumnos = Alumno::all();
         
         foreach ($alumnos as $alumno) {
-            $evaluacion = new CoordinacionCarreras();
+            $evaluacion = new ResidenciasProfesionales();
             $evaluacion->fill($request->all());
             $evaluacion->alumno_id = $alumno->id;
             $evaluacion->no_control = $alumno->no_control;
@@ -42,13 +44,6 @@ class CoordinacionCarrerasController extends Controller
         }
         $evaluacion->save();
     
-        return redirect()->route('encuestas.recursos_financieros')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('encuestas.centro_computo')->with('success', '¡Encuesta enviada correctamente!');
     }
-    
-        // Admin pueda ver gráficas
-
-        public function mostrarFormularioGrafica()
-        {
-            return view('encuestas.grafica_coordinacion_carreras');
-        }
 }

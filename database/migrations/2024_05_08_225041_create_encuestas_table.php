@@ -15,16 +15,13 @@ class CreateEncuestasTable extends Migration
     {
         Schema::create('encuestas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo')->default('Encuesta sin título');
-            $table->text('descripcion')->nullable();
-            $table->unsignedBigInteger('alumno_id')->nullable(); // Cambiar a unsignedBigInteger
-            $table->text('comentario')->nullable();
+            $table->string('semestre');
+            $table->date("fecha_inicio");
             $table->unsignedBigInteger('departamento_id');
-            $table->integer('puntaje')->nullable();
-            $table->integer('ratings')->nullable(); 
+            //$table->integer('puntaje')->nullable();
+            //$table->integer('ratings')->nullable(); 
             $table->timestamps();
 
-            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade'); // Cambiar a 'id'
             $table->foreign('departamento_id')->references('id')->on('departamentos')->onDelete('cascade');
         });
     }

@@ -24,7 +24,8 @@
     <div class="max-w-xl mx-auto bg-white shadow-md rounded-md p-6">
         <h2 class="text-lg font-semibold mb-4">Buzón de Quejas</h2>
     
-        <form action="#" method="POST">
+        <form method="POST" action="{{ route('quejas.create') }}" >
+            @csrf
             <div class="mb-4">
                 <label for="carrera" class="block font-medium mb-1">Carrera:</label>
                 <select id="carrera" name="carrera" required
@@ -44,13 +45,13 @@
             <div class="mb-4">
                 <label class="block font-medium mb-1">Tipo de Comentario:</label>
                 <div>
-                    <input type="radio" id="queja" name="comentario" value="Queja" class="mr-2">
+                    <input type="radio" id="queja" name="tipo_comentario" value="Queja" class="mr-2">
                     <label for="queja" class="mr-4">Queja</label>
     
-                    <input type="radio" id="sugerencia" name="comentario" value="Sugerencia" class="mr-2">
+                    <input type="radio" id="sugerencia" name="tipo_comentario" value="Sugerencia" class="mr-2">
                     <label for="sugerencia" class="mr-4">Sugerencia</label>
     
-                    <input type="radio" id="agradecimiento" name="comentario" value="Agradecimiento" class="mr-2">
+                    <input type="radio" id="agradecimiento" name="tipo_comentario" value="Agradecimiento" class="mr-2">
                     <label for="agradecimiento">Agradecimiento</label>
                 </div>
             </div>
@@ -73,7 +74,13 @@
                     <option value="Actividades Culturales y Deportivas">ACTIVIDADES CULTURALES Y DEPORTIVAS</option>
                 </select>
             </div>
-    
+            <div class="mb-4">
+                <label for="contacto" class="block font-medium mb-1">Información de contacto:</label>
+                <input type="text" id="contacto" name="contacto"
+                class="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+                placeholder="Correo electrónico o número de teléfono">
+            </div>
+            
             <div class="mb-4">
                 <label for="mensaje" class="block font-medium mb-1">Mensaje:</label>
                 <textarea id="mensaje" name="mensaje" rows="4"

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CoordinacionCarreras extends Model
+class ResidenciasProfesionales extends Model
 {
     use HasFactory;
 
-    protected $table = 'dep_coordinacion_carreras';
+    protected $table = 'dep_residencias_profesionales';
 
     protected $fillable = [
         'alumno_id',
@@ -22,6 +22,8 @@ class CoordinacionCarreras extends Model
         'Serpregunta_5',
         'Serpregunta_6',
         'Serpregunta_7',
+        'Serpregunta_8',
+        'Serpregunta_9',
         'comentario'
     ];
     

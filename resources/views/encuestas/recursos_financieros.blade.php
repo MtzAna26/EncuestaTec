@@ -26,7 +26,7 @@
     </div>
 @endif
     <div class="container mx-auto px-4 bg-gray-200">
-        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE COORDINACIÓN DE CARRERAS </h2>
+        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE RECURSOS FINANCIEROS </h2>
         <h1 class="text-3xl font-semibold mb-4">¡Participa en nuestra encuesta!</h1>
         <p class="mb-4">Te invitamos a participar en nuestra encuesta y compartir tu opinión. 
             Tu perspectiva es valiosa para nosotros, ya que nos ayuda a comprender mejor tus necesidades y preferencias. 
@@ -34,7 +34,7 @@
             Siendo 5 la puntuación mayor y 1 la menor. 
             Recuerda que tus respuestas son confidenciales.</p>
             
-            <form action="{{ route('encuestas.guardar_coordinacion_carreras') }}" method="POST">
+            <form action="{{ route('encuestas.guardar_recursos_financieros') }}" method="POST">
                 <input type="hidden" name="alumno_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 <input type="hidden" name="carrera" value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
@@ -51,7 +51,7 @@
         </tr>
 
         <tr>
-            <td>1. Tiene un horario adecuado de atención. </td>
+            <td>1. Tiene un horario adecuado para realizar mis trámites. </td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_5" name="Serpregunta_1" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_4" name="Serpregunta_1" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_3" name="Serpregunta_1" value="3"><label for="serpregunta_1_3"></label></td>
@@ -60,7 +60,7 @@
         </tr>
         
         <tr>
-            <td>2. Me proporciona información necesaria para el manejo de mi retícula de carrera. </td>
+            <td>2. Me proporcionan una lista actualizada de los costos de los diferentes trámites. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_2" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_2" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_2" value="3"><label for="serpregunta_1_3"></label></td>
@@ -69,7 +69,7 @@
         </tr>
 
         <tr>
-            <td>3. Me da orientación adecuada cuando requiero realizar trámites en la institución. </td>
+            <td>3. El tiempo de espera para pagar en caja es aceptable. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_3" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_3" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_3" value="3"><label for="serpregunta_1_3"></label></td>
@@ -78,7 +78,7 @@
         </tr>
 
         <tr>
-            <td>4. Me atiende en forma amable cuando solicito su apoyo.  </td>
+            <td>4. El personal de Recursos Financieros siempre me cobra el concepto y monto Correcto.  </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_4" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_4" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_4" value="3"><label for="serpregunta_1_3"></label></td>
@@ -87,7 +87,7 @@
         </tr>
 
         <tr>
-            <td>5. Me orienta sobre el proceso para la reinscripción de alumnos.  </td>
+            <td>5. Me proporcionan asesoría adecuada cuando desconozco qué o cuánto pagar.  </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_5" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_5" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_5" value="3"><label for="serpregunta_1_3"></label></td>
@@ -96,21 +96,12 @@
         </tr>
 
         <tr>
-            <td>6. Me dan la orientación necesaria para la realización de trámites de titulación. </td>
+            <td>6. Mantienen una relación atenta conmigo durante todo el tiempo en que me otorga el servicio. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_6" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_6" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_6" value="3"><label for="serpregunta_1_3"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_6" value="2"><label for="serpregunta_1_2"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_6" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>7. Mantienen una relación atenta conmigo durante mi estancia. </td>  
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_7" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_7" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_7" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_7" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_7" value="1"><label for="serpregunta_1_1"></label></td>
         </tr>
 
         <tr>
