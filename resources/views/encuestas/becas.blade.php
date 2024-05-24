@@ -1,0 +1,1 @@
+<p>aqui es la vista de encuestas de las becas ajjs</p>

@@ -51,4 +51,12 @@ class Alumno extends Model
     public function centrocomputo(){
         return $this->hasOne('App\Models\CentroComputo');
     }
+    
+    public function serviciosocial(){
+        return $this->hasOne('App\Models\ServicioSocial');
+    }
+
+    public function serviciosescolars(){
+        return $this->hasOne('App\Models\ServiciosEscolares');
+    }
 }

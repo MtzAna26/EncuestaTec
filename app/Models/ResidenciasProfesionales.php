@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ResidenciasProfesionales extends Model
 {
     use HasFactory;
-
     protected $table = 'dep_residencias_profesionales';
-
     protected $fillable = [
         'alumno_id',
         'no_control',
@@ -26,7 +24,7 @@ class ResidenciasProfesionales extends Model
         'Serpregunta_9',
         'comentario'
     ];
-    
+
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');

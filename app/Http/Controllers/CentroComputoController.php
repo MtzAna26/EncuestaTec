@@ -44,4 +44,10 @@ class CentroComputoController extends Controller
     
         return redirect()->route('encuestas.servicio_social')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+    // Para el admin 
+
+    public function mostrarFormularioGrafica(){
+        return view('graficas.grafica_centro_computo');
+    }
 }

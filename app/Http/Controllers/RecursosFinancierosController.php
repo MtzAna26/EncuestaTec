@@ -43,4 +43,21 @@ class RecursosFinancierosController extends Controller
     
         return redirect()->route('encuestas.residencias_profesionales')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+        // Para el admin
+
+        public function mostrarFormularioGrafica()
+        {
+            return view('graficas.grafica_recursos_financieros');
+        }
+        
+        public function obtenerRespuestas()
+        {
+            $respuestas = RecursosFinancieros::all();
+            if ($respuestas->isNotEmpty()) {
+                return response()->json($respuestas);
+            } else {
+                return response()->json(['error' => 'No se encontraron respuestas'], 404);
+            }
+        }
 }

@@ -41,7 +41,7 @@ class CoordinacionCarrerasController extends Controller
             $evaluacion->carrera = $alumno->carrera;
         }
         $evaluacion->save();
-    
+        $evaluacion->fill($validatedData);
         return redirect()->route('encuestas.recursos_financieros')->with('success', '¡Encuesta enviada correctamente!');
     }
     

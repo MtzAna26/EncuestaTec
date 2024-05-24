@@ -5,22 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="{{ asset('js/graficaCoordinacionCarreras.js') }}"></script>
+    <script src="{{ asset('js/graficaCentroComputo.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-    <title>Reporte Departamento Coordinación de Carreras </title>
+    <title>Reporte Departamento Centro Computo </title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
-        <h1 class="text-center text-3xl font-bold mb-8">Reporte Coordinación de Carreras</h1>
-            @if (!request()->is('download-question-report')) <!-- Verifica si no se está descargando el PDF -->
+        <h1 class="text-center text-3xl font-bold mb-8">Reporte Centro Computo</h1>
+        @if (!request()->is('download-question-report'))
         <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Imprimir PDF
         </button>
-        <a href="{{ route('download-coordinacion-carreras') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+        <a href="{{route('download-centro-computo')}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
             Descargar PDF
         </a>
         @endif
-
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">
                 <thead>
@@ -28,6 +27,7 @@
                         <td colspan="7" class="border px-4 py-2 text-center font-bold">No. DE ENCUESTADOS</td>
                         <td class="border px-4 py-2 font-bold">{{ $totalRespondents }}</td>
                     </tr>
+                </tr>
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
@@ -58,15 +58,16 @@
                         @php $rowNumber++; @endphp
                     @endforeach
                     <tr>
-                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td>                     <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td> 
+                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td> 
+                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td> 
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-center mt-8">
-            <canvas id="graficaRespuestas" width="400" height="200"></canvas>
+        <div class="chart-container">
+            <canvas id="graficaRespuestas"></canvas>
         </div>
         
     </div>
-</body>
+    </body>
 </html>

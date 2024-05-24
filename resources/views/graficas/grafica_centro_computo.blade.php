@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 <body class="bg-gray-100">
     <header class="bg-white shadow-md"> 
@@ -26,20 +27,18 @@
 
     <br>
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Gráfica Departamento Centro Información</h1>   
+        <h1 class="text-4xl font-bold">Gráfica Departamento Centro Cómputo</h1>   
     </div>
 
     <br>
     <div class="flex justify-center">
-        <a href="{{ route('generate-question-report') }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{route('generate_reporte_computo_pdf')}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
     </div>
-    
-
-    <div class="chart-container">
+<div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
-    </div>
-    <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
+    </div>ss
+    <script src="{{ asset('js/graficaCentroComputo.js') }}"></script>
 </body>
 </html>

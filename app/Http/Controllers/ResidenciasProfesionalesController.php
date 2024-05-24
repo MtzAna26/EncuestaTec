@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ResidenciasProfesionales;
-use App\Models\Alumno;
 use App\Models\User;
+use App\Models\Alumno;
 use Illuminate\Http\Request;
 
 class ResidenciasProfesionalesController extends Controller
@@ -43,7 +43,34 @@ class ResidenciasProfesionalesController extends Controller
             $evaluacion->carrera = $alumno->carrera;
         }
         $evaluacion->save();
-    
+        $evaluacion->fill($validatedData);
         return redirect()->route('encuestas.centro_computo')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+    // Para el Admin 
+
+    public function mostrarFormularioGrafica()
+    {
+        return view('graficas.grafica_residencias_profesionales');
+    }
+    // Otra alternativa para poder gráficar
+    public function getChartData()
+    {
+        $data = ResidenciasProfesionales::select(
+            'Serpregunta_1',
+            'Serpregunta_2',
+            'Serpregunta_3',
+            'Serpregunta_4',
+            'Serpregunta_5',
+            'Serpregunta_6',
+            'Serpregunta_7',
+            'Serpregunta_8',
+            'Serpregunta_9'
+        )->get();
+    
+        return response()->json($data);
+    }
+    
+
 }
+

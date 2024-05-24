@@ -6,13 +6,11 @@
     <title>EncuestaTec</title>
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
 </head>
 <body class="bg-gray-100">
-    <header class="bg-white shadow-md"> 
-    <!--- <header class="bg-custom-color shadow-md"> COLOR GUINDA---> 
+    <header class="bg-white shadow-md">
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
             <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
             <div class="titles text-black">
@@ -26,20 +24,17 @@
 
     <br>
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Gráfica Departamento Centro Información</h1>   
+        <h1 class="text-4xl font-bold">Gráfica Departamento Residencias Profesionales</h1>
     </div>
-
     <br>
     <div class="flex justify-center">
-        <a href="{{ route('generate-question-report') }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('generate_reporte_residencias_pdf') }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
     </div>
-    
-
     <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
     </div>
-    <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
+    <script src="{{ asset('js/graficaResidenciasProfesionales.js') }}"></script>
 </body>
 </html>

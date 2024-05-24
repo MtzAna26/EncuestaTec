@@ -83,6 +83,13 @@ th {
     color: #333;
 }
 
+
+#graficaRespuestas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+
 @media only screen and (max-width: 768px) {
     .header-content {
         flex-direction: column;

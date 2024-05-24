@@ -26,7 +26,7 @@
     </div>
 @endif
     <div class="container mx-auto px-4 bg-gray-200">
-        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE RESIDENCIAS PROFESIONALES </h2>
+        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE SERVICIOS ESCOLARES</h2>
         <h1 class="text-3xl font-semibold mb-4">¡Participa en nuestra encuesta!</h1>
         <p class="mb-4">Te invitamos a participar en nuestra encuesta y compartir tu opinión. 
             Tu perspectiva es valiosa para nosotros, ya que nos ayuda a comprender mejor tus necesidades y preferencias. 
@@ -34,7 +34,7 @@
             Siendo 5 la puntuación mayor y 1 la menor. 
             Recuerda que tus respuestas son confidenciales.</p>
             
-            <form action="{{ route('encuestas.guardar_residencias_profesionales') }}" method="POST">
+            <form action="{{ route('encuestas.guardar_servicios_escolares') }}" method="POST">
                 <input type="hidden" name="alumno_id" value="{{ Auth::id() }}">
                 <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 <input type="hidden" name="carrera" value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
@@ -51,7 +51,7 @@
         </tr>
 
         <tr>
-            <td>1. La División de Estudios Profesionales me proporciona información del banco de proyectos de Residencias Profesionales. </td>
+            <td>1. El Departamento de Servicios Escolares tiene un horario adecuado de atención </td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_5" name="Serpregunta_1" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_4" name="Serpregunta_1" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="Serpregunta_1_3" name="Serpregunta_1" value="3"><label for="serpregunta_1_3"></label></td>
@@ -60,7 +60,7 @@
         </tr>
         
         <tr>
-            <td>2. A lo largo de tu carrera te brindaron la información necesaria para desarrollo de anteproyectos.</td>
+            <td>2. El tiempo de respuesta a mis solicitudes es adecuado</td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_2" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_2" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_2" value="3"><label for="serpregunta_1_3"></label></td>
@@ -69,7 +69,7 @@
         </tr>
 
         <tr>
-            <td>3. La División de Estudios Profesionales me da información de las  opciones  para realizar los Anteproyectos. </td>
+            <td>3. Me proporcionan información adecuada en caso de que se la solicite. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_3" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_3" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_3" value="3"><label for="serpregunta_1_3"></label></td>
@@ -78,57 +78,12 @@
         </tr>
 
         <tr>
-            <td>4. La División de Estudios me proporciona información acerca de los periodos para la recepción de anteproyectos de Residencias Profesionales.</td>
+            <td>4. Mantienen una relación atenta conmigo durante toda mi estancia en el departamento. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_4" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_4" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_4" value="3"><label for="serpregunta_1_3"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_4" value="2"><label for="serpregunta_1_2"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_4" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>5. El Docente Asignado para revisar mi anteproyecto de residencias y el Jefe de Carrera dictaminan en el periodo establecido.</td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_5" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_5" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_5" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_5" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_5" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>6. Mi Asesor Interno me proporciona asesoría para el desarrollo de mi proyecto Residencias Profesionales. </td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_6" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_6" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_6" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_6" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_6" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>7. Mi Asesor Interno revisa mis informes parciales de Residencias Profesionales y me orienta para realizar las correcciones y cambios. </td>  
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_7" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_7" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_7" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_7" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_7" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>8. Mi Asesor Interno me da a conocer la calificación durante el periodo Establecido.</td>  
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_8" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_8" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_8" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_8" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_8" value="1"><label for="serpregunta_1_1"></label></td>
-        </tr>
-
-        <tr>
-            <td>9. El Departamento de Gestión Tecnológica y Vinculación me entrega en tiempo la carta de presentación y agradecimiento para la empresa.</td>  
-            <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_9" value="5"><label for="serpregunta_1_5"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_9" value="4"><label for="serpregunta_1_4"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_9" value="3"><label for="serpregunta_1_3"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_2" name="Serpregunta_9" value="2"><label for="serpregunta_1_2"></label></td>
-            <td class="right-column"><input type="radio" id="serpregunta_1_1" name="Serpregunta_9" value="1"><label for="serpregunta_1_1"></label></td>
         </tr>
 
         <tr>

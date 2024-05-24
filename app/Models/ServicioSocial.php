@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CentroComputo extends Model
+class ServicioSocial extends Model
 {
     use HasFactory;
-
-    protected $table = 'dep_centro_computos';
-
+    protected $table = 'dep_servicio_social';
     protected $fillable = [
-    'alumno_id',
+        'alumno_id',
         'no_control',
         'carrera',
         'Serpregunta_1',
@@ -22,8 +20,10 @@ class CentroComputo extends Model
         'Serpregunta_5',
         'Serpregunta_6',
         'Serpregunta_7',
+        'Serpregunta_8',
         'comentario'
     ];
+
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');

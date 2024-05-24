@@ -6,7 +6,8 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
-    <title>Reporte Departamento Centro de Información </title>
+    <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
+    <title>Reporte Departamento Centro de Información</title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
@@ -22,6 +23,11 @@
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">
                 <thead>
+                    <tr>
+                        <td colspan="7" class="border px-4 py-2 text-center font-bold">No. DE ENCUESTADOS</td>
+                        <td class="border px-4 py-2 font-bold">{{ $totalRespondents }}</td>
+                    </tr>
+                    
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
@@ -51,16 +57,17 @@
                         </tr>
                         @php $rowNumber++; @endphp
                     @endforeach
+
                     <tr>
-                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td>                     <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td> 
+                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td>
+                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div class="flex justify-center mt-8">
-            <canvas id="graficaRespuestas" width="400" height="200"></canvas>
+        <div class="chart-container">
+            <canvas id="graficaRespuestas"></canvas>
         </div>
-        
     </div>
 </body>
 </html>

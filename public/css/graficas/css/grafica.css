@@ -1,0 +1,29 @@
+@media print {
+    body {
+        -webkit-print-color-adjust: exact; /* Ajuste de color para impresión */
+    }
+
+    #graficaRespuestas {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 90vh; /* el valor según sea necesario de las barra */
+    }
+
+    
+    .chart-container {
+        page-break-inside: avoid; /* Evita que la gráfica se divida entre páginas */
+    }
+
+    /* Estilo para el texto de las etiquetas de la gráfica */
+    .chartjs-render-monitor {
+        font-size: 16px !important; /* Tamaño de fuente más grande para impresión */
+    }
+
+    .chartjs-render-monitor .legend {
+        font-size: 16px !important; /* Tamaño de fuente más grande para la leyenda */
+    }
+
+    .chartjs-render-monitor .tick {
+        font-size: 14px !important; /* Tamaño de fuente más grande para los ticks del eje */
+    }
+}

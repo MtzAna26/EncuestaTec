@@ -26,7 +26,7 @@
     </div>
 @endif
     <div class="container mx-auto px-4 bg-gray-200">
-        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE CENTRO DE COMPUTO</h2>
+        <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE CENTRO DE COMPUTO </h2>
         <h1 class="text-3xl font-semibold mb-4">¡Participa en nuestra encuesta!</h1>
         <p class="mb-4">Te invitamos a participar en nuestra encuesta y compartir tu opinión. 
             Tu perspectiva es valiosa para nosotros, ya que nos ayuda a comprender mejor tus necesidades y preferencias. 
@@ -60,7 +60,7 @@
         </tr>
         
         <tr>
-            <td>2. Por lo regular hay máquinas disponibles para realizar mi trabajo. </td>
+            <td>2. Por lo regular hay máquinas disponibles para realizar mi trabajo.</td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_2" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_2" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_2" value="3"><label for="serpregunta_1_3"></label></td>
@@ -69,7 +69,7 @@
         </tr>
 
         <tr>
-            <td>3. Siempre tengo disponible una conexión de Internet.</td>
+            <td>3. Siempre tengo disponible una conexión de Internet. </td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_3" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_3" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_3" value="3"><label for="serpregunta_1_3"></label></td>
@@ -87,7 +87,7 @@
         </tr>
 
         <tr>
-            <td>5. Me proporcionan atención adecuada en caso de presentarse fallas en el equipo que se me asignó. </td>
+            <td>5. Me proporcionan atención adecuada en caso de presentarse fallas en el equipo que se me asignó.</td>
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_5" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_5" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_5" value="3"><label for="serpregunta_1_3"></label></td>
@@ -105,7 +105,7 @@
         </tr>
 
         <tr>
-            <td>7. Mantienen una relación atenta conmigo durante toda mi estancia en las instalaciones. </td>
+            <td>7. Mantienen una relación atenta conmigo durante toda mi estancia en las instalaciones. </td>  
             <td class="right-column"><input type="radio" id="serpregunta_1_5" name="Serpregunta_7" value="5"><label for="serpregunta_1_5"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_4" name="Serpregunta_7" value="4"><label for="serpregunta_1_4"></label></td>
             <td class="right-column"><input type="radio" id="serpregunta_1_3" name="Serpregunta_7" value="3"><label for="serpregunta_1_3"></label></td>
@@ -130,7 +130,6 @@
         </div>
     </div>
     @endif
-
 
     <div class="text-center">
         <button id="enviarRespuestas" type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Enviar Encuesta</button>

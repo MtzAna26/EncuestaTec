@@ -5,24 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CentroComputo extends Model
+class ServiciosEscolares extends Model
 {
     use HasFactory;
-
-    protected $table = 'dep_centro_computos';
-
+    protected $table = 'dep_servicios_escolares';
     protected $fillable = [
-    'alumno_id',
+        'alumno_id',
         'no_control',
         'carrera',
         'Serpregunta_1',
         'Serpregunta_2',
         'Serpregunta_3',
         'Serpregunta_4',
-        'Serpregunta_5',
-        'Serpregunta_6',
-        'Serpregunta_7',
-        'comentario'
     ];
     public function alumno()
     {
