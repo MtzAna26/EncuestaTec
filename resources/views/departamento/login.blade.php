@@ -40,28 +40,28 @@
                     <input type="password" id="password" name="password" required>
                                         
                     <div>
-                        <button class="iniciar-sesion" onclick="sumit()">Iniciar Sesión</button>
+                        <button id="btn-iniciar-sesion" class="iniciar-sesion" onclick="sumit()">Iniciar Sesión</button>
                     </div>
                     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
                     <script>
 
                         const sumit = async ()=>{
-                            let usuario =  document.getElementById("email");
-                            let password =  document.getElementById("password");
+                            let usuario =  document.getElementById("email").value;
+                            let password =  document.getElementById("password").value;
+                           
+
                             const response = await axios.post('/departamento/login2',{usuario,password});
-                            //console.log(response.data);
-                                
-                                var queryString = window.location.search;                               
-                                var urlParams = new URLSearchParams(queryString);
-                                var departamento = urlParams.get('departamento');
-
-                                 // Imprime el valor del parámetro 'departamento'
-
-                            let url = '/departamento/inicio/'+departamento
-                            
-                            window.location.href = url ;
-
-
+                            let mensage = response.data
+                                if (mensage.message =="Logged in successfully") {
+                                    var queryString = window.location.search;                               
+                                    var urlParams = new URLSearchParams(queryString);
+                                    var departamento = urlParams.get('departamento');
+                                    let url = '/departamento/inicio/'+departamento
+                                    window.location.href = url ;
+                                }
+                                if (mensage.message =="Invalid credentials") {
+                                    alert("el ususaroio o la contraseña son incoretas")
+                                }
                         }
                         
                     </script>

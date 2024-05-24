@@ -2,6 +2,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<style>
+        /* Estilos generales de la página */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .header, .footer, .no-print {
+            display: none;
+        }
+        
+        /* Estilos específicos para la impresión */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            .print-only {
+                display: block !important;
+            }
+            .header {
+                display: block;
+            }
+            .footer {
+                display: block;
+            }
+            /* Puedes ajustar más estilos aquí para mejorar la presentación impresa */
+        }
+
+        /* Estilos específicos para la pantalla */
+        .print-only {
+            display: none;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
@@ -34,8 +65,10 @@
             <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
         </div>       
     </header>
-    
+
+
     <div class="container">
+    <div id="printContent">
         <div class="row">
             <div class="col"></div>
             <div class="col"><h1><label id="tit"></label></h1></div>
@@ -51,6 +84,8 @@
                         <th scope="col">1.-Malo</th>
                         <th scope="col">2.-regular</th>
                         <th scope="col">3.-bueno</th>
+                        <th scope="col">4.-bueno</th>
+                        <th scope="col">5.-bueno</th>
                         <th scope="col">Promedio</th>
                         </tr>
                     </thead>
@@ -61,7 +96,9 @@
                             <td>{{ $valor[0] }}</td>
                             <td>{{ $valor[1] }}</td>
                             <td>{{ $valor[2] }}</td>
-                            <td>{{  (($valor[0]*1)+($valor[1]*2)+($valor[2]*3))/100 }}</td>
+                            <td>{{ $valor[3] }}</td>
+                            <td>{{ $valor[4] }}</td>
+                            <td>{{(($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) }}</td>
                     </tr>
                     @endforeach
                     </tbody>
@@ -78,7 +115,40 @@
             </div>
             <div class="col"></div>
         </div>
+        </div>
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <div>
+                    <table class="table table-hover table-striped-columns no-print">
+                        <thead class="no-print">
+                            Comentarios
+                        </thead>
+                        <tbody>
+                           
+                            @foreach($Comentarios as  $clave => $valor)
+                                <tr>
+                                    <td>{{ $valor[0] }}</td>
+                                    <td>{{ $valor[1] }}</td>
+                                </tr>
+                            @endforeach
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
     </div>
+
+
+<button id="printButton" class="btn btn-primary no-print">Imprimir Contenido</button>
+
+<script>
+        document.getElementById('printButton').addEventListener('click', function() {
+            window.print();
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script>
@@ -86,6 +156,8 @@
         var ciclo = {!! json_encode($ciclo) !!} 
          var datos = {!! json_encode($Gdatos) !!} 
         var preguntas = {!! json_encode($preguntas) !!} 
+
+        console.log( datos);
 
         const tit = document.getElementById('tit').innerHTML= dep+'--'+ciclo;
 

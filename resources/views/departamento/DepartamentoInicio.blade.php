@@ -46,16 +46,10 @@
                 </div>
             </div>
             <div class="col">
-                <div>
-                    <canvas id="myChart2"></canvas>
-                    <h4>ciclo escolar 2</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611" onclick="OnClicbtnPreguntas(2022)">Preguntas</button>
-                </div>
+                
             </div>
             <div class="col">
-                <canvas id="myChart3"></canvas>
-                <h4>ciclo escolar 3</h4> <br>
-                <button class="btn btn-primary" style="background:#7A0611" onclick="OnClicbtnPreguntas(2021)">Preguntas</button>
+                
             </div>
         </div>
     </div>
@@ -75,8 +69,8 @@
 
 
     const ctx = document.getElementById('myChart');
-    const ctx2 = document.getElementById('myChart2');
-    const ctx3 = document.getElementById('myChart3');
+    
+ 
     const tit = document.getElementById('tit').innerHTML= titulo;
 
    
@@ -100,42 +94,8 @@
         }
     });
 
-    new Chart(ctx2, {
-        type: 'bar',
-        data: {
-        labels: preguntas,
-        datasets: [{
-            label: 'porsentaje de respuestas',
-            data: datos,
-            borderWidth: 1
-        }]
-        },
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
-            }
-        }
-        }
-    });
-    new Chart(ctx3, {
-        type: 'bar',
-        data: {
-        labels: preguntas,
-        datasets: [{
-            label: 'porsentaje de respuestas',
-            data: datos,
-            borderWidth: 1
-        }]
-        },
-        options: {
-        scales: {
-            y: {
-            beginAtZero: true
-            }
-        }
-        }
-    });
+   
+    
 
     let OnClicbtnPreguntas = (ciclo)=>{
        
