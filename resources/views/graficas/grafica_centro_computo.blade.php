@@ -35,6 +35,8 @@
         <a href="{{route('generate_reporte_computo_pdf')}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
+        &nbsp;
+        <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
     </div>
 <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>

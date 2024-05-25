@@ -17,6 +17,7 @@ class ServiciosEscolares extends Model
         'Serpregunta_2',
         'Serpregunta_3',
         'Serpregunta_4',
+        
     ];
     public function alumno()
     {

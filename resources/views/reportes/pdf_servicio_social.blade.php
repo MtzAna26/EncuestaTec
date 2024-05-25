@@ -7,7 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="{{ asset('js/graficaServicioSocial.js') }}"></script>
-
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
     <title>Reporte Departamento Servicio Social </title>
 </head>
@@ -15,13 +14,24 @@
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Servicio Social</h1>
         @if (!request()->is('download-question-report'))
-        <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <style>
+            @media print {
+                .hide-on-print {
+                    display: none;
+                }
+            }
+        </style>
+        <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
             Imprimir PDF
         </button>
-        <a href="{{route('download-servicio-social')}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+        <!-- <a href="{{--route('download-servicio-social')--}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 hide-on-print">
             Descargar PDF
-        </a>
-        @endif
+        </a>--->
+        &nbsp;
+        <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
+    @endif
+    
+
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">
                 <thead>

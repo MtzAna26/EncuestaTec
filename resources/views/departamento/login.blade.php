@@ -60,7 +60,7 @@
                                     window.location.href = url ;
                                 }
                                 if (mensage.message =="Invalid credentials") {
-                                    alert("el ususaroio o la contraseña son incoretas")
+                                    alert("Usuario o Contraseña Incorrecta")
                                 }
                         }
                         

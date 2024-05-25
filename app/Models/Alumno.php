@@ -59,4 +59,21 @@ class Alumno extends Model
     public function serviciosescolars(){
         return $this->hasOne('App\Models\ServiciosEscolares');
     }
+    public function becas(){
+        return $this->hasOne('App\Models\Becas');
+    }
+    public function tallereslaboratorios(){
+        return $this->hasOne('App\Models\TallesLaboratorios');
+    }
+    public function cafeteria(){
+        return $this->hasOne('App\Models\Cafeteria');
+    }
+    public function serviciomedico()
+    {
+        return $this->hasOne('App\Models\ServicioMedico');
+    }
+    public function actividadesculturalesdeportivas()
+    {
+        return $this->hasOne('App\Models\ActividadesCulturalesDeportivas');
+    }
 }

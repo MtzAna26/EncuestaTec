@@ -12,14 +12,24 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Recursos Financieros</h1>
-        @if (!request()->is('download-question-report')) <!-- Verifica si no se está descargando el PDF -->
-        <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        @if (!request()->is('download-question-report'))
+        <style>
+            @media print {
+                .hide-on-print {
+                    display: none;
+                }
+            }
+        </style>
+        <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
             Imprimir PDF
         </button>
-        <a href="{{ route('download-recursos-financieros') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4">
+        <!---<a href="{{-- route('download-recursos-financieros') --}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 hide-on-print">
             Descargar PDF
-        </a>
+        </a>-->
+        &nbsp;
+        <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
     @endif
+    
     
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">

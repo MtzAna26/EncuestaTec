@@ -15,8 +15,11 @@ class EncuestaController extends Controller
     public function comenzarEncuestasCentroDeInformacion()
     {
         $encuestas = Encuesta::where('departamento_id', 1)->get();
-
-        
         return view('encuestas.centro_informacion', compact('encuestas'));
+    }
+
+    public function completarEncuesta()
+    {
+        return view('alumno.fin_encuestas')->with('success', '¡Encuesta enviada correctamente!');
     }
 }

@@ -65,34 +65,35 @@ async function obtenerDatos() {
     console.log(promedios); // Depuración
 
     const ctx = document.getElementById('graficaRespuestas').getContext('2d');
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: etiquetas,
-            datasets: [{
-                label: 'Promedio de Respuestas de Alumnos',
-                data: valores,
-                backgroundColor: 'rgba(128, 0, 0, 1)',  // Color guinda sólido
-                borderColor: 'rgba(128, 0, 0, 1)', 
-                borderWidth: 1
-            }]
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: etiquetas,
+        datasets: [{
+            label: 'Promedio de Respuestas de Alumnos',
+            data: valores,
+            backgroundColor: 'rgba(128, 0, 0, 1)', // Color guinda sólido
+            borderColor: 'rgba(128, 0, 0, 1)',
+            borderWidth: 1,
+            barThickness: 100 // Ajusta este valor según tu preferencia
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            },
-            responsive: true,
-            maintainAspectRatio: true,
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top'
-                }
+        responsive: true,
+        maintainAspectRatio: true,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top'
             }
         }
-    });
+    }
+});
 }
 
 obtenerDatos();
