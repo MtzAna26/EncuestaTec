@@ -14,12 +14,12 @@ class login extends Controller
     public function login(Request $request)
     {
         $Autenticado = false;
-        $credentials = $request->only('usuario', 'password');
+        $credentials = $request->only('email', 'password');
         $registros = User::all();
 
         
         foreach ($registros as $item) {
-            if( $item->email == $credentials['usuario']){
+            if( $item->email == $credentials['email']){
                 if ($item->password == $credentials['password']) {
                     $Autenticado = true;
                     break;
@@ -28,7 +28,7 @@ class login extends Controller
         }
 
         if ($Autenticado) {
-            $request->session()->put('user',$credentials['usuario']);
+            $request->session()->put('user',$credentials['email']);
             return response()->json(['message' => 'Logged in successfully']);
             
         }else {
