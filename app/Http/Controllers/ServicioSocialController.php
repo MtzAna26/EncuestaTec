@@ -59,4 +59,6 @@ class ServicioSocialController extends Controller
             return response()->json(['error' => 'No se encontraron respuestas'], 404);
         }
     }
+
+    
 }

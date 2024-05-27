@@ -8,6 +8,10 @@ use App\Http\Controllers\CentroComputoController;
 use App\Http\Controllers\ServicioSocialController;
 use App\Http\Controllers\ServiciosEscolaresController;
 use App\Http\Controllers\BecasController;
+use App\Http\Controllers\CafeteriaController;
+use App\Http\Controllers\TalleresLaboratoriosController;
+use App\Http\Controllers\ServicioMedicoController;
+use App\Http\Controllers\CulturalesDeportivasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthAlumnoRegisterController;
@@ -73,6 +77,8 @@ Route::post('/departamento/login2',[login::class, 'login'])->name('Departamentol
 Route::get('/comenzar-encuestas/centro-de-informacion', [EncuestaController::class, 'comenzarEncuestasCentroDeInformacion'])->name('encuestas.centro_informacion');
 Route::post('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
 Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
+// Ruta para terminar encuestas (alumno)
+Route::get('/encuestas/gracias', [EncuestaController::class, 'completarEncuesta'])->name('alumno.fin_encuestas'); 
 
 // Departamento centro de informacion (encuesta)
 Route::get('/formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('formulario');
@@ -101,7 +107,6 @@ Route::get('/obtenerRespuestas', [CentroInformacionController::class, 'obtenerRe
 Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport']);
 Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
 Route::get('/download-question-report', [PDFController::class, 'downloadQuestionReport']);
-
 Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
 Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
 
@@ -125,8 +130,6 @@ Route::post('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'g
 Route::get('/coordinacion_carreras/grafica', [CoordinacionCarrerasController::class, 'mostrarFormularioGrafica'])->name('encuestas.grafica_coordinacion_carreras');
 // Departamento de coordinacion de carreras (PDF)
 Route::get('/coordinacion_carreras/pdf', [PDFController::class, 'generateCoordinacionCarrerasPDF'])->name('generate_coordinacion_carreras_pdf');
-Route::get('/downloadCoordinacionCarreras', [PDFController::class, 'downloadCoordinacionCarreras'])->name('download-coordinacion-carreras');
-Route::post('/downloadCoordinacionCarreras', [PDFController::class, 'downloadCoordinacionCarreras'])->name('download-coordinacion-carreras');
 
 
 // Ruta para mostrar el formulario de encuestas de Recursos Financieros
@@ -137,8 +140,6 @@ Route::post('/encuestas/recursos_financieros', [RecursosFinancierosController::c
 Route::get('/graficas/recursos_financieros', [RecursosFinancierosController::class, 'mostrarFormularioGrafica'])->name('graficas.recursos_financieros');
 // Ruta para generar el PDF de los resultados de Recursos Financieros
 Route::get('/recursos_financieros/pdf', [PDFController::class, 'generateRecursosFinancierosPDF'])->name('generate_reporte_financieros_pdf');
-Route::get('/downloadRecursosFinancieros', [PDFController::class, 'downloadRecursosFinancieros'])->name('download-recursos-financieros');
-Route::post('/downloadRecursosFinancieros', [PDFController::class, 'downloadRecursosFinancieros'])->name('download-recursos-financieros');
 
 
 // Ruta para mostrar el formulario de encuestas de Residencias Profesionales
@@ -150,9 +151,6 @@ Route::get('/graficas/residencias_profesionales', [ResidenciasProfesionalesContr
 Route::get('/datos-grafica', [ResidenciasProfesionalesController::class, 'getChartData']);
 // Rutas para mostrar, generar y imprimir PDF
 Route::get('/residencias_profesionales/pdf', [PDFController::class, 'generateResidenciasProfesionalesPDF'])->name('generate_reporte_residencias_pdf');
-Route::get('/downloadResidenciasProfesionales', [PDFController::class, 'downloadResidenciasProfesionales'])->name('download-residencias-profesionales');
-Route::post('/downloadResidenciasProfesionales', [PDFController::class, 'downloadResidenciasProfesionales'])->name('download-residencias-profesionales');
-
 
 // Departamento de centro de computo (encuestas)
 Route::get('/centro_computo', [CentroComputoController::class, 'mostrarFormulario'])->name('encuestas.centro_computo');
@@ -161,9 +159,6 @@ Route::post('/centro_computo', [CentroComputoController::class, 'guardarRespuest
 Route::get('/graficas/centro_computo', [CentroComputoController::class, 'mostrarFormularioGrafica'])->name('graficas.centro_computo');
 // Rutas para mostrar, generar y imprimir PDF
 Route::get('/centro_computo/pdf', [PDFController::class, 'generateCentroComputoPDF'])->name('generate_reporte_computo_pdf');
-Route::get('/downloadCentroComputo', [PDFController::class, 'downloadCentroComputo'])->name('download-centro-computo');
-Route::post('/downloadCentroComputo', [PDFController::class, 'downloadCentroComputo'])->name('download-centro-computo');
-
 
 // Departamento de Servicio Social (encuestas)
 Route::get('/servicio_social', [ServicioSocialController::class, 'mostrarFormulario'])->name('encuestas.servicio_social');
@@ -172,22 +167,59 @@ Route::post('/servicio_social', [ServicioSocialController::class, 'guardarRespue
 Route::get('/graficas/servicio_social', [ServicioSocialController::class, 'mostrarFormularioGrafica'])->name('graficas.servicio_social');
 // Rutas para generar pdf, decargar e imprimir
 Route::get('/servicio_social/pdf', [PDFController::class, 'generateServicioSocialPDF'])->name('generate_reporte_social_pdf');
-Route::get('/downloadServicioSocial', [PDFController::class, 'downloadServicioSocial'])->name('download-servicio-social');
-Route::post('/downloadServicioSocial', [PDFController::class, 'downloadServicioSocial'])->name('download-servicio-social');
-
-
 
 // Departamento de Servicios Escolars (encuestas)
 Route::get('/servicios_escolares', [ServiciosEscolaresController::class, 'mostrarFormulario'])->name('encuestas.servicios_escolares');
 Route::post('/servicios_escolares', [ServiciosEscolaresController::class, 'guardarRespuestas'])->name('encuestas.guardar_servicios_escolares');
+// Ruta para mostrar las gráficas de los resultados de Servicio Social
+Route::get('/graficas/servicios_escolares', [ServiciosEscolaresController::class, 'mostrarFormularioGrafica'])->name('graficas.servicios_escolares');
+// Rutas para generar pdf, decargar e imprimir
+Route::get('/servicios_escolares/pdf', [PDFController::class, 'generateServiciosEscolaresPDF'])->name('generate_reporte_escolares_pdf');
 
 
 // Departamento de Becas (encuestas)
 Route::get('/becas', [BecasController::class, 'mostrarFormulario'])->name('encuestas.becas');
+Route::post('/becas', [BecasController::class, 'guardarRespuestas'])->name('encuestas.guardar_becas');
+// Ruta para mostrar las gráficas de los resultados de Servicio Social
+Route::get('/graficas/becas', [BecasController::class, 'mostrarFormularioGrafica'])->name('graficas.becas');
+// Rutas para generar pdf, decargar e imprimir
+Route::get('/becas/pdf', [PDFController::class, 'generateBecasPDF'])->name('generate_reporte_becas_pdf');
+
+// Deapartamento de talleres y laboratorios (encuestas)
+Route::get('/talleres_laboratorios', [TalleresLaboratoriosController::class, 'mostrarFormulario'])->name('encuestas.talleres_laboratorios');
+Route::post('/talleres_laboratorios', [TalleresLaboratoriosController::class, 'guardarRespuestas'])->name('encuestas.guardar_talleres_laboratorios');
+// Ruta para mostrar las gráficas de los resultados de Talleres y laboratorios (encuestas)
+Route::get('/graficas/talleres_laboratorios', [TalleresLaboratoriosController::class, 'mostrarFormularioGrafica'])->name('graficas.talleres_laboratorios');
+Route::get('/talleres_laboratorios/pdf', [PDFController::class, 'generateTalleresLaboratoriosPDF'])->name('generate_reporte_talleres_laboratorio_pdf');
+
+// Departamento de cafeteria (encuestas)
+Route::get('/cafeteria', [CafeteriaController::class, 'mostrarFormulario'])->name('encuestas.cafeteria');
+Route::post('/cafeteria',[CafeteriaController::class, 'guardarRespuestas'])->name('encuestas.guardar_cafeteria');
+// Ruta para mostrar las gráficas de los resultados de Servicio Social
+Route::get('/graficas/cafeteria', [CafeteriaController::class, 'mostrarFormularioGrafica'])->name('graficas.cafeteria');
+// Rutas para generar pdf, decargar e imprimir
+Route::get('/cafeteria/pdf', [PDFController::class, 'generateCafeteriaPDF'])->name('generate_reporte_cafeteria_pdf');
+
+
+// Departamento de Servicios Medico (encuestas)
+Route::get('/servicio_medico', [ServicioMedicoController::class, 'mostrarFormulario'])->name('encuestas.servicio_medico');
+Route::post('/servicio_medico', [ServicioMedicoController::class, 'guardarRespuestas'])->name('encuestas.servicio_medico');
+// Ruta para mostrar las gráficas de los resultados de Servicio Medico
+Route::get('/graficas/servicio_medico', [ServicioMedicoController::class, 'mostrarFormularioGrafica'])->name('graficas.servicio_medico');
+// Rutas para generar pdf, decargar e imprimir
+Route::get('/servicio_medico/pdf', [PDFController::class, 'generateServicioMedicoPDF'])->name('generate_reporte_servicio_medico_pdf');
+
+// Departamento de Actividades Culturales Deportivas
+Route::get('/culturales_deportivas', [CulturalesDeportivasController::class, 'mostrarFormulario'])->name('encuestas.actividades_culturales_deportivas');
+Route::post('/culturales_deportivas', [CulturalesDeportivasController::class, 'guardarRespuestas'])->name('encuestas.actividades_culturales_deportivas');
+// Ruta para mostrar las gráficas de los resultados de Actividades Culturales y Deportivas
+Route::get('/graficas/culturales_deportivas', [CulturalesDeportivasController::class, 'mostrarFormularioGrafica'])->name('graficas.culturales_deportivas');
+// Rutas para generar pdf, decargar e imprimir
+Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCulturalesDeportivasPDF'])->name('generate_reporte_culturales_deportivas_pdf');
+
 
 
 // Rutas para gráficas
-
 Route::get('/graficas-semestre/{carrera}/{semestre}', [AuthAlumnoRegisterController::class, 'GraficasSemestre'])->name('graficas.semestre');
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 

@@ -69,7 +69,8 @@ async function obtenerDatos() {
                 data: valores,
                 backgroundColor: 'rgba(128, 0, 0, 1)',  // Color guinda sólido
                 borderColor: 'rgba(128, 0, 0, 1)', 
-                borderWidth: 1
+                borderWidth: 1,
+                barThickness: 100
             }]
         },
         options: {

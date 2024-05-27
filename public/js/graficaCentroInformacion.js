@@ -25,55 +25,44 @@ async function obtenerDatos() {
         'Estrucpregunta_6': 'La calidad de los materiales es alta'
     };
 
-    const acumuladores = {
-        'Serpregunta_1': 0,
-        'Serpregunta_2': 0,
-        'Serpregunta_3': 0,
-        'Serpregunta_4': 0,
-        'Serpregunta_5': 0,
-        'Serpregunta_6': 0,
-        'Serpregunta_7': 0,
-        'Estrucpregunta_1': 0,
-        'Estrucpregunta_2': 0,
-        'Estrucpregunta_3': 0,
-        'Estrucpregunta_4': 0,
-        'Estrucpregunta_5': 0,
-        'Estrucpregunta_6': 0
+    const ponderaciones = {
+        'Serpregunta_1': 1,
+        'Serpregunta_2': 2,
+        'Serpregunta_3': 3,
+        'Serpregunta_4': 4,
+        'Serpregunta_5': 5,
+        'Serpregunta_6': 1,
+        'Serpregunta_7': 2,
+        'Estrucpregunta_1': 3,
+        'Estrucpregunta_2': 4,
+        'Estrucpregunta_3': 5,
+        'Estrucpregunta_4': 1,
+        'Estrucpregunta_5': 2,
+        'Estrucpregunta_6': 3
     };
 
-    const totalAlumnos = datos.length;
+    const acumuladores = {};
+    const totalRespuestas = {};
 
-    datos.forEach(respuesta => {
-        acumuladores.Serpregunta_1 += respuesta.Serpregunta_1;
-        acumuladores.Serpregunta_2 += respuesta.Serpregunta_2;
-        acumuladores.Serpregunta_3 += respuesta.Serpregunta_3;
-        acumuladores.Serpregunta_4 += respuesta.Serpregunta_4;
-        acumuladores.Serpregunta_5 += respuesta.Serpregunta_5;
-        acumuladores.Serpregunta_6 += respuesta.Serpregunta_6;
-        acumuladores.Serpregunta_7 += respuesta.Serpregunta_7;
-        acumuladores.Estrucpregunta_1 += respuesta.Estrucpregunta_1;
-        acumuladores.Estrucpregunta_2 += respuesta.Estrucpregunta_2;
-        acumuladores.Estrucpregunta_3 += respuesta.Estrucpregunta_3;
-        acumuladores.Estrucpregunta_4 += respuesta.Estrucpregunta_4;
-        acumuladores.Estrucpregunta_5 += respuesta.Estrucpregunta_5;
-        acumuladores.Estrucpregunta_6 += respuesta.Estrucpregunta_6;
+    // Inicializar acumuladores y totalRespuestas
+    Object.keys(preguntasMap).forEach(pregunta => {
+        acumuladores[pregunta] = 0;
+        totalRespuestas[pregunta] = 0;
     });
 
-    const promedios = {
-        'Serpregunta_1': acumuladores.Serpregunta_1 / totalAlumnos,
-        'Serpregunta_2': acumuladores.Serpregunta_2 / totalAlumnos,
-        'Serpregunta_3': acumuladores.Serpregunta_3 / totalAlumnos,
-        'Serpregunta_4': acumuladores.Serpregunta_4 / totalAlumnos,
-        'Serpregunta_5': acumuladores.Serpregunta_5 / totalAlumnos,
-        'Serpregunta_6': acumuladores.Serpregunta_6 / totalAlumnos,
-        'Serpregunta_7': acumuladores.Serpregunta_7 / totalAlumnos,
-        'Estrucpregunta_1': acumuladores.Estrucpregunta_1 / totalAlumnos,
-        'Estrucpregunta_2': acumuladores.Estrucpregunta_2 / totalAlumnos,
-        'Estrucpregunta_3': acumuladores.Estrucpregunta_3 / totalAlumnos,
-        'Estrucpregunta_4': acumuladores.Estrucpregunta_4 / totalAlumnos,
-        'Estrucpregunta_5': acumuladores.Estrucpregunta_5 / totalAlumnos,
-        'Estrucpregunta_6': acumuladores.Estrucpregunta_6 / totalAlumnos
-    };
+    datos.forEach(respuesta => {
+        Object.keys(preguntasMap).forEach(pregunta => {
+            if (respuesta[pregunta] !== undefined) {
+                acumuladores[pregunta] += respuesta[pregunta] * ponderaciones[pregunta];
+                totalRespuestas[pregunta] += ponderaciones[pregunta];
+            }
+        });
+    });
+
+    const promedios = {};
+    Object.keys(acumuladores).forEach(pregunta => {
+        promedios[pregunta] = acumuladores[pregunta] / totalRespuestas[pregunta];
+    });
 
     const etiquetas = Object.keys(preguntasMap).map(key => preguntasMap[key]);
     const valores = Object.keys(promedios).map(key => promedios[key]);

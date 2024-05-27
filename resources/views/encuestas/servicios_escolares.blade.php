@@ -104,8 +104,6 @@
         </div>
     </div>
     @endif
-
-
     <div class="text-center">
         <button id="enviarRespuestas" type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Enviar Encuesta</button>
     </div>

@@ -253,9 +253,11 @@
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.servicios_escolares') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
+                                </a>
                                 &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
@@ -272,18 +274,22 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">BECAS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{route('encuestas.becas') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.becas') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
-                                
+                                </a>
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
+                                &nbsp;
                                 <!-- Botón Desactivar -->
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     Desactivar
@@ -294,18 +300,21 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">TALLERES Y LABORATORIOS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{route('encuestas.talleres_laboratorios') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.talleres_laboratorios') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
-                            
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
+                                &nbsp;
                                 <!-- Botón Desactivar -->
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     Desactivar
@@ -316,18 +325,22 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CAFETERIA</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{route('encuestas.cafeteria') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.cafeteria') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
-                            
+                                </a>
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
+                                &nbsp;
                                 <!-- Botón Desactivar -->
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     Desactivar
@@ -338,18 +351,22 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIO MÉDICO</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{route('encuestas.servicio_medico') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.servicio_medico') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
-                            
+                                </a>
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
+                                &nbsp;
                                 <!-- Botón Desactivar -->
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     Desactivar
@@ -360,18 +377,22 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">ACTIVIDADES CULTURALES Y DEPORTIVAS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{route('encuestas.actividades_culturales_deportivas') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                     Ver
-                                </button>
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
-                                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('graficas.culturales_deportivas') }}">
+                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                     Gráfica
                                 </button>
-                            
+                                </a>
+                                &nbsp;
                                 <!-- Botón Activar -->
                                 <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                                     Activar
                                 </button>
+                                &nbsp;
                                 <!-- Botón Desactivar -->
                                 <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                                     Desactivar

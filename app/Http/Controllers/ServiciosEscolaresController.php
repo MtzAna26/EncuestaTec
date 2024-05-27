@@ -38,4 +38,21 @@ class ServiciosEscolaresController extends Controller
         $evaluacion->save();
         return redirect()->route('encuestas.becas')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+        //Para el admin
+        public function mostrarFormularioGrafica()
+        {
+            return view('graficas.grafica_servicios_escolares');
+        }
+        
+    
+        public function obtenerRespuestas()
+        {
+            $respuestas = ServiciosEscolares::all();
+            if ($respuestas->isNotEmpty()) {
+                return response()->json($respuestas);
+            } else {
+                return response()->json(['error' => 'No se encontraron respuestas'], 404);
+            }
+        }
 }
