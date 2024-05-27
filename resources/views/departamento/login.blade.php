@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
@@ -24,15 +26,16 @@
     <br>
     <br>
     <div>
-       
+    
         <div class="login-container">
             <div class="container">
                 <div class="sub-header">
                     <h1 class="guinda">AUTENTICACIÓN PARA ACCESO AL SISTEMA</h1>
                     <h2 class="sub-header">Introduce los datos correspondientes:</h2>
                 </div>
-
+                   
                 <div class="login-form">
+              
                     <label for="email">Usuario:</label>
                     <input type="text" id="email" name="email" required>
 
@@ -45,12 +48,20 @@
                     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
                     <script>
 
+                        
+
+
                         const sumit = async ()=>{
-                            let usuario =  document.getElementById("email").value;
+
+                            
+                            //const token = document.head.querySelector('meta[name="csrf-token"]').content;
+                            //axios.defaults.headers.common['X-CSRF-TOKEN'] = token;
+                            
+                            let email =  document.getElementById("email").value;
                             let password =  document.getElementById("password").value;
                            
 
-                            const response = await axios.post('/departamento/login2',{usuario,password});
+                            const response = await axios.post('/departamento/login2',{email,password});
                             let mensage = response.data
                                 if (mensage.message =="Logged in successfully") {
                                     var queryString = window.location.search;                               
@@ -60,12 +71,13 @@
                                     window.location.href = url ;
                                 }
                                 if (mensage.message =="Invalid credentials") {
-                                    alert("el ususaroio o la contraseña son incoretas")
+                                    alert("Usuario o Contraseña Incorrecta")
                                 }
                         }
                         
                     </script>
                 </div>
+
             </div>
         </div>
 </body>
