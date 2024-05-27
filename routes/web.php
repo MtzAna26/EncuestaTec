@@ -79,6 +79,8 @@ Route::post('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encue
 Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encuestas.menu');
 // Ruta para terminar encuestas (alumno)
 Route::get('/encuestas/gracias', [EncuestaController::class, 'completarEncuesta'])->name('alumno.fin_encuestas'); 
+// Admin rutas para desasctivar encuestas
+
 
 // Departamento centro de informacion (encuesta)
 Route::get('/formulario', [CentroInformacionController::class, 'mostrarFormulario'])->name('formulario');

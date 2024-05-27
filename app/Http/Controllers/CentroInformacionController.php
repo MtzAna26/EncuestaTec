@@ -68,5 +68,6 @@ class CentroInformacionController extends Controller
         }
     }
 
-    
+    // Métodos para activar y desactivar 
+
 }

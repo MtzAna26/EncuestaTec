@@ -22,4 +22,7 @@ class EncuestaController extends Controller
     {
         return view('alumno.fin_encuestas')->with('success', '¡Encuesta enviada correctamente!');
     }
+
+
+
 }

@@ -39,7 +39,7 @@
     
 <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
-    </div>ss
+    </div>
     <script src="{{ asset('js/graficaCulturalesDeportivas.js') }}"></script>
 </body>
 </html>
