@@ -60,7 +60,8 @@
                     </tbody>
                 </table>
                 <button type="submit" class="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded mt-4">Eliminar Seleccionados</button>
-            
+                &nbsp;
+                <a href="{{ route('dashboard')}}" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
             </form>
         </div>
     

@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">+
 </head>
+
 <body class="bg-gray-100">
-    <header class="bg-white shadow-md"> 
-    <!--- <header class="bg-custom-color shadow-md"> COLOR GUINDA---> 
+    <header class="bg-white shadow-md">
+        <!--- <header class="bg-custom-color shadow-md"> COLOR GUINDA--->
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
             <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
             <div class="titles text-black">
@@ -20,133 +22,182 @@
             <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
         </div>
     </header>
-    
+
 
     <div class="container mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Formulario de Registro -->
         <div class="bg-white p-6 rounded-lg shadow-md">
             @if (Session::has('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+                    role="alert">
                     <strong class="font-bold">Éxito!</strong>
                     <span class="block sm:inline">{{ Session::get('success') }}</span>
                 </div>
             @endif
 
-            <h2 class="text-xl font-semibold mb-4">Agregar Usuario</h2>   
-                    
+            <h2 class="text-xl font-semibold mb-4">Agregar Usuario</h2>
+
             <form method="POST" action="{{ route('users.store') }}" class="space-y-4">
                 @csrf
                 <div>
-                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre Completo</label>
-                    <input type="text" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="name" class="block text-lg font-medium text-gray-800">Nombre Completo</label>
+                    <input type="text" name="name" id="name"
+                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
                 </div>
                 <div>
-                    <label for="email" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
-                    <input type="email" name="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="email" class="block text-lg font-medium text-gray-800">Correo Electrónico</label>
+                    <input type="email" name="email" id="email"
+                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                    <input type="password" name="password" id="password" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="password" class="block text-lg font-medium text-gray-800">Contraseña</label>
+                    <input type="password" name="password" id="password"
+                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
                 </div>
                 <div>
-                    <label for="password_confirmation" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="password_confirmation" class="block text-lg font-medium text-gray-800">Confirmar
+                        Contraseña</label>
+                    <input type="password" name="password_confirmation" id="password_confirmation"
+                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
                 </div>
-            
                 <div>
-                    <label for="role" class="block text-sm font-medium text-gray-700">Rol</label>
-                    <select name="role" id="role" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                    <label for="role" class="block text-lg font-medium text-gray-800">Rol</label>
+                    <select name="role" id="role"
+                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
                         <option value="admin">Administrador</option>
                         <option value="departamento">Departamento</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-900">
+                <button type="submit"
+                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-900">
                     Registrarse
                 </button>
             </form>
+
         </div>
 
-        <!-- Lista de Departamentos -->
+        <!-- Lista de Departamentos y encuestas-->
         <div class="bg-white p-6 rounded-lg shadow-md">
-            <h2 class="text-xl font-semibold mb-4">Agregar Encuesta</h2>
-            <a href="#">
-                <a href="{{ route('admin.quejas') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+            <h2 class="text-xl font-semibold mb-4">Encuestas</h2>
+            <div class="flex items-center mb-4">
+                <a href="{{ route('admin.quejas') }}"
+                    class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                     Buzón de Quejas
                 </a>
-                
-                &nbsp;
-                <a href="{{ route('graficas.semestre', ['carrera' => 'carrera', 'semestre' => 'semestre']) }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Comparativas Semestres</a>
-                &nbsp;
-                <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-2">
+                <span class="mx-2"> <!-- Espacio entre botones --> </span>
+                <a href="{{ route('graficas.semestre', ['carrera' => 'carrera', 'semestre' => 'semestre']) }}"
+                    class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Comparativas
+                    Semestres</a>
+                <span class="mx-2"> <!-- Espacio entre botones --> </span>
+                <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}"
+                    class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mr-2">
                     Buscar Alumno
-                </a>              
-            </a>
-            
+                </a>
+                <div class="relative inline-block">
+                    <button id="agregar-btn" class="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-1" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Agregar
+                    </button>
+                    <div id="opciones-agregar"
+                        class="hidden absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+                        <a href="{{-- route('administrador.crear_encuesta') --}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Encuesta
+                            por Departamento</a>
+                    </div>
+                </div>
+                <script>
+                    const agregarBtn = document.getElementById('agregar-btn');
+                    const opcionesAgregar = document.getElementById('opciones-agregar');
+
+                    agregarBtn.addEventListener('click', () => {
+                        opcionesAgregar.classList.toggle('hidden');
+                    });
+                </script>
+            </div>
+            <br>
             <div class="overflow-y-auto max-h-96">
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Departamento</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Departamento</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Acciones</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Estado</th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Encender</th>
                         </tr>
-                        
+
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CENTRO DE INFORMACIÓN</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.centro_informacion') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.centro_informacion') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
-                                <!-- Botón Grafica -->                                 
+                                <!-- Botón Grafica -->
                                 <a href="{{ route('centros-informacion.grafica') }}">
                                     <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                         Gráfica
                                     </button>
                                 </a>
-                                &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!---Encender o apagar-->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">COORDINACIÓN DE CARRERAS</td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            <a href="{{ route('encuestas.coordinacion_carreras') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                Ver
-                            </a>
-                            &nbsp;
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{ route('encuestas.coordinacion_carreras') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                                    Ver
+                                </a>
+                                &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('encuestas.grafica_coordinacion_carreras') }}">
                                     <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                                         Gráfica
                                     </button>
                                 </a>
-                                
-                                
                                 &nbsp;
                                 <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">RECURSOS FINANCIEROS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.recursos_financieros') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.recursos_financieros') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
@@ -156,22 +207,24 @@
                                     </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">RESIDENCIAS PROFESIONALES</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.residencias_profesionales') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.residencias_profesionales') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
@@ -182,21 +235,24 @@
                                     </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CENTRO DE CÓMPUTO</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.centro_computo') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.centro_computo') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
@@ -207,328 +263,294 @@
                                     </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIO SOCIAL</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.servicio_social') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.servicio_social') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.servicio_social') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIOS ESCOLARES</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.servicios_escolares') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.servicios_escolares') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.servicios_escolares') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">BECAS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.becas') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.becas') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.becas') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">TALLERES Y LABORATORIOS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.talleres_laboratorios') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.talleres_laboratorios') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.talleres_laboratorios') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
-                                &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
+                                    &nbsp;
+                                    <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">CAFETERIA</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.cafeteria') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.cafeteria') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.cafeteria') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">SERVICIO MÉDICO</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.servicio_medico') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.servicio_medico') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.servicio_medico') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
                             </td>
                         </tr>
 
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap">ACTIVIDADES CULTURALES Y DEPORTIVAS</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{route('encuestas.actividades_culturales_deportivas') }}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                <a href="{{ route('encuestas.actividades_culturales_deportivas') }}"
+                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                                     Ver
                                 </a>
                                 &nbsp;
                                 <!-- Botón Gráfica -->
                                 <a href="{{ route('graficas.culturales_deportivas') }}">
-                                <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                    Gráfica
-                                </button>
+                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                                        Gráfica
+                                    </button>
                                 </a>
                                 &nbsp;
-                                <!-- Botón Activar -->
-                                <button class="bg-green-800 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                                    Activar
-                                </button>
-                                &nbsp;
-                                <!-- Botón Desactivar -->
-                                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                                    Desactivar
-                                </button>
+                                <!-- Botón Activar y desactivar -->
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button id="actionButton" class="button-off">Apagado</button>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <label class="flex items-center">
+                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
+                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
+                                </label>
+                            </td>
+                            </td>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <script>
+            const actionButtons = document.querySelectorAll('#actionButton');
+            const toggleCheckboxes = document.querySelectorAll('#toggleCheckbox');
+            const checkboxLabels = document.querySelectorAll('#checkboxLabel');
+
+            toggleCheckboxes.forEach((checkbox, index) => {
+                const actionButton = actionButtons[index];
+                const checkboxLabel = checkboxLabels[index];
+                const savedState = localStorage.getItem(`toggleCheckbox${index}`);
+                if (savedState !== null) {
+                    const isChecked = JSON.parse(savedState);
+                    checkbox.checked = isChecked;
+                    if (isChecked) {
+                        checkboxLabel.textContent = 'Activo';
+                        actionButton.textContent = 'Encendido';
+                        actionButton.classList.remove('button-off');
+                        actionButton.classList.add('button-on');
+                    } else {
+                        checkboxLabel.textContent = 'Inactivo';
+                        actionButton.textContent = 'Apagado';
+                        actionButton.classList.remove('button-on');
+                        actionButton.classList.add('button-off');
+                    }
+                }
+                checkbox.addEventListener('change', function() {
+                    const isChecked = checkbox.checked;
+                    localStorage.setItem(`toggleCheckbox${index}`, JSON.stringify(isChecked));
+
+                    if (isChecked) {
+                        checkboxLabel.textContent = 'Activo';
+                        actionButton.textContent = 'Encendido';
+                        actionButton.classList.remove('button-off');
+                        actionButton.classList.add('button-on');
+                    } else {
+                        checkboxLabel.textContent = 'Inactivo';
+                        actionButton.textContent = 'Apagado';
+                        actionButton.classList.remove('button-on');
+                        actionButton.classList.add('button-off');
+                    }
+                });
+            });
+        </script>
+        <style>
+            .button-off {
+                background-color: red;
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .button-on {
+                background-color: green;
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            .flex {
+                display: flex;
+                align-items: center;
+            }
+
+            .ml-2 {
+                margin-left: 8px;
+            }
+        </style>
     </div>
 
-    
-    <!--Carrera-->
-    <!---
-    <br>
-<div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Selecciona Carrera</h2>
-    <div class="overflow-y-auto max-h-96">
-        <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
-                <tr>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Carrera</th>
-                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingeniería Industrial (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingeniería en Minería (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Agronomia (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Licenciatura en Administracion (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Gestion Empresarial (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Sistemas Computacionales (Escolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria Informática (Semiescolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">Ingenieria en Gestion Empresarial (Semiescolarizado)</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">
-                            Ver
-                        </button>
-                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                            PDF
-                        </button>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
     </div>
-</div>
---->
-
-    
-</div>
     <!---
     <div class="container mx-auto mt-8">
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-xl font-semibold mb-4">Dashboard</h2>
-        Aquí puedes agregar contenido adicional del dashboard 
+        Aquí puedes agregar contenido adicional del dashboard
         </div>
     </div>--->
 
@@ -538,12 +560,16 @@
                 @csrf
                 <button type="submit" class="text-gray-500 hover:text-gray-700 focus:outline-none">
                     <span>Salir</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm4.707-9.293a1 1 0 0 1 1.414 1.414L12.414 10l3.707 3.707a1 1 0 0 1-1.414 1.414L11 11.414l-3.707 3.707a1 1 0 0 1-1.414-1.414L9.586 10 5.879 6.293a1 1 0 1 1 1.414-1.414L11 8.586l3.707-3.707z" clip-rule="evenodd" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-2a6 6 0 1 0 0-12 6 6 0 0 0 0 12zm4.707-9.293a1 1 0 0 1 1.414 1.414L12.414 10l3.707 3.707a1 1 0 0 1-1.414 1.414L11 11.414l-3.707 3.707a1 1 0 0 1-1.414-1.414L9.586 10 5.879 6.293a1 1 0 1 1 1.414-1.414L11 8.586l3.707-3.707z"
+                            clip-rule="evenodd" />
                     </svg>
                 </button>
             </form>
         </div>
     </footer>
 </body>
+
 </html>
