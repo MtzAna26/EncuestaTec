@@ -72,6 +72,7 @@ Route::get('/departamento/dashboard', [DepartamentoController::class, 'dashboard
 Route::get('/departamento/inicio/{Departamento}',[DepartamentoInicio::class, 'inicio'])->name('DepartamentoInio');
 Route::get('/departamento/tablas/{Departamento}/{ciclo}',[DepartamentoTablas::class, 'inicio'])->name('DepartamentoTablas');
 Route::post('/departamento/login2',[login::class, 'login'])->name('Departamentologin');
+Route::get('/departamento/logout2',[login::class, 'logout'])->name('Departamentologout');
 
 // Ruta para encuestas
 Route::get('/comenzar-encuestas/centro-de-informacion', [EncuestaController::class, 'comenzarEncuestasCentroDeInformacion'])->name('encuestas.centro_informacion');

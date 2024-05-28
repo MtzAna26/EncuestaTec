@@ -17,14 +17,14 @@ class login extends Controller
         $credentials = $request->only('email', 'password');
         $registros = User::all();
 
-        
-        foreach ($registros as $item) {
-            if( $item->email == $credentials['email']){
-                if ($item->password == $credentials['password']) {
-                    $Autenticado = true;
-                    break;
-                }
-            }
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
+            $Autenticado = true;
+            
         }
 
         if ($Autenticado) {
@@ -38,7 +38,7 @@ class login extends Controller
 
     public function logout()
     {
-        //Auth::logout();
+        Auth::logout();
         return response()->json(['message' => 'Logged out successfully'], 200);
     }
 }
