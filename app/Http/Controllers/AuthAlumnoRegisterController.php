@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno; 
+use Illuminate\Support\Facades\DB;
 
 class AuthAlumnoRegisterController extends Controller
 {
@@ -62,6 +63,38 @@ class AuthAlumnoRegisterController extends Controller
                         ->with('success', 'Alumnos eliminados correctamente.');
     }
 
+    // Eliminar alumnos para comenzar encuestas desde cero
+    
+
+public function index()
+    {
+        $alumnos = Alumno::all();
+        return view('alumno.index', compact('alumnos'));
+    }
+
+public function resetAlumnos()
+    {
+        // Deshabilitar temporalmente la verificación de claves foráneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Eliminar todos los registros relacionados en la tabla de encuestas (o cualquier otra tabla relacionada)
+        DB::table('encuestas')->delete(); // Asegúrate de reemplazar 'encuestas' con el nombre correcto de la tabla relacionada
+
+        // Eliminar todos los registros de la tabla alumnos
+        Alumno::query()->delete();
+
+        // Reiniciar el autoincremento
+        DB::statement('ALTER TABLE alumnos AUTO_INCREMENT = 1;');
+
+        // Habilitar nuevamente la verificación de claves foráneas
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
+        return redirect()->route('alumnos.index')->with('success', 'Todos los alumnos eliminados y el ID reiniciado.');
+    }
+
+
+
+
     // Graficas 
     public function GraficasSemestre($carrera, $semestre)
     {
@@ -87,17 +120,12 @@ class AuthAlumnoRegisterController extends Controller
         } else if ($semestre === 'agosto-diciembre') {
             $alumnos = Alumno::whereIn('semestre', $semestresAgostoDiciembre)->get(['nombre']);
         } else {
-            // Si no se encuentra ningún semestre coincidente, devuelve un array vacío
             $alumnos = [];
         }
         
         if ($request->ajax()) {
-            // Si la solicitud es una solicitud AJAX, devuelve los datos en formato JSON
             return response()->json($alumnos);
         } else {
-            // Si es una solicitud web normal, redirige o renderiza una vista según lo necesites
-            // Por ejemplo, puedes redirigir a una vista que muestre los datos en formato tabular
-            // o renderizar una vista con las gráficas directamente
             return view('administrador.comparativas', compact('alumnos'));
         }
     }

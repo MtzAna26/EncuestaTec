@@ -3,10 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EncuestaTec</title>
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gray-100">
@@ -35,44 +38,47 @@
                 </div>
             @endif
 
-            <h2 class="text-xl font-semibold mb-4">Agregar Usuario</h2>
+<h2 class="text-lg font-semibold mb-4">Agregar Usuario</h2>
+<span class="mx-2"> <!-- Espacio entre botones --> </span>
+<a href="{{ route('usuarios.index') }}" class="bg-blue-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded mr-2">
+    Ver Usuarios
+</a>
 
-            <form method="POST" action="{{ route('users.store') }}" class="space-y-4">
-                @csrf
-                <div>
-                    <label for="name" class="block text-lg font-medium text-gray-800">Nombre Completo</label>
-                    <input type="text" name="name" id="name"
-                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
-                </div>
-                <div>
-                    <label for="email" class="block text-lg font-medium text-gray-800">Correo Electrónico</label>
-                    <input type="email" name="email" id="email"
-                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
-                </div>
-                <div>
-                    <label for="password" class="block text-lg font-medium text-gray-800">Contraseña</label>
-                    <input type="password" name="password" id="password"
-                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
-                </div>
-                <div>
-                    <label for="password_confirmation" class="block text-lg font-medium text-gray-800">Confirmar
-                        Contraseña</label>
-                    <input type="password" name="password_confirmation" id="password_confirmation"
-                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
-                </div>
-                <div>
-                    <label for="role" class="block text-lg font-medium text-gray-800">Rol</label>
-                    <select name="role" id="role"
-                        class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-lg border-gray-300 rounded-md py-2 px-3">
-                        <option value="admin">Administrador</option>
-                        <option value="departamento">Departamento</option>
-                    </select>
-                </div>
-                <button type="submit"
-                    class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-lg text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-900">
-                    Registrarse
-                </button>
-            </form>
+<form method="POST" action="{{ route('users.store') }}" class="space-y-4">
+    @csrf
+    <div>
+        <label for="name" class="block text-base font-medium text-gray-800">Nombre Completo</label>
+        <input type="text" name="name" id="name"
+            class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-base border-gray-300 rounded-md py-2 px-3">
+    </div>
+    <div>
+        <label for="email" class="block text-base font-medium text-gray-800">Correo Electrónico</label>
+        <input type="email" name="email" id="email"
+            class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-base border-gray-300 rounded-md py-2 px-3">
+    </div>
+    <div>
+        <label for="password" class="block text-base font-medium text-gray-800">Contraseña</label>
+        <input type="password" name="password" id="password"
+            class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-base border-gray-300 rounded-md py-2 px-3">
+    </div>
+    <div>
+        <label for="password_confirmation" class="block text-base font-medium text-gray-800">Confirmar Contraseña</label>
+        <input type="password" name="password_confirmation" id="password_confirmation"
+            class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-base border-gray-300 rounded-md py-2 px-3">
+    </div>
+    <div>
+        <label for="role" class="block text-base font-medium text-gray-800">Rol</label>
+        <select name="role" id="role"
+            class="mt-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm text-base border-gray-300 rounded-md py-2 px-3">
+            <option value="admin">Administrador</option>
+            <option value="departamento">Departamento</option>
+        </select>
+    </div>
+    <button type="submit"
+        class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-base text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-900">
+        Registrarse
+    </button>
+</form>
 
         </div>
 
@@ -94,19 +100,17 @@
                     Buscar Alumno
                 </a>
                 <div class="relative inline-block">
-                    <button id="agregar-btn" class="bg-red-900 hover:bg-red-400 text-white font-bold py-2 px-4 rounded">
+                    <button id="agregar-btn" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-1" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
                         </svg>
-                        Agregar
+                        Alumnos
                     </button>
-                    <div id="opciones-agregar"
-                        class="hidden absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
-                        <a href="{{-- route('administrador.crear_encuesta') --}}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Encuesta
-                            por Departamento</a>
-                    </div>
+                    <div id="opciones-agregar" class="hidden absolute right-0 mt-2 bg-white border border-gray-300 rounded-md shadow-lg">
+    <a href="{{ route('alumnos.index') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Lista Alumnos</a>
+</div>
                 </div>
                 <script>
                     const agregarBtn = document.getElementById('agregar-btn');
@@ -119,404 +123,192 @@
             </div>
             <br>
             <div class="overflow-y-auto max-h-96">
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Departamento</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Acciones</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Estado</th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Encender</th>
-                        </tr>
+    <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Departamento
+                </th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Acciones
+                </th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">CENTRO INFORMACION</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.centro_informacion') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('centros-informacion.grafica') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">COORDINACIÓN DE CARRERAS</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.coordinacion_carreras') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('encuestas.grafica_coordinacion_carreras') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">RECURSOS FINANCIEROS</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.recursos_financieros') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.recursos_financieros') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">RESIDENCIAS PROFESIONALES</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.residencias_profesionales') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.grafica_residencias_profesionales') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">CENTRO DE CÓMPUTO</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.centro_computo') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.centro_computo') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">SERVICIO SOCIAL</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.servicio_social') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.servicio_social') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">SERVICIOS ESCOLARES</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.servicios_escolares') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.servicios_escolares') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">BECAS</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.becas') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.becas') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">TALLERES Y LABORATORIOS</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.talleres_laboratorios') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.talleres_laboratorios') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">CAFETERIA</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.cafeteria') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.cafeteria') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">SERVICIO MÉDICO</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.servicio_medico') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.servicio_medico') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="px-6 py-4 whitespace-nowrap">ACTIVIDADES CULTURALES Y DEPORTIVAS</td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <a href="{{ route('encuestas.actividades_culturales_deportivas') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
+                        Ver
+                    </a>
+                    &nbsp;
+                    <a href="{{ route('graficas.culturales_deportivas') }}">
+                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Gráfica
+                        </button>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">CENTRO DE INFORMACIÓN</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.centro_informacion') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Grafica -->
-                                <a href="{{ route('centros-informacion.grafica') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                <!---Encender o apagar-->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">COORDINACIÓN DE CARRERAS</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.coordinacion_carreras') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('encuestas.grafica_coordinacion_carreras') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">RECURSOS FINANCIEROS</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.recursos_financieros') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <a href="{{ route('graficas.recursos_financieros') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">RESIDENCIAS PROFESIONALES</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.residencias_profesionales') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica-->
-                                <a href="{{ route('graficas.grafica_residencias_profesionales') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">CENTRO DE CÓMPUTO</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.centro_computo') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.centro_computo') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">SERVICIO SOCIAL</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.servicio_social') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.servicio_social') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">SERVICIOS ESCOLARES</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.servicios_escolares') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.servicios_escolares') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">BECAS</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.becas') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.becas') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">TALLERES Y LABORATORIOS</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.talleres_laboratorios') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.talleres_laboratorios') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                    &nbsp;
-                                    <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">CAFETERIA</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.cafeteria') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.cafeteria') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">SERVICIO MÉDICO</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.servicio_medico') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.servicio_medico') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">ACTIVIDADES CULTURALES Y DEPORTIVAS</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <a href="{{ route('encuestas.actividades_culturales_deportivas') }}"
-                                    class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
-                                    Ver
-                                </a>
-                                &nbsp;
-                                <!-- Botón Gráfica -->
-                                <a href="{{ route('graficas.culturales_deportivas') }}">
-                                    <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                                        Gráfica
-                                    </button>
-                                </a>
-                                &nbsp;
-                                <!-- Botón Activar y desactivar -->
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button id="actionButton" class="button-off">Apagado</button>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <label class="flex items-center">
-                                    <input type="checkbox" id="toggleCheckbox" class="form-checkbox h-5 w-5"><span
-                                        id="checkboxLabel" class="ml-2 text-gray-500">Inactivo</span>
-                                </label>
-                            </td>
-                            </td>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
-        <script>
-            const actionButtons = document.querySelectorAll('#actionButton');
-            const toggleCheckboxes = document.querySelectorAll('#toggleCheckbox');
-            const checkboxLabels = document.querySelectorAll('#checkboxLabel');
-
-            toggleCheckboxes.forEach((checkbox, index) => {
-                const actionButton = actionButtons[index];
-                const checkboxLabel = checkboxLabels[index];
-                const savedState = localStorage.getItem(`toggleCheckbox${index}`);
-                if (savedState !== null) {
-                    const isChecked = JSON.parse(savedState);
-                    checkbox.checked = isChecked;
-                    if (isChecked) {
-                        checkboxLabel.textContent = 'Activo';
-                        actionButton.textContent = 'Encendido';
-                        actionButton.classList.remove('button-off');
-                        actionButton.classList.add('button-on');
-                    } else {
-                        checkboxLabel.textContent = 'Inactivo';
-                        actionButton.textContent = 'Apagado';
-                        actionButton.classList.remove('button-on');
-                        actionButton.classList.add('button-off');
-                    }
-                }
-                checkbox.addEventListener('change', function() {
-                    const isChecked = checkbox.checked;
-                    localStorage.setItem(`toggleCheckbox${index}`, JSON.stringify(isChecked));
-
-                    if (isChecked) {
-                        checkboxLabel.textContent = 'Activo';
-                        actionButton.textContent = 'Encendido';
-                        actionButton.classList.remove('button-off');
-                        actionButton.classList.add('button-on');
-                    } else {
-                        checkboxLabel.textContent = 'Inactivo';
-                        actionButton.textContent = 'Apagado';
-                        actionButton.classList.remove('button-on');
-                        actionButton.classList.add('button-off');
-                    }
-                });
-            });
-        </script>
         <style>
             .button-off {
                 background-color: red;
@@ -571,5 +363,5 @@
         </div>
     </footer>
 </body>
-
+<script src="{{ asset('js/encuestas.js') }}"></script>
 </html>

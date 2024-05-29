@@ -49,6 +49,10 @@ Route::post('/register', [RegisteredUserController::class, 'store'])
         
 Route::post('/users', [RegisteredUserController::class, 'store'])->name('users.store');
 
+// Rutas para mostrar todos los usuarios creados por el admin
+Route::get('/usuarios', [RegisteredUserController::class, 'index'])->name('usuarios.index');
+Route::delete('/users/{user}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
+
 
 // Ruta para mostrar el formulario de registro de alumno
 Route::get('/registro/alumno', [AuthAlumnoRegisterController::class, 'showRegistrationForm'])->name('alumno.register');
@@ -58,6 +62,12 @@ Route::post('/registro/alumno', [AuthAlumnoRegisterController::class, 'register'
 // Ruta para alumno
 Route::get('/alumno/login', [AuthAlumnoLoginController::class, 'showLoginForm'])->name('alumno.login');
 Route::post('/alumno/login', [AuthAlumnoLoginController::class, 'login'])->name('alumno.login');
+
+Route::get('/alumnos', [AuthAlumnoRegisterController::class, 'index'])->name('alumnos.index');
+Route::delete('/alumnos/reset', [AuthAlumnoRegisterController::class, 'resetAlumnos'])->name('alumnos.reset');
+
+
+
 
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
@@ -81,6 +91,8 @@ Route::get('/encuestas/menu', [EncuestaController::class, 'menu'])->name('encues
 // Ruta para terminar encuestas (alumno)
 Route::get('/encuestas/gracias', [EncuestaController::class, 'completarEncuesta'])->name('alumno.fin_encuestas'); 
 // Admin rutas para desasctivar encuestas
+//Route::put('/departamentos/{departamento}/desactivar-encuestas', 'DepartamentoController@desactivarEncuestas');
+
 
 
 // Departamento centro de informacion (encuesta)
@@ -171,7 +183,7 @@ Route::get('/graficas/servicio_social', [ServicioSocialController::class, 'mostr
 // Rutas para generar pdf, decargar e imprimir
 Route::get('/servicio_social/pdf', [PDFController::class, 'generateServicioSocialPDF'])->name('generate_reporte_social_pdf');
 
-// Departamento de Servicios Escolars (encuestas)
+// Departamento de Servicios Escolares (encuestas)
 Route::get('/servicios_escolares', [ServiciosEscolaresController::class, 'mostrarFormulario'])->name('encuestas.servicios_escolares');
 Route::post('/servicios_escolares', [ServiciosEscolaresController::class, 'guardarRespuestas'])->name('encuestas.guardar_servicios_escolares');
 // Ruta para mostrar las gráficas de los resultados de Servicio Social
@@ -187,6 +199,7 @@ Route::post('/becas', [BecasController::class, 'guardarRespuestas'])->name('encu
 Route::get('/graficas/becas', [BecasController::class, 'mostrarFormularioGrafica'])->name('graficas.becas');
 // Rutas para generar pdf, decargar e imprimir
 Route::get('/becas/pdf', [PDFController::class, 'generateBecasPDF'])->name('generate_reporte_becas_pdf');
+
 
 // Deapartamento de talleres y laboratorios (encuestas)
 Route::get('/talleres_laboratorios', [TalleresLaboratoriosController::class, 'mostrarFormulario'])->name('encuestas.talleres_laboratorios');

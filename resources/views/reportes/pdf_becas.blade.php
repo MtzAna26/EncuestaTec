@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script src="{{ asset('js/graficaServiciosEscolares.js') }}"></script>
+    <script src="{{ asset('js/graficaBecas.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
     <title>Reporte Departamento Becas</title>

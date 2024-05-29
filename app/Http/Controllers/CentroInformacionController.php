@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\CentroInformacion;
 use App\Models\User;
+use App\Models\Departamento;
 use Illuminate\Http\Request;
 
 class CentroInformacionController extends Controller
@@ -14,6 +15,7 @@ class CentroInformacionController extends Controller
     {
         return view('encuestas.centro_informacion', ['alumno' => $alumno]);
     }
+
 
     public function guardarRespuestas(Request $request)
     {
@@ -37,14 +39,13 @@ class CentroInformacionController extends Controller
         ]);
 
         $alumnos = Alumno::all();
-        
+
         foreach ($alumnos as $alumno) {
             $evaluacion = new CentroInformacion();
             $evaluacion->fill($request->all());
             $evaluacion->alumno_id = $alumno->id;
             $evaluacion->no_control = $alumno->no_control;
             $evaluacion->carrera = $alumno->carrera;
-            
         }
         $evaluacion->save();
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
@@ -56,7 +57,7 @@ class CentroInformacionController extends Controller
     {
         return view('encuestas.grafica_centro_informacion');
     }
-    
+
 
     public function obtenerRespuestas()
     {
@@ -69,5 +70,6 @@ class CentroInformacionController extends Controller
     }
 
     // Métodos para activar y desactivar 
+
 
 }

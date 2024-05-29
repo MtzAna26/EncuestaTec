@@ -9,11 +9,11 @@
     <script src="{{ asset('js/graficaTalleresLaboratorios.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-    <title>Reporte Departamento Servicios Escolares </title>
+    <title>Reporte Departamento Talleres y Laboratorios </title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
-        <h1 class="text-center text-3xl font-bold mb-8">Reporte Servicios Escolares</h1>
+        <h1 class="text-center text-3xl font-bold mb-8">Reporte Talleres y Laboratorios</h1>
         @if (!request()->is('download-question-report'))
         <style>
             @media print {

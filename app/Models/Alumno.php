@@ -76,4 +76,9 @@ class Alumno extends Model
     {
         return $this->hasOne('App\Models\ActividadesCulturalesDeportivas');
     }
+
+public function encuestas()
+    {
+        return $this->hasMany(Encuesta::class);
+    }
 }

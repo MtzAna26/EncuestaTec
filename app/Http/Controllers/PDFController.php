@@ -165,6 +165,26 @@ class PDFController extends Controller
             return view('reportes.pdf_servicio_social', $data);
         }
 
+
+
+        //Servicios Escolares
+        public function generateServiciosEscolaresPDF()
+        {
+            $questions = [
+                'Serpregunta_1' => 'El Departamento de Servicios Escolares tiene un horario adecuado de atención',
+                'Serpregunta_2' => 'El tiempo de respuesta a mis solicitudes es adecuado',
+                'Serpregunta_3' => 'Me proporcionan información adecuada en caso de que se la solicite',
+                'Serpregunta_4' => 'Mantienen una relación atenta conmigo durante toda mi estancia en el departamento.',
+            ];
+        
+            $tableName = 'dep_servicios_escolares';
+            $data = $this->getQuestionsData($tableName, $questions);
+        
+            return view('reportes.pdf_servicios_escolares', $data);
+        }
+
+
+
     // Talleres y Laboratorios
     public function generateTalleresLaboratoriosPDF()
     {
@@ -181,6 +201,27 @@ class PDFController extends Controller
     
         return view('reportes.pdf_talleres_laboratorios', $data);
     }
+
+
+   // Becas
+    public function generateBecasPDF()
+    {
+        $questions = [
+        'Serpregunta_1' => 'Se cumple con  el horario de atención establecido',
+        'Serpregunta_2' => 'Conozco a dónde dirigirme para que me informen sobre 
+el trámite de solicitud de beca',
+        'Serpregunta_3' => 'Se dan a conocer oportunamente y apropiadamente las convocatorias para los diferentes tipos de becas. ',
+        'Serpregunta_4' => 'Resuelven mis dudas oportuna y claramente',
+        'Serpregunta_5' => 'Si se presenta algún problema con mi trámite me lo informan oportunamente.',
+        ];
+    
+        $tableName = 'dep_becas';
+        $data = $this->getQuestionsData($tableName, $questions);
+    
+        return view('reportes.pdf_becas', $data);
+    }
+
+
 
     // Cafeteria
     public function generateCafeteriaPDF()

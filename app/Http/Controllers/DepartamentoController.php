@@ -82,4 +82,13 @@ class DepartamentoController extends Controller
 
     return back()->withErrors(['usuario' => 'Credenciales incorrectas.'])->withInput();
     }
+
+
+    //Para el admin 
+    public function desactivarEncuestas(Departamento $departamento)
+    {
+        $departamento->update(['activo' => false]);
+    
+        return response()->json(['message' => 'Encuestas desactivadas para el departamento'], 200);
+    }
 }
