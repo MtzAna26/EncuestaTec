@@ -71,7 +71,7 @@ class DepartamentoInicio extends Controller
     public function ParseCentroDeInformacion($DepartamentoP){
         $registros = CentroInformacion::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Estrucpregunta_1','Estrucpregunta_2','Estrucpregunta_3','Estrucpregunta_4','Estrucpregunta_5','Estrucpregunta_6'];
+        $preguntas = ['Serpregunta_1 ','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Estrucpregunta_1','Estrucpregunta_2','Estrucpregunta_3','Estrucpregunta_4','Estrucpregunta_5','Estrucpregunta_6'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
