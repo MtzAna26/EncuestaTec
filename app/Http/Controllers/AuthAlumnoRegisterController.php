@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Periodo;
 use App\Models\Alumno; 
+
 use Illuminate\Support\Facades\DB;
 
 class AuthAlumnoRegisterController extends Controller
@@ -15,34 +17,37 @@ class AuthAlumnoRegisterController extends Controller
 
     public function register(Request $request)
     {
+        $request->validate([
+            'nip' => 'required|unique:alumnos,nip',
+            'no_control' => 'required|unique:alumnos,no_control',
+            'carrera' => 'required',
+            'semestre' => 'required',
+        ]);
     
-    $request->validate([
-        'nip' => 'required|unique:alumnos,nip',
-        'no_control' => 'required|unique:alumnos,no_control',
-        'carrera' => 'required',
-        'semestre' => 'required',
-    ]);
-
+        $alumno = new Alumno();
+        $alumno->nip = $request->nip;
+        $alumno->no_control = $request->no_control;
+        $alumno->carrera = $request->carrera;
+        $alumno->semestre = $request->semestre;
     
-    $alumno = new Alumno();
-    $alumno->nip = $request->nip;
-    $alumno->no_control = $request->no_control;
-    $alumno->carrera = $request->carrera;
-    $alumno->semestre = $request->semestre;
-
+        // Convertir el semestre en período
+        $periodoInfo = $alumno->generarPeriodo($request->semestre);
     
-    if ($alumno->save()) {
-        
-        return redirect()->route('alumno.login')->with('success', '¡Registro exitoso! Por favor, inicia sesión.');
-    } else {
-        
-        return back()->withInput()->withErrors(['error' => 'Hubo un problema al guardar el registro. Por favor, intenta de nuevo.']);
+        // Guardar el período en la tabla "periodos"
+        $periodo = new Periodo();
+        $periodo->nombre = $periodoInfo['nombre'];
+        $periodo->fecha_inicio = $periodoInfo['inicio'];
+        $periodo->fecha_fin = $periodoInfo['fin'];
+        $periodo->save();
+    
+        if ($alumno->save()) {
+            return redirect()->route('alumno.login')->with('success', '¡Registro exitoso! Por favor, inicia sesión.');
+        } else {
+            return back()->withInput()->withErrors(['error' => 'Hubo un problema al guardar el registro. Por favor, intenta de nuevo.']);
+        }
     }
-    }
-
 
     // Para el administrador
-
     public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)
     {
     $alumnos = Alumno::where('carrera', $carrera)
@@ -64,8 +69,6 @@ class AuthAlumnoRegisterController extends Controller
     }
 
     // Eliminar alumnos para comenzar encuestas desde cero
-    
-
 public function index()
     {
         $alumnos = Alumno::all();
@@ -92,9 +95,6 @@ public function resetAlumnos()
         return redirect()->route('alumnos.index')->with('success', 'Todos los alumnos eliminados y el ID reiniciado.');
     }
 
-
-
-
     // Graficas 
     public function GraficasSemestre($carrera, $semestre)
     {
@@ -106,29 +106,27 @@ public function resetAlumnos()
     }
 
     // Para obtener el periodo
+    public function mostrarGrafica(Request $request)
+    {
+        $periodos = Periodo::all();
 
-    public function obtenerAlumnosPorSemestre(Request $request) {
-        $semestre = $request->input('semestre');
-        
-        // Define los semestres correspondientes para cada rango
-        $semestresEneroJunio = ['Segundo_Semestre', 'Cuarto_Semestre', 'Sexto_Semestre', 'Octavo_Semestre'];
-        $semestresAgostoDiciembre = ['Primer_Semestre', 'Tercer_Semestre', 'Quinto_Semestre', 'Septimo_Semestre'];
-        
-        // Filtrar los alumnos según el semestre seleccionado
-        if ($semestre === 'enero-junio') {
-            $alumnos = Alumno::whereIn('semestre', $semestresEneroJunio)->get(['nombre']);
-        } else if ($semestre === 'agosto-diciembre') {
-            $alumnos = Alumno::whereIn('semestre', $semestresAgostoDiciembre)->get(['nombre']);
+        $datosGrafica = [];
+
+        if ($request->has('periodo')) {
+            $periodoSeleccionado = Periodo::find($request->input('periodo'));
+
+            if ($periodoSeleccionado) {
+                $count = Alumno::whereBetween('created_at', [$periodoSeleccionado->fecha_inicio, $periodoSeleccionado->fecha_fin])->count();
+                $datosGrafica[$periodoSeleccionado->nombre] = $count;
+            }
         } else {
-            $alumnos = [];
+            // Contar los alumnos por cada periodo
+            foreach ($periodos as $periodo) {
+                $count = Alumno::whereBetween('created_at', [$periodo->fecha_inicio, $periodo->fecha_fin])->count();
+                $datosGrafica[$periodo->nombre] = $count;
+            }
         }
-        
-        if ($request->ajax()) {
-            return response()->json($alumnos);
-        } else {
-            return view('administrador.comparativas', compact('alumnos'));
-        }
+
+        return view('administrador.comparativas', compact('datosGrafica', 'periodos'));
     }
-    
-    
 }

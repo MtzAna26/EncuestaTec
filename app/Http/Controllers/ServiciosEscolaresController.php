@@ -23,6 +23,7 @@ class ServiciosEscolaresController extends Controller
             'Serpregunta_2' => 'required',
             'Serpregunta_3' => 'required',
             'Serpregunta_4' => 'required',
+            'comentario' => 'required|string',
         ]);
 
         $alumnos = Alumno::all();
@@ -33,7 +34,7 @@ class ServiciosEscolaresController extends Controller
             $evaluacion->alumno_id = $alumno->id;
             $evaluacion->no_control = $alumno->no_control;
             $evaluacion->carrera = $alumno->carrera;
-            
+            $evaluacion->calcularPromedioFinal();
         }
         $evaluacion->save();
         return redirect()->route('encuestas.becas')->with('success', '¡Encuesta enviada correctamente!');

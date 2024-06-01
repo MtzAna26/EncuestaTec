@@ -16,7 +16,7 @@
                 <h3>EncuestaTec</h3>
                 <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
     

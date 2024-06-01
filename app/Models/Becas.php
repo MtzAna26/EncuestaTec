@@ -21,6 +21,24 @@ class Becas extends Model
         'Serpregunta_5',
         'comentario',
     ];
+
+
+    public function calcularPromedioFinal()
+    {
+        $totalPreguntas = 5; // Total de preguntas SERP y Estruc
+        $totalAlumnos = $this->alumno()->count(); // Obtener el número de alumnos que respondieron la encuesta
+        $sumaPreguntas = $this->Serpregunta_1 + $this->Serpregunta_2 + $this->Serpregunta_3 + $this->Serpregunta_4 + $this->Serpregunta_5;
+        
+        if ($totalAlumnos > 0) {
+            $this->promedio_final = $sumaPreguntas / ($totalPreguntas * $totalAlumnos);
+        } else {
+            $this->promedio_final = null;
+        }
+    }
+
+
+
+
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');

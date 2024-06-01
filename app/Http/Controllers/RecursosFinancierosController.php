@@ -38,6 +38,7 @@ class RecursosFinancierosController extends Controller
             $evaluacion->alumno_id = $alumno->id;
             $evaluacion->no_control = $alumno->no_control;
             $evaluacion->carrera = $alumno->carrera;
+            $evaluacion->calcularPromedioFinal();
         }
         $evaluacion->save();
     

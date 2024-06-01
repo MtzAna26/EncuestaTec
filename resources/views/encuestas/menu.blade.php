@@ -16,62 +16,59 @@
                 <h3>EncuestaTec</h3>
                 <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
-    <br>
-    <div class="container mx-auto px-4">
-        <div class="flex justify-center items-center mb-6">
-            <h1 class="text-3xl font-semibold mr-4">DEPARTAMENTOS</h1>
+    
+    <div class="container mx-auto px-4 py-8">
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4">DEPARTAMENTOS</h1>
             <a href="/buzon-de-quejas">
-                <button class="bg-red-800 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                <button class="bg-red-900 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
                     Buzón de Quejas
                 </button>
             </a>
-            
         </div>
-        
-        <div class="grid grid-cols-3 gap-4">
-        <div class="bg-red-800 hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
-            <a href="{{ route('encuestas.centro_informacion') }}" class="text-lg font-semibold">CENTRO DE INFORMACIÓN</a>
-        </div>
-
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+    
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
+                <a href="{{ route('encuestas.centro_informacion') }}" class="text-lg font-semibold">CENTRO DE INFORMACIÓN</a>
+            </div>
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">COORDINACIÓN DE CARRERAS</button>
             </div>
-
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">RECURSOS FINANCIEROS</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">RESIDENCIAS PROFESIONALES</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">CENTRO DE CÓMPUTO</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">SERVICIO SOCIAL</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">SERVICIOS ESCOLARES</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6  rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">BECAS</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">TALLERES Y LABORATORIOS</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">CAFETERÍA</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">SERVICIO MÉDICO</button>
             </div>
-            <div class="bg-red-800  hover:bg-red-700 text-white py-4 px-6 rounded-lg text-center">
+            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">ACTIVIDADES CULTURALES Y DEPORTIVAS</button>
             </div>
         </div>
-        
     </div>
+    
 </body>
 </html>

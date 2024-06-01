@@ -236,7 +236,7 @@ Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCultura
 
 
 // Rutas para gráficas
-Route::get('/graficas-semestre/{carrera}/{semestre}', [AuthAlumnoRegisterController::class, 'GraficasSemestre'])->name('graficas.semestre');
+Route::get('/grafica-general', [AuthAlumnoRegisterController::class, 'mostrarGrafica'])->name('grafica.general');
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
 require __DIR__.'/auth.php';

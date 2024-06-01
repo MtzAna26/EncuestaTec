@@ -25,6 +25,7 @@ return new class extends Migration
             $table->integer('Serpregunta_2')->nullable();
             $table->integer('Serpregunta_3')->nullable();
             $table->integer('Serpregunta_4')->nullable();
+            $table->text('comentario')->nullable();
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@
                 <h1 class="text-5xl font-bold text-white">INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
             
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
     <br>

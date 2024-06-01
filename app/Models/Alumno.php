@@ -81,4 +81,40 @@ public function encuestas()
     {
         return $this->hasMany(Encuesta::class);
     }
+
+
+    public function generarPeriodo($semestre)
+    {
+        // Divide el semestre en su número y tipo
+        list($numero, $tipo) = explode("_", $semestre);
+
+        // Define el nombre del período
+        $nombrePeriodo = '';
+        if ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') {
+            $nombrePeriodo = 'enero-junio';
+        } else {
+            $nombrePeriodo = 'agosto-diciembre';
+        }
+        $nombrePeriodo .= ' ' . date('Y');
+
+        // Define las fechas de inicio y fin del período
+        $añoActual = date('Y');
+        $añoInicio = $añoActual;
+        $añoFin = $añoActual;
+
+        if ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') {
+            $fechaInicio = $añoInicio . '-01-01'; // 1 de enero del año actual
+            $fechaFin = $añoInicio . '-06-30'; // 30 de junio del año actual
+        } else {
+            $fechaInicio = $añoInicio . '-08-01'; // 1 de agosto del año actual
+            $fechaFin = $añoFin . '-12-31'; // 31 de diciembre del año actual
+        }
+
+        // Retorna un arreglo con las fechas de inicio y fin del período y el nombre del período
+        return [
+            'nombre' => $nombrePeriodo,
+            'inicio' => $fechaInicio,
+            'fin' => $fechaFin,
+        ];
+    }
 }

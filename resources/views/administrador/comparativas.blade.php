@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('/resources/js/periodo.js') }}"></script>
 </head>
+
 <body class="bg-gray-100">
     <header class="bg-white shadow-md">
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
@@ -18,58 +20,37 @@
                 <h3 class="text-sm">EncuestaTec</h3>
                 <h1 class="text-xl font-bold">INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script src="{{ asset('js/general.js') }}"></script>
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
 
-<div class="container mx-auto py-4 px-6">
-    <div class="mb-4">
-        <p class="text-gray-700 font-bold mb-2">Buscar Semestre:</p>
-        <select id="semestre" class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 rounded shadow leading-tight focus:outline-none focus:shadow-outline transition duration-300 ease-in-out">
-            <option value="enero-junio">Enero - Junio</option>
-            <option value="agosto-diciembre">Agosto - Diciembre</option>
-        </select>
-    </div>
+    <body class="bg-gray-100">
+        <div class="container mx-auto p-4">
+            <h1 class="text-2xl font-bold text-center mb-4">Gráficas Generales</h1>
+            
+            <div class="bg-white rounded-lg shadow p-6">
+                <form id="searchForm" method="GET" action="{{ route('grafica.general') }}" class="mb-6">
+                    <div class="flex items-center justify-center">
+                        <label for="periodo" class="mr-2 text-lg">Seleccionar Periodo:</label>
+                        <select name="periodo" id="periodo" class="border border-gray-300 rounded-lg p-2">
+                            @foreach($periodos as $periodo)
+                                <option value="{{ $periodo->id }}">{{ $periodo->nombre }}</option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="ml-4 bg-blue-500 text-white rounded-lg py-2 px-4 hover:bg-blue-700 transition duration-200">
+                            Buscar
+                        </button>
+                    </div>
+                </form>
+                <div class="relative">
+                    <canvas id="semestresChart" data-labels="{{ json_encode(array_keys($datosGrafica)) }}" data-values="{{ json_encode(array_values($datosGrafica)) }}"></canvas>
+                </div>
+            </div>
+            <br>
+            <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
+        </div>
+    </body>
 
-    <button id="buscar" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Buscar
-    </button>
-
-    <div id="resultados" class="mt-4">
-        <!-- Aquí se cargarán los resultados de la búsqueda -->
-    </div>
-</div>
-
-<script>
-$(document).ready(function() {
-    $('#buscar').click(function() {
-        var semestreSeleccionado = $('#semestre').val();
-        $.ajax({
-            url: '/obtener-alumnos-por-semestre',
-            method: 'GET',
-            data: { semestre: semestreSeleccionado },
-            success: function(response) {
-                // Limpiar resultados anteriores
-                $('#resultados').empty();
-
-                // Verifica si response es un array y si contiene datos
-                if (Array.isArray(response) && response.length) {
-                    // Agregar nuevos resultados
-                    $.each(response, function(index, alumno) {
-                        $('#resultados').append('<p>' + alumno.nombre + '</p>');
-                    });
-                } else {
-                    $('#resultados').append('<p>No se encontraron alumnos para el  seleccionado.</p>');
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('Error al cargar resultados:', error);
-                $('#resultados').append('<p>Ocurrió un error al cargar los resultados.</p>');
-            }
-        });
-    });
-});
-</script>
-
-</body>
 </html>

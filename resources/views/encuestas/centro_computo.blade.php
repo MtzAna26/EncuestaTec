@@ -16,7 +16,7 @@
                 <h3>EncuestaTec</h3>
                 <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
     <br>
@@ -130,9 +130,28 @@
         </div>
     </div>
     @endif
+    <div class="text-center">
+        <!-- Mensaje de advertencia -->
+        <div id="mensajeAdvertencia" class="hidden bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative"
+            role="alert">
+            <strong class="font-bold">¡Atención!</strong>
+            <span class="block">Por favor, deja un comentario antes de enviar la encuesta.</span>
+        </div>
+    </div>
 
     <div class="text-center">
         <button id="enviarRespuestas" type="submit" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Enviar Encuesta</button>
     </div>
+    <script>
+        document.getElementById("enviarRespuestas").addEventListener("click", function(event) {
+            var comentario = document.getElementById("comentario").value;
+            if (comentario.trim() === "") {
+                // Si no hay comentario, mostrar advertencia y prevenir el envío de la encuesta
+                event.preventDefault();
+                document.getElementById("mensajeAdvertencia").classList.remove("hidden");
+                window.scrollTo(0, 0); // Scroll hacia arriba para mostrar el mensaje
+            }
+        });
+    </script>
     </body>
 </html>

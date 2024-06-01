@@ -46,6 +46,7 @@ class CentroInformacionController extends Controller
             $evaluacion->alumno_id = $alumno->id;
             $evaluacion->no_control = $alumno->no_control;
             $evaluacion->carrera = $alumno->carrera;
+            $evaluacion->calcularPromedioFinal();
         }
         $evaluacion->save();
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
@@ -68,8 +69,6 @@ class CentroInformacionController extends Controller
             return response()->json(['error' => 'No se encontraron respuestas'], 404);
         }
     }
-
-    // Métodos para activar y desactivar 
 
 
 }

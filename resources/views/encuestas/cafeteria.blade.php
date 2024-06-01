@@ -16,7 +16,7 @@
                 <h3>EncuestaTec</h3>
                 <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
             </div>
-            <img src="{{ asset('img/Logo-TecNM.png') }}" alt="Logo de Tecnm">
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
         </div>
     </header>
     <br>
@@ -139,7 +139,8 @@
         document.getElementById('encuestaForm').addEventListener('submit', function(event) {
             let preguntas = document.querySelectorAll('input[type=radio]');
             let respuestas = {};
-
+            let comentario = document.getElementById('comentario').value.trim(); // Obtener el valor del comentario y quitar espacios en blanco
+    
             preguntas.forEach(pregunta => {
                 let nombre = pregunta.name;
                 if (!respuestas[nombre]) {
@@ -149,7 +150,14 @@
                     respuestas[nombre] = true;
                 }
             });
-
+    
+            // Verificar si se ha dejado un comentario
+            if (comentario === '') {
+                event.preventDefault();
+                alert('Por favor, deja un comentario antes de enviar la encuesta.');
+                return false;
+            }
+    
             for (let key in respuestas) {
                 if (!respuestas[key]) {
                     event.preventDefault();
@@ -159,5 +167,6 @@
             }
         });
     </script>
+    
 </body>
 </html>
