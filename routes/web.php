@@ -12,6 +12,7 @@ use App\Http\Controllers\CafeteriaController;
 use App\Http\Controllers\TalleresLaboratoriosController;
 use App\Http\Controllers\ServicioMedicoController;
 use App\Http\Controllers\CulturalesDeportivasController;
+use App\Http\Controllers\GraficaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\AuthAlumnoRegisterController;
@@ -236,7 +237,7 @@ Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCultura
 
 
 // Rutas para gráficas
-Route::get('/grafica-general', [AuthAlumnoRegisterController::class, 'mostrarGrafica'])->name('grafica.general');
+Route::get('/grafica/{periodoId}', [GraficaController::class, 'mostrarGrafica'])->name('grafica.general');
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
 require __DIR__.'/auth.php';

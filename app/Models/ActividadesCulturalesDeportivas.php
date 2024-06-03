@@ -18,6 +18,8 @@ class ActividadesCulturalesDeportivas extends Model
         'Serpregunta_3',
         'Serpregunta_4',
         'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
     public function calcularPromedioFinal()
@@ -33,8 +35,21 @@ class ActividadesCulturalesDeportivas extends Model
         }
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
+
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

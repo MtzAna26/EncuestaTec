@@ -22,7 +22,9 @@ class ResidenciasProfesionales extends Model
         'Serpregunta_7',
         'Serpregunta_8',
         'Serpregunta_9',
-        'comentario'
+        'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
 

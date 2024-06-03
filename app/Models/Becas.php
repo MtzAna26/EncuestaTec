@@ -20,6 +20,8 @@ class Becas extends Model
         'Serpregunta_4',
         'Serpregunta_5',
         'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
 
@@ -36,11 +38,22 @@ class Becas extends Model
         }
     }
 
+    public static function boot()
+    {
+        parent::boot();
 
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
 
 
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

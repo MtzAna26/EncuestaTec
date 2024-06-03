@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Periodo;
 use App\Models\Alumno;
 use App\Models\TalleresLaboratorios;
 
@@ -27,13 +28,17 @@ class TalleresLaboratoriosController extends Controller
         ]);
 
         $alumnos = Alumno::all();
+        $periodos = Periodo::all();
         foreach ($alumnos as $alumno) {
-            $evaluacion = new TalleresLaboratorios();
-            $evaluacion->fill($request->all());
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-            $evaluacion->calcularPromedioFinal();
+            foreach ($periodos as $periodo) {
+                $evaluacion = new TalleresLaboratorios();
+                $evaluacion->fill($request->all());
+                $evaluacion->alumno_id = $alumno->id;
+                $evaluacion->no_control = $alumno->no_control;
+                $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->periodo_id = $periodo->id;  
+                $evaluacion->calcularPromedioFinal();
+            }
         }
         $evaluacion->save();
         return redirect()->route('encuestas.cafeteria')->with('success', '¡Encuesta enviada correctamente!');

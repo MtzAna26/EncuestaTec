@@ -17,7 +17,13 @@ return new class extends Migration
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade');
-            
+
+            $table->unsignedBigInteger('periodo_id')->nullable();
+            $table->foreign('periodo_id')
+                ->references('id')
+                ->on('periodos')
+                ->onDelete('set null');
+
             $table->string('no_control');
             $table->string('carrera');
             $table->integer('Serpregunta_1')->nullable();
@@ -26,6 +32,7 @@ return new class extends Migration
             $table->integer('Serpregunta_4')->nullable();
             $table->integer('Serpregunta_5')->nullable();
             $table->text('comentario')->nullable();
+            $table->decimal('promedio_final', 8, 2)->nullable();
             $table->timestamps();
         });
     }

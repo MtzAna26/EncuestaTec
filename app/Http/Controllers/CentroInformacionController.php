@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Alumno;
 use App\Models\CentroInformacion;
 use App\Models\User;
+use App\Models\Periodo;
 use App\Models\Departamento;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,8 @@ class CentroInformacionController extends Controller
 {
 
     public function mostrarFormulario(Alumno $alumno)
-    {
-        return view('encuestas.centro_informacion', ['alumno' => $alumno]);
+    {$centrosInformacion = CentroInformacion::with('periodo')->get();
+        return view('encuestas.centro_informacion', ['alumno' => $alumno, 'centrosInformacion' => $centrosInformacion]);
     }
 
 
@@ -37,21 +38,24 @@ class CentroInformacionController extends Controller
             'Estrucpregunta_6' => 'required',
             'comentario' => 'required',
         ]);
-
+        $periodos = Periodo::all();
         $alumnos = Alumno::all();
-
+    
         foreach ($alumnos as $alumno) {
-            $evaluacion = new CentroInformacion();
-            $evaluacion->fill($request->all());
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-            $evaluacion->calcularPromedioFinal();
+            foreach ($periodos as $periodo) {
+                $evaluacion = new CentroInformacion();
+                $evaluacion->fill($request->all());
+                $evaluacion->alumno_id = $alumno->id;
+                $evaluacion->no_control = $alumno->no_control;
+                $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->periodo_id = $periodo->id;  
+                $evaluacion->calcularPromedioFinal();
+                
+            }
         }
         $evaluacion->save();
         return redirect()->route('encuestas.coordinacion_carreras')->with('success', '¡Encuesta enviada correctamente!');
     }
-
 
     //Para el admin
     public function mostrarFormularioGrafica()

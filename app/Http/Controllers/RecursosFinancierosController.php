@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\RecursosFinancieros;
 use App\Models\Alumno;
+use App\Models\Periodo;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,15 +31,20 @@ class RecursosFinancierosController extends Controller
         ]);
     
         // Crear una nueva evaluación
+        $periodos = Periodo::all();
         $alumnos = Alumno::all();
         
         foreach ($alumnos as $alumno) {
-            $evaluacion = new RecursosFinancieros();
-            $evaluacion->fill($request->all());
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-            $evaluacion->calcularPromedioFinal();
+            foreach ($periodos as $periodo) {
+                $evaluacion = new RecursosFinancieros();
+                $evaluacion->fill($request->all());
+                $evaluacion->alumno_id = $alumno->id;
+                $evaluacion->no_control = $alumno->no_control;
+                $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->periodo_id = $periodo->id;  
+                $evaluacion->calcularPromedioFinal();
+            }
+
         }
         $evaluacion->save();
     

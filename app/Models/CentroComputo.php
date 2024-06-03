@@ -22,7 +22,9 @@ class CentroComputo extends Model
         'Serpregunta_5',
         'Serpregunta_6',
         'Serpregunta_7',
-        'comentario'
+        'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
 
@@ -41,9 +43,22 @@ class CentroComputo extends Model
         }
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
 
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

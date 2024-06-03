@@ -21,14 +21,16 @@ class RecursosFinancieros extends Model
         'Serpregunta_4',
         'Serpregunta_5',
         'Serpregunta_6',
-        'comentario'
+        'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
     
 
     public function calcularPromedioFinal()
     {
-        $totalPreguntas = 6; // Total de preguntas SERP y Estruc
-        $totalAlumnos = $this->alumno()->count(); // Obtener el número de alumnos que respondieron la encuesta
+        $totalPreguntas = 6; 
+        $totalAlumnos = $this->alumno()->count(); 
         $sumaPreguntas = $this->Serpregunta_1 + $this->Serpregunta_2 + $this->Serpregunta_3 + $this->Serpregunta_4 + $this->Serpregunta_5 + $this->Serpregunta_6;
         
         if ($totalAlumnos > 0) {
@@ -38,9 +40,22 @@ class RecursosFinancieros extends Model
         }
     }
 
+    public static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
 
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

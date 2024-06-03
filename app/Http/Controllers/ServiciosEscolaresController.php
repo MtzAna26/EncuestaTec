@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ServiciosEscolares;
 use App\Models\Alumno;
 use App\Models\User;
+use App\Models\Periodo;
 use Illuminate\Http\Request;
 
 class ServiciosEscolaresController extends Controller
@@ -27,14 +28,17 @@ class ServiciosEscolaresController extends Controller
         ]);
 
         $alumnos = Alumno::all();
-        
+        $periodos = Periodo::all();
         foreach ($alumnos as $alumno) {
-            $evaluacion = new ServiciosEscolares();
-            $evaluacion->fill($request->all());
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-            $evaluacion->calcularPromedioFinal();
+            foreach ($periodos as $periodo) {
+                $evaluacion = new ServiciosEscolares();
+                $evaluacion->fill($request->all());
+                $evaluacion->alumno_id = $alumno->id;
+                $evaluacion->no_control = $alumno->no_control;
+                $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->periodo_id = $periodo->id; 
+                $evaluacion->calcularPromedioFinal();
+            }
         }
         $evaluacion->save();
         return redirect()->route('encuestas.becas')->with('success', '¡Encuesta enviada correctamente!');

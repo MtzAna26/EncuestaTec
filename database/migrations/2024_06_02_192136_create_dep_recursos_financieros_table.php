@@ -18,6 +18,14 @@ return new class extends Migration
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade');
+
+
+            $table->unsignedBigInteger('periodo_id')->nullable();
+            $table->foreign('periodo_id')
+                    ->references('id')
+                    ->on('periodos')
+                    ->onDelete('set null'); 
+                
             $table->string('no_control');
             $table->string('carrera');
             $table->integer('Serpregunta_1')->nullable();
@@ -27,6 +35,7 @@ return new class extends Migration
             $table->integer('Serpregunta_5')->nullable();
             $table->integer('Serpregunta_6')->nullable();
             $table->text('comentario')->nullable();
+            $table->decimal('promedio_final', 8, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -36,7 +45,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('dep_recursos_financieros', function (Blueprint $table) {
+            $table->dropForeign('dep_recursos_financieros_alumno_foreign');
+        });
         Schema::dropIfExists('dep_recursos_financieros');
-        // No es necesario eliminar la clave foránea, ya que la tabla ha sido eliminada
     }
 };

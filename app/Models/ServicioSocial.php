@@ -21,7 +21,9 @@ class ServicioSocial extends Model
         'Serpregunta_6',
         'Serpregunta_7',
         'Serpregunta_8',
-        'comentario'
+        'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
     public function calcularPromedioFinal()
@@ -37,9 +39,20 @@ class ServicioSocial extends Model
         }
     }
 
+    public static function boot()
+    {
+        parent::boot();
 
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

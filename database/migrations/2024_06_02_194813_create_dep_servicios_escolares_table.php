@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dep_servicio_medico', function (Blueprint $table) {
+        Schema::create('dep_servicios_escolares', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id', 'dep_servicio_medico_alumno_foreign')
+            $table->foreign('alumno_id', 'dep_servicios_escolares_alumno_foreign')
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade');
-            
+            $table->unsignedBigInteger('periodo_id')->nullable();
+            $table->foreign('periodo_id')
+                ->references('id')
+                ->on('periodos')
+                ->onDelete('set null');
+
             $table->string('no_control');
             $table->string('carrera');
             $table->integer('Serpregunta_1')->nullable();
@@ -25,6 +31,7 @@ return new class extends Migration
             $table->integer('Serpregunta_3')->nullable();
             $table->integer('Serpregunta_4')->nullable();
             $table->text('comentario')->nullable();
+            $table->decimal('promedio_final', 8, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -34,9 +41,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('dep_servicio_medico', function (Blueprint $table) {
-            $table->dropForeign('dep_servicio_medico_alumno_foreign');
+        Schema::table('dep_servicios_escolares', function (Blueprint $table) {
+            $table->dropForeign('dep_servicios_escolares_alumno_foreign');
         });
-        Schema::dropIfExists('dep_servicio_medico');
+        Schema::dropIfExists('dep_servicios_escolares');
     }
 };

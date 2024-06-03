@@ -9,15 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('dep_servicio_social', function (Blueprint $table) {
+        Schema::create('dep_coordinacion_carreras', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id', 'dep_servicio_social_alumno_foreign')
+            $table->foreign('alumno_id', 'dep_coordinacion_carreras_alumno_foreign')
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade');
+
+
+            $table->unsignedBigInteger('periodo_id')->nullable();
+            $table->foreign('periodo_id')
+                    ->references('id')
+                    ->on('periodos')
+                    ->onDelete('set null'); 
+
+
             
             $table->string('no_control');
             $table->string('carrera');
@@ -28,8 +37,8 @@ return new class extends Migration
             $table->integer('Serpregunta_5')->nullable();
             $table->integer('Serpregunta_6')->nullable();
             $table->integer('Serpregunta_7')->nullable();
-            $table->integer('Serpregunta_8')->nullable();
             $table->text('comentario')->nullable();
+            $table->decimal('promedio_final', 8, 2)->nullable();
             $table->timestamps();
         });
     }
@@ -37,11 +46,11 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down()
     {
-        Schema::table('dep_servicio_social', function (Blueprint $table) {
-            $table->dropForeign('dep_servicio_social_alumno_foreign');
+        Schema::table('dep_coordinacion_carreras', function (Blueprint $table) {
+            $table->dropForeign('dep_coordinacion_carreras_alumno_foreign');
         });
-        Schema::dropIfExists('dep_servicio_social');
+        Schema::dropIfExists('dep_coordinacion_carreras');
     }
 };

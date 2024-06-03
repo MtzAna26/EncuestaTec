@@ -29,13 +29,15 @@ class CentroInformacion extends Model
         'Estrucpregunta_5',
         'Estrucpregunta_6',
         'comentario',
+        'promedio_final',
+        'periodo_id',
     ];
 
 
     public function calcularPromedioFinal()
     {
-        $totalPreguntas = 13; // Total de preguntas SERP y Estruc
-        $totalAlumnos = $this->alumno()->count(); // Obtener el número de alumnos que respondieron la encuesta
+        $totalPreguntas = 13; 
+        $totalAlumnos = $this->alumno()->count(); 
         $sumaPreguntas = $this->Serpregunta_1 + $this->Serpregunta_2 + $this->Serpregunta_3 + $this->Serpregunta_4 + $this->Serpregunta_5 + $this->Serpregunta_6 + $this->Serpregunta_7 + $this->Estrucpregunta_1 + $this->Estrucpregunta_2 + $this->Estrucpregunta_3 + $this->Estrucpregunta_4 + $this->Estrucpregunta_5 + $this->Estrucpregunta_6;
         
         if ($totalAlumnos > 0) {
@@ -45,12 +47,23 @@ class CentroInformacion extends Model
         }
     }
     
+    public static function boot()
+    {
+        parent::boot();
 
-
+        static::saving(function ($model) {
+            $model->calcularPromedioFinal();
+        });
+    }
 
 
     public function alumno()
     {
         return $this->belongsTo(Alumno::class, 'alumno_id');
+    }
+
+    public function periodo()
+    {
+        return $this->belongsTo(Periodo::class);
     }
 }

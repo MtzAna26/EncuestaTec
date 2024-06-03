@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno;
+use App\Models\Periodo;
 use App\Models\User;
 use App\Models\Cafeteria;
 
@@ -28,15 +29,18 @@ class CafeteriaController extends Controller
             'Serpregunta_7' => 'required',
             'comentario' => 'required',
         ]);
-
+        $periodos = Periodo::all();
         $alumnos = Alumno::all();
         foreach ($alumnos as $alumno) {
-            $evaluacion = new Cafeteria();
-            $evaluacion->fill($request->all());
-            $evaluacion->alumno_id = $alumno->id;
-            $evaluacion->no_control = $alumno->no_control;
-            $evaluacion->carrera = $alumno->carrera;
-            $evaluacion->calcularPromedioFinal();
+            foreach ($periodos as $periodo) {
+                $evaluacion = new Cafeteria();
+                $evaluacion->fill($request->all());
+                $evaluacion->alumno_id = $alumno->id;
+                $evaluacion->no_control = $alumno->no_control;
+                $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->periodo_id = $periodo->id;
+                $evaluacion->calcularPromedioFinal();
+            }
         }
         $evaluacion->save();
         return redirect()->route('encuestas.servicio_medico')->with('success', '¡Encuesta enviada correctamente!');
