@@ -12,6 +12,19 @@
             display: none;
         }
 
+        .tam{
+            height: 250%;
+        }
+
+
+        .table1 {
+            width: auto; /* La tabla también debe ser de tamaño automático */
+            border-collapse: collapse; /* Para evitar espacios entre bordes */
+        }
+        .td1 {
+            padding: 8px; /* Espaciado dentro de la celda */
+            white-space: nowrap; /* Evitar que el texto se quiebre */
+        }
        
         
         /* Estilos específicos para la impresión */
@@ -53,7 +66,8 @@
     $Gdatos;
     $preguntas;
   
-    
+    $contadorbueltas=0;
+    $contadorRes=0;
    
     
 @endphp
@@ -76,27 +90,7 @@
     
     </header>
 
-    <div class="container">
-            <div class="row">
-                <div class="col">
-
-                    <button class="btn btn-light no-print" onclick="goBack()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-                        </svg>
-                    </button>
-
-                    <button class="btn btn-light no-print" onclick="logout()">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
-                        <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15zM11 2h.5a.5.5 0 0 1 .5.5V15h-1zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="col"></div>
-                <div class="col">
-                </div>
-            </div>
-    </div>
+    
 
     <div class="container">
     <div id="printContent">
@@ -106,7 +100,7 @@
             <div class="col"></div>
         </div>
         <div class="row">
-            <div class="col"></div>
+           
             <div class="col">
                 <table class="table table-hover table-striped-columns">
                     <thead>
@@ -129,13 +123,39 @@
                             <td>{{ $valor[2] }}</td>
                             <td>{{ $valor[3] }}</td>
                             <td>{{ $valor[4] }}</td>
-                            <td>{{(($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) }}</td>
-                    </tr>
+                           @if(($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) == 0){
+                                <div>
+                                    no ay respuestas
+                                </div>
+                           }@else{
+                            @if((($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) < 3.6 ){
+                                <td style=" background-color: rgb(255, 255, 0);"><p>{{(($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) }}</p></td></tr>
+                            }@else{
+                            <td ><p>{{(($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]) }}</p></td></tr>
+
+                            }
+                            @endif
+                        }
+                            @php $contadorbueltas=$contadorbueltas + 1; @endphp
+                            @php $contadorRes= $contadorRes + (($valor[0]*1)+($valor[1]*2)+($valor[2]*3)+($valor[3]*4)+($valor[4]*5))/($valor[0]+$valor[1]+$valor[2]+$valor[3]+$valor[4]); @endphp
+                            @endif
                     @endforeach
+                        
+                    </tr>
+                    <tr>
+                        <td>Promadido general</td>
+                        @if( ($contadorRes/$contadorbueltas) < 3.6){
+                            <td style=" background-color: rgb(255, 255, 0);">{{$contadorRes/$contadorbueltas}}</td>
+                        }@else{
+                            <td>{{$contadorRes/$contadorbueltas}}</td>
+                        }
+                        @endif
+                       
+                    </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col"></div>
+            
         </div>
         <div class="row">
             <div class="col"></div>
@@ -148,10 +168,9 @@
         </div>
         </div>
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
-                <div>
-                    <table class="table table-hover table-striped-columns">
+            <div   class="col scrollspy-example tam">
+                <div> 
+                    <table class="table table-hover table-striped-columns table1">
                         <thead class="no-print">
                             Comentarios
                         </thead>
@@ -159,8 +178,8 @@
                            
                             @foreach($Comentarios as  $clave => $valor)
                                 <tr>
-                                    <td>{{ $valor[0] }}</td>
-                                    <td>{{ $valor[1] }}</td>
+                                    <td class="td1" >{{ $valor[0] }}</td>
+                                    <td class="td1" > {{ $valor[1] }}</td>
                                 </tr>
                             @endforeach
                             
@@ -168,14 +187,36 @@
                     </table>
                 </div>
             </div>
-            <div class="col"></div>
         </div>
     </div>
 
+<div class="container">
+            <div class="row">
+                <div class="col">
 
-<button id="printButton" class="btn btn-primary no-print">Imprimir Contenido</button>
+                    <button class="btn btn-light no-print" onclick="goBack()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-square" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+                        </svg>
+                    </button>
+
+                    <button class="btn btn-light no-print" onclick="logout()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open-fill" viewBox="0 0 16 16">
+                        <path d="M1.5 15a.5.5 0 0 0 0 1h13a.5.5 0 0 0 0-1H13V2.5A1.5 1.5 0 0 0 11.5 1H11V.5a.5.5 0 0 0-.57-.495l-7 1A.5.5 0 0 0 3 1.5V15zM11 2h.5a.5.5 0 0 1 .5.5V15h-1zm-2.5 8c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="col"></div>
+                <div class="col">
+                </div>
+            </div>
+    </div>
+    <button id="printButton" class="btn btn-primary no-print">Imprimir Contenido</button>
 
 <script>
+       
+
+
         document.getElementById('printButton').addEventListener('click', function() {
             window.print();
         });
@@ -229,6 +270,9 @@
             const response = await axios.get('/departamento/logout2');
             window.location.href = "/" ;
         }
+    </script>
+    <script>
+
     </script>
 </body>
 </body>
