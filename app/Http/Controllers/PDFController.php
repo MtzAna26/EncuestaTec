@@ -273,4 +273,5 @@ el trámite de solicitud de beca',
     
         return view('reportes.pdf_culturales_deportivas', $data);
     }
+
 }

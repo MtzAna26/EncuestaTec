@@ -52,7 +52,6 @@ Route::post('/users', [RegisteredUserController::class, 'store'])->name('users.s
 
 // Rutas para mostrar todos los usuarios creados por el admin
 Route::get('/usuarios', [RegisteredUserController::class, 'index'])->name('usuarios.index');
-Route::delete('/users/{user}', [RegisteredUserController::class, 'destroy'])->name('users.destroy');
 
 
 // Ruta para mostrar el formulario de registro de alumno
@@ -235,9 +234,16 @@ Route::get('/graficas/culturales_deportivas', [CulturalesDeportivasController::c
 Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCulturalesDeportivasPDF'])->name('generate_reporte_culturales_deportivas_pdf');
 
 
-
 // Rutas para gráficas
 Route::get('/grafica/{periodoId}', [GraficaController::class, 'mostrarGrafica'])->name('grafica.general');
+// Ruta para las carreras y graficas
+Route::get('/mostrar-carreras', [GraficaController::class, 'mostrarCarreras'])->name('mostrar_carreras');
+Route::get('/mostrar-carrera/{carrera}', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');
+
+
+// Ruta para pdf grafica general 
+Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPDF'])->name('generate.pdf');
+
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
 require __DIR__.'/auth.php';

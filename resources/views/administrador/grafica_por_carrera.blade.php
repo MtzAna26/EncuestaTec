@@ -11,7 +11,8 @@
 <body>
     <div class="container">
         <h1>Gráfica por Carrera: {{ $carrera }}</h1>
-        <p>Periodo: {{ $periodo }}</p> <!-- Agrega el periodo -->
+        <p>Periodo: {{ $periodoActual }}</p> <!-- Agrega el periodo -->
+        <p>Total de Alumnos: {{ $totalAlumnos }}</p> 
         <!-- Agrega un lienzo para la gráfica -->
         <canvas id="grafica"></canvas>
         <table class="table table-bordered mt-4">
@@ -36,9 +37,9 @@
                 </tr>
             </tbody>
         </table>
-        <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Regresar al inicio</a>
+        
     </div>
-
+    <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Regresar al inicio</a>
     <script>
         // Obtiene los datos para la gráfica
         var departamentos = @json(array_keys($data));

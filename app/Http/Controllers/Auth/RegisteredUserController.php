@@ -60,15 +60,5 @@ class RegisteredUserController extends Controller
         return view('administrador.lista_usuarios', compact('users'));
     }
 
-public function destroy(User $user): RedirectResponse
-{
-    try {
-        $user->delete();
-        Session::flash('success', '¡Usuario eliminado exitosamente!');
-    } catch (\Exception $e) {
-        Session::flash('error', 'Hubo un problema al eliminar el usuario. Por favor, inténtalo de nuevo.');
-    }
-
-    return redirect()->route('administrador.lista_usuarios');
-}
+    
 }

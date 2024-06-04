@@ -87,34 +87,39 @@ public function encuestas()
     {
         // Divide el semestre en su número y tipo
         list($numero, $tipo) = explode("_", $semestre);
-
-        // Define el nombre del período
+    
+        // Define el nombre del periodo
         $nombrePeriodo = '';
         if ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') {
             $nombrePeriodo = 'enero-junio';
         } else {
             $nombrePeriodo = 'agosto-diciembre';
         }
-        $nombrePeriodo .= ' ' . date('Y');
-
-        // Define las fechas de inicio y fin del período
+    
+        // Define las fechas de inicio y fin del periodo
         $añoActual = date('Y');
-        $añoInicio = $añoActual;
-        $añoFin = $añoActual;
-
-        if ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') {
-            $fechaInicio = $añoInicio . '-01-01'; // 1 de enero del año actual
-            $fechaFin = $añoInicio . '-06-30'; // 30 de junio del año actual
-        } else {
-            $fechaInicio = $añoInicio . '-08-01'; // 1 de agosto del año actual
-            $fechaFin = $añoFin . '-12-31'; // 31 de diciembre del año actual
+        $añoSiguiente = date('Y') + 1;
+    
+        $fechaInicio = ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') ?
+            "$añoActual-01-01" :
+            "$añoActual-08-01";
+    
+        $fechaFin = ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') ?
+            "$añoActual-06-30" :
+            "$añoActual-12-31";
+    
+        // Si el semestre es segundo, cuarto, sexto u octavo, ajustamos las fechas para el siguiente año académico
+        if ($tipo == 'segundo' || $tipo == 'cuarto' || $tipo == 'sexto' || $tipo == 'octavo') {
+            $fechaInicio = "$añoSiguiente-01-01";
+            $fechaFin = "$añoSiguiente-06-30";
         }
-
-        // Retorna un arreglo con las fechas de inicio y fin del período y el nombre del período
+    
+        // Retorna un arreglo con las fechas de inicio y fin del periodo y el nombre del periodo
         return [
-            'nombre' => $nombrePeriodo,
+            'nombre' => $nombrePeriodo . ' ' . $añoActual,
             'inicio' => $fechaInicio,
             'fin' => $fechaFin,
         ];
     }
+    
 }

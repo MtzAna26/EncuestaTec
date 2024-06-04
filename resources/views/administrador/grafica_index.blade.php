@@ -22,45 +22,77 @@
         </div>
     </header>
 
-    <div class="container mx-auto py-6">
-        <canvas id="grafica" width="800" height="400"></canvas>
+    <div class="text-center">
+        <h1 class="text-4xl font-bold">Gráfica General</h1>   
+    </div>
+    <br>
+    <div class="flex justify-center">
+        <a href="{{-- route('') ---}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Imprimir PDF
+        </a>
+        &nbsp;
+        <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
     </div>
 
+    <div class="container mx-auto py-6">   
+        <div class="flex items-center justify-center mb-4">
+            <label for="periodo" class="mr-2">Seleccionar Período:</label>
+            <select id="periodo" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500" onchange="cambiarPeriodo(this)">
+                <option value="agosto-diciembre-2024">Agosto - Diciembre 2024</option>
+                <option value="enero-junio-2025">Enero - Junio 2025</option>
+                <option value="agosto-diciembre-2025">Agosto - Diciembre 2025</option>
+            </select>
+        </div>
+        <canvas id="grafica" width="800" height="400"></canvas>
+    </div>
+    
+
     <script>
-var data = @json($data); // Convertir el array PHP a JSON
+        function cambiarPeriodo(select) {
+            var periodoSeleccionado = select.value;
+            var periodoActual = {!! json_encode($periodoActual) !!};
 
-var departamentos = Object.keys(data);
-departamentos.push('Promedio General'); // Agregar el promedio general como un departamento adicional
+            // Verificar si el período seleccionado está disponible
+            if (periodoSeleccionado === periodoActual) {
+                // Si el periodo seleccionado es igual al periodo actual, mostrar la gráfica
+                var ctx = document.getElementById('grafica').getContext('2d');
+                var data = {!! json_encode($data) !!};
+                var labels = Object.keys(data);
+                var promedios = Object.values(data).map(depto => depto['Promedio']);
 
-var promedios = Object.values(data).map(function(item) {
-    return item['Promedio General']; // Obtener el promedio general de cada departamento
-});
-promedios.push(data['Promedio General'].Promedio); // Agregar el promedio general global al array de promedios
-
-var ctx = document.getElementById('grafica').getContext('2d');
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: departamentos,
-        datasets: [{
-            label: 'Promedio General Departamentos ',
-            data: promedios,
-            backgroundColor: 'rgba(128, 0, 0, 1)',  // Color guinda sólido
-            borderColor: 'rgba(128, 0, 0, 1)',
-            borderWidth: 1
-        }]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero: true
-                }
-            }]
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Promedio General Departamentos',
+                            data: promedios,
+                            backgroundColor: 'rgba(128, 0, 0, 1)',  
+                            borderColor: 'rgba(128, 0, 0, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+            } else {
+                // Si el periodo seleccionado no es igual al periodo actual
+                var canvas = document.getElementById('grafica');
+                var ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.font = '16px Arial';
+                ctx.fillStyle = 'red';
+                ctx.textAlign = 'center';
+                ctx.fillText('La gráfica para el período seleccionado no está disponible.', canvas.width / 2, canvas.height / 2);
+            }
         }
-    }
-});
-
     </script>
 </body>
 
