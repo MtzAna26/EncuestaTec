@@ -67,8 +67,6 @@ Route::get('/alumnos', [AuthAlumnoRegisterController::class, 'index'])->name('al
 Route::delete('/alumnos/reset', [AuthAlumnoRegisterController::class, 'resetAlumnos'])->name('alumnos.reset');
 
 
-
-
 // Rutas para el buzon de quejas
 Route::get('/buzon-de-quejas', [BuzonController::class, 'quejas'])->name('buzon.quejas');
 
@@ -240,6 +238,8 @@ Route::get('/grafica/{periodoId}', [GraficaController::class, 'mostrarGrafica'])
 Route::get('/mostrar-carreras', [GraficaController::class, 'mostrarCarreras'])->name('mostrar_carreras');
 Route::get('/mostrar-carrera/{carrera}', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');
 
+// Rutas para guardar la gráfica general.
+Route::post('/guardar-grafica', [GraficaController::class, 'guardarGrafica']);
 
 // Ruta para pdf grafica general 
 Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPDF'])->name('generate.pdf');

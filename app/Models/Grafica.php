@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Grafica extends Model
 {
     use HasFactory;
-    protected $fillable = ['periodo', 'datos']; // Especifica los campos que pueden ser llenados en masa
+    protected $fillable = ['ruta_imagen', 'periodo']; 
 
     protected $casts = [
-        'datos' => 'array', // La columna 'datos' será casted automáticamente a un array cuando se acceda
+        'datos' => 'array',
     ];
 
     /**
@@ -21,11 +21,11 @@ class Grafica extends Model
      */
     public function obtenerDatosGrafica()
     {
-        return $this->datos; // Retorna los datos de la gráfica almacenados en la columna 'datos'
+        return $this->datos; 
     }
     public function periodo()
     {
-        return $this->belongsTo(Periodo::class, 'periodo', 'nombre'); // Utiliza 'nombre' como la columna en 'periodos' que se relaciona con 'graficas'
+        return $this->belongsTo(Periodo::class, 'periodo', 'nombre'); 
     }
 
 }

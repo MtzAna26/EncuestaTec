@@ -3,69 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gráfica por Carrera: {{ $carrera }}</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- Agrega la biblioteca Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>EncuestaTec</title>
+    <!-- Enlace a tus estilos CSS -->
+    <link rel="stylesheet" href="{{ asset('css/alumno/css/Registro.css') }}">
+    
 </head>
 <body>
+    <header>
+        <div class="header-content">
+            <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
+            <div class="titles">
+                <h2>SISTEMA DE ENCUESTAS</h2>
+                <h3>EncuestaTec</h3>
+                <h1>INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
+            </div>
+            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
+        </div>
+    </header>
+    
+    <br>
     <div class="container">
-        <h1>Gráfica por Carrera: {{ $carrera }}</h1>
-        <p>Periodo: {{ $periodo }}</p> <!-- Agrega el periodo -->
-        <!-- Agrega un lienzo para la gráfica -->
-        <canvas id="grafica"></canvas>
-        <table class="table table-bordered mt-4">
-            <thead>
-                <tr>
-                    <th>Departamento</th>
-                    <th>Promedio</th>
-                    <th>Promedio General</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($data as $departamento => $valores)
-                    <tr>
-                        <td>{{ $departamento }}</td>
-                        <td>{{ $valores['Promedio'] }}</td>
-                        <td class="{{ $valores['Promedio General'] == $promedio_general_global ? 'text-yellow-500 font-bold' : '' }}">{{ $valores['Promedio General'] }}</td>
-                    </tr>
-                @endforeach
-                <tr>
-                    <td colspan="2"><strong class="text-yellow-500">Promedio General Global</strong></td>
-                    <td class="text-yellow-500 font-bold">{{ $promedio_general_global }}</td>
-                </tr>
-            </tbody>
-        </table>
-        <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Regresar al inicio</a>
+        
+        <form id="registration-form" method="POST" action="{{ route('alumno.register') }}">
+            @csrf 
+
+            <label for="no_control">No.Control:</label>
+            <input type="text" id="no_control" name="no_control" required>
+            
+            <label for="nip">NIP:</label>
+            <input type="password" id="nip" name="nip" required>
+
+            <label for="carrera">Carrera:</label>
+            <select id="carrera" name="carrera" required>
+                <option value="">Seleccionar Carrera</option>
+                <option value="Ingenieria Industrial">Ingenieria Industrial (Escolarizado)</option>
+                <option value="Ingenieria en Mineria">Ingenieria en Mineria (Escolarizado)</option>
+                <option value="Ingenieria en Agronomia">Ingenieria en Agronomia (Escolarizado)</option>
+                <option value="Licenciatura en Administracion">Licenciatura en Administracion (Escolarizado)</option>
+                <option value="Ingenieria en Gestion Empresarial(Escolarizado)">Ingenieria en Gestion Empresarial (Escolarizado)</option>
+                <option value="Ingenieria en Sistemas Computacionales">Ingenieria en Sistemas Computacionales (Escolarizado)</option>
+                <option value="Ingenieria Informática">Ingenieria Informática (Semiescolarizado)</option>
+                <option value="Ingenieria en Gestion Empresarial(Semiescolarizado)">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>
+            </select>
+
+            <label for="semestre">Semestre:</label>
+            <select id="semestre" name="semestre" required>
+                <option value="">Seleccionar Semestre</option>
+                <option value="Primer_Semestre">Primer Semestre</option>
+                <option value="Segundo_Semestre">Segundo Semestre</option>
+                <option value="Tercer_Semestre">Tercer Semestre</option>
+                <option value="Cuarto_Semestre">Cuarto Semestre</option>
+                <option value="Quinto_Semestre">Quinto Semestre</option>
+                <option value="Sexto_Semestre">Sexto Semestre</option>
+                <option value="Septimo_Semestre">Septimo Semestre</option>
+                <option value="Octavo_Semestre">Octavo Semestre</option>
+                <option value="Noveno_Semestre">Noveno Semestre</option>
+            </select>
+            <input type="submit" value="Registrarse">
+        </form>
     </div>
-
-    <script>
-        // Obtiene los datos para la gráfica
-        var departamentos = @json(array_keys($data));
-        var promedios = @json(array_column($data, 'Promedio'));
-
-        // Configura y dibuja la gráfica
-        var ctx = document.getElementById('grafica').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: departamentos,
-                datasets: [{
-                    label: 'Promedio por Carrera',
-                    data: promedios,
-                    backgroundColor: 'rgba(128, 0, 0, 1)',  
-                    borderColor: 'rgba(128, 0, 0, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // Comienza en cero en el eje y
-                    }
-                }
-            }
-        });
-    </script>
 </body>
 </html>
