@@ -240,4 +240,7 @@ Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCultura
 Route::get('/grafica/{periodoId}', [GraficaController::class, 'mostrarGrafica'])->name('grafica.general');
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
+Route::get('/Estado/get', [PostController::class, 'verficar']);
+Route::post('/Estado/post', [PostController::class, 'modificar']);
+
 require __DIR__.'/auth.php';

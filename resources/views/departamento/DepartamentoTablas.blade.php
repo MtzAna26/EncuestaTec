@@ -143,11 +143,11 @@
                         
                     </tr>
                     <tr>
-                        <td>Promadido general</td>
+                        <td colspan="6"><b>Promadido general</b></td>
                         @if( ($contadorRes/$contadorbueltas) < 3.6){
-                            <td style=" background-color: rgb(255, 255, 0);">{{$contadorRes/$contadorbueltas}}</td>
+                            <td style=" background-color: rgb(228,12,15);"><b>{{$contadorRes/$contadorbueltas}}</b></td>
                         }@else{
-                            <td>{{$contadorRes/$contadorbueltas}}</td>
+                            <td ><b>{{$contadorRes/$contadorbueltas}}</b></td>
                         }
                         @endif
                        
@@ -172,7 +172,7 @@
                 <div> 
                     <table class="table table-hover table-striped-columns table1">
                         <thead class="no-print">
-                            Comentarios
+                            <b>Comentarios</b>
                         </thead>
                         <tbody>
                            
@@ -229,7 +229,7 @@
          var datos = {!! json_encode($Gdatos) !!} 
         var preguntas = {!! json_encode($preguntas) !!} 
 
-        console.log( datos);
+        
 
         const tit = document.getElementById('tit').innerHTML= dep+'--'+ciclo;
 
@@ -258,7 +258,7 @@
    </script>
 
    
-< <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         function goBack() {
             window.history.back();

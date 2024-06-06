@@ -430,6 +430,13 @@ class DepartamentoTablas extends Controller
             //"Serpregunta_9" => $repeticionesp9
            
         );
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
+     
     
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
@@ -561,7 +568,13 @@ class DepartamentoTablas extends Controller
             "7. Mantienen una relación atenta conmigo durante mi estancia." => $repeticionesp7
                
         );
-    
+        
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
        
@@ -663,7 +676,13 @@ class DepartamentoTablas extends Controller
             "5. Me proporcionan asesoría adecuada cuando desconozco qué o cuánto pagar." => $repeticionesp5,
             "6. Mantienen una relación atenta conmigo durante todo el tiempo en que me otorga el servicio." => $repeticionesp6
         );
-    
+        
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
@@ -826,7 +845,13 @@ class DepartamentoTablas extends Controller
             "9. El Departamento de Gestión Tecnológica y Vinculación me entrega en tiempo la carta de presentación y agradecimiento para la empresa" => $repeticionesp9
            
         );
-    
+        
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
        
@@ -901,6 +926,12 @@ class DepartamentoTablas extends Controller
             "4. Mantienen una relación atenta conmigo durante toda mi estancia en el departamento." => $repeticionesp4
         );
     
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
@@ -1054,6 +1085,12 @@ class DepartamentoTablas extends Controller
            
         );
     
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
        
@@ -1155,6 +1192,12 @@ class DepartamentoTablas extends Controller
             "5. Si se presenta algún problema con mi trámite me lo informan oportunamente." => $repeticionesp5,
         );
     
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
        
@@ -1257,6 +1300,12 @@ class DepartamentoTablas extends Controller
             "5. El coordinador de Talleres y Laboratorios brinda el apoyo necesario para la realización de las prácticas." => $repeticionesp5,
         );
     
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
        
@@ -1393,6 +1442,13 @@ class DepartamentoTablas extends Controller
 
            
         );
+
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
     
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
@@ -1468,6 +1524,12 @@ class DepartamentoTablas extends Controller
             "Serpregunta_4" => $repeticionesp4
         );
     
+        foreach ($Encuesta1 as $clave => &$valor) {
+            if (count($valor)  == 0){
+             array_push( $valo, 0);
+            
+            }
+         }
 
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
