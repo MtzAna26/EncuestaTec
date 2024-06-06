@@ -11,13 +11,13 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'Me atienden con amabilidad y respeto.',
-        'Serpregunta_2': 'El horario de servicio es el adecuado.',
-        'Serpregunta_3': 'Las condiciones de higiene y limpieza del lugar son las adecuadas ',
-        'Serpregunta_4': 'El personal que me atiende toma las medidas de higiene adecuadas (porta cubre bocas, guantes, malla para el cabello, etc.)',
-        'Serpregunta_5': 'El tiempo para  la entrega de los alimentos es adecuado',
-        'Serpregunta_6': 'Identifico fácilmente la lista de precios.',
-        'Serpregunta_7': 'Considero que los precios son apropiados.',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
+        'Serpregunta_7': '7',
     };
 
     // Inicializa acumuladores y contador de alumnos

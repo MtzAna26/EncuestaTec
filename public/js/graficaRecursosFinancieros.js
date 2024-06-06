@@ -11,12 +11,12 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'Tiene un horario adecuado para realizar mis trámites',
-        'Serpregunta_2': 'Me proporcionan una lista actualizada de los costos de los diferentes trámites',
-        'Serpregunta_3': 'El tiempo de espera para pagar en caja es aceptable',
-        'Serpregunta_4': 'El personal de Recursos Financieros siempre me cobra el concepto y monto Correcto',
-        'Serpregunta_5': 'Me proporcionan asesoría adecuada cuando desconozco qué o cuánto pagar',
-        'Serpregunta_6': 'Mantienen una relación atenta conmigo durante todo el tiempo en que me otorga el servicio',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
         
     };
 

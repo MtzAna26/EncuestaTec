@@ -59,9 +59,11 @@
         <nav id="menu" class="menu-vertical w-64 bg-gray-800 p-6 text-white z-10 menu-hidden">
             <a href="{{ route('usuarios.index') }}" class="block bg-red-900 hover:bg-red-600 rounded py-2 px-4 mb-2 transition-colors duration-200">Ver Usuarios</a>
             <a href="{{ route('admin.quejas') }}" class="block bg-red-700 hover:bg-red-500 rounded py-2 px-4 mb-2 transition-colors duration-200">Buzón de Quejas</a>
-            <a href="{{ route('grafica.general', ['periodoId' => 1]) }}" class="block bg-red-900 hover:bg-red-600 rounded py-2 px-4 mb-2 transition-colors duration-200">
+            <a href="{{ route('seleccionarPeriodo') }}" class="block bg-red-900 hover:bg-red-600 rounded py-2 px-4 mb-2 transition-colors duration-200">
                 Gráfica General
             </a>
+            
+            
             <a href="{{ route('carreras.semestres.alumnos.lista', ['carrera' => 'Ingeniería Industrial (Escolarizado)', 'semestre' => 1]) }}" class="block bg-red-700 hover:bg-red-500 rounded py-2 px-4 mb-2 transition-colors duration-200">Buscar Alumno</a>
             <div class="relative">
                 <button id="agregar-btn" class="w-full bg-red-900 hover:bg-red-600 text-white font-bold py-2 px-4 rounded flex items-center justify-between transition-colors duration-200">
@@ -263,7 +265,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="px-6 py-4 whitespace-nowrap"><strong><span style="font-weight: 700">TALLRES Y LABORATORIOS</span></strong></td>
+                <td class="px-6 py-4 whitespace-nowrap"><strong><span style="font-weight: 700">TALLERES Y LABORATORIOS</span></strong></td>
                 <td class="px-6 py-4 whitespace-nowrap">
                     <a href="{{ route('encuestas.talleres_laboratorios') }}" class="bg-pink-900 hover:bg-pink-800 text-white font-bold py-2 px-4 rounded">
                         Ver

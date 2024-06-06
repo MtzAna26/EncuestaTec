@@ -48,7 +48,7 @@ class RecursosFinancierosController extends Controller
         }
         $evaluacion->save();
     
-        return redirect()->route('encuestas.residencias_profesionales')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('encuestas.centro_computo')->with('success', '¡Encuesta enviada correctamente!');
     }
 
         // Para el admin

@@ -42,7 +42,7 @@ class BecasController extends Controller
             }
         }
         $evaluacion->save();
-        return redirect()->route('encuestas.talleres_laboratorios')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('encuestas.cafeteria')->with('success', '¡Encuesta enviada correctamente!');
     }
 
     // Para el admin

@@ -20,14 +20,19 @@ use App\Models\ServicioMedico;
 use App\Models\ActividadesCulturalesDeportivas;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
-//use Illuminate\Support\Facades\Mail; 
-//use App\Mail\GraficaEmail;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
 
 class GraficaController extends Controller
 {
+
+
+    public function seleccionarPeriodo()
+    {
+        $periodos = Periodo::all();
+        return view('administrador.periodos', compact('periodos'));
+    }
 
     public function mostrarGrafica(Request $request)
     {
@@ -151,13 +156,8 @@ class GraficaController extends Controller
 
     public function mostrarGraficaPorCarrera(Request $request, $carrera)
     {
-        // Obtener los alumnos de la carrera
         $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
-
-        // Obtener el total de alumnos de la carrera
         $totalAlumnos = $alumnos->count();
-
-        // Obtener los promedios de cada departamento para la carrera dada
         $promedios = [
             'Centro de Información' => CentroInformacion::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
             'Coordinación de Carreras' => CoordinacionCarreras::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
@@ -173,10 +173,9 @@ class GraficaController extends Controller
             'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
         ];
 
-        // Calcular el promedio general global para la carrera
+
         $promedio_general_global = array_sum(array_filter($promedios)) / count(array_filter($promedios));
 
-        // Crear un array con los promedios para la vista
         $data = array_map(function ($promedio) {
             return [
                 'Promedio' => $promedio,
@@ -184,26 +183,23 @@ class GraficaController extends Controller
             ];
         }, $promedios);
 
-        // Agregar el promedio general global al array de datos
         $data['Promedio General'] = [
             'Promedio' => $promedio_general_global,
             'Promedio General' => $promedio_general_global,
         ];
 
-        // Obtener el periodo actual (puedes ajustar esto según tu lógica)
         $periodoActual = 'agosto-diciembre-2024';
 
-        // Pasar los datos a la vista
+
         return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
     }
 
 
-    // Para guardar la gráfica 
+    // Para guardar la gráfica en el ordenador
     public function guardarGrafica(Request $request)
     {
         try {
-            // Validar la solicitud
-            $validator = Validator::make($request->all(), [
+            +$validator = Validator::make($request->all(), [
                 'image' => 'required',
                 'periodo' => 'required',
             ]);
@@ -242,8 +238,55 @@ class GraficaController extends Controller
             $grafica->ruta_imagen = $path;
             $grafica->periodo = $periodo;
             $grafica->save();
-            Session::flash('success', '¡La gráfica se ha guardado exitosamente!');
-            return response()->json(['message' => 'Gráfica guardada exitosamente en el escritorio']);
+            Session::flash('success', '¡La gráfica general se ha guardado exitosamente!');
+            return response()->json(['message' => 'Gráfica General guardada exitosamente en la ruta especificada']);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
+
+
+
+
+    // Para guardar la gráfica del Centro de Información en una ruta específica
+    public function guardarGraficaCentroInformacion(Request $request)
+    {
+        try {
+            // Validar la solicitud
+            $validator = Validator::make($request->all(), [
+                'image' => 'required',
+                'periodo' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json(['error' => $validator->errors()->first()], 400);
+            }
+
+            $imageData = $request->input('image');
+            $periodo = $request->input('periodo');
+
+            $imageName = 'grafica_centro_informacion_' . $periodo . '.png';
+            $imageData = str_replace('data:image/png;base64,', '', $imageData);
+            $imageData = str_replace(' ', '+', $imageData);
+            $imageData = base64_decode($imageData);
+
+            // Ruta de la carpeta en la dirección específica
+            $specificPath = 'C:\Users\Propietario\Documents\Grafica_General\Grafica_Encuestas_Agosto_Diciembre2024';
+            if (!file_exists($specificPath)) {
+                mkdir($specificPath, 0777, true);
+            }
+            $path = $specificPath . DIRECTORY_SEPARATOR . $imageName;
+
+            // Guardar la imagen en la carpeta especificada
+            file_put_contents($path, $imageData);
+
+            // Almacenar la ruta de la imagen en la base de datos
+            $grafica = new Grafica();
+            $grafica->ruta_imagen = $path;
+            $grafica->periodo = $periodo;
+            $grafica->save();
+            Session::flash('success', '¡La gráfica del Centro de Información se ha guardado exitosamente!');
+            return response()->json(['message' => 'Gráfica del Centro de Información guardada exitosamente en la ruta especificada']);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

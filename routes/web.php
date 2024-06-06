@@ -122,6 +122,8 @@ Route::get('/generate-question-report', [PDFController::class, 'generateQuestion
 Route::get('/download-question-report', [PDFController::class, 'downloadQuestionReport']);
 Route::get('/generate-question-report', [PDFController::class, 'generateQuestionReport'])->name('generate-question-report');
 Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
+// Guardar la gráfica en el ordenador
+Route::post('/guardar-grafica-centro-informacion', [GraficaController::class, 'guardarGraficaCentroInformacion'])->name('guardar-grafica-centro-informacion');
 
 // Ruta para la vista que muestra la gráfica
 Route::get('/grafica-respuestas', function () {
@@ -205,6 +207,9 @@ Route::post('/talleres_laboratorios', [TalleresLaboratoriosController::class, 'g
 // Ruta para mostrar las gráficas de los resultados de Talleres y laboratorios (encuestas)
 Route::get('/graficas/talleres_laboratorios', [TalleresLaboratoriosController::class, 'mostrarFormularioGrafica'])->name('graficas.talleres_laboratorios');
 Route::get('/talleres_laboratorios/pdf', [PDFController::class, 'generateTalleresLaboratoriosPDF'])->name('generate_reporte_talleres_laboratorio_pdf');
+Route::post('/encuestas/omitir', [TalleresLaboratoriosController::class, 'omitirEncuesta'])->name('encuestas.omitir');
+
+
 
 // Departamento de cafeteria (encuestas)
 Route::get('/cafeteria', [CafeteriaController::class, 'mostrarFormulario'])->name('encuestas.cafeteria');
@@ -234,6 +239,10 @@ Route::get('/culturales_deportivas/pdf', [PDFController::class, 'generateCultura
 
 // Rutas para gráficas
 Route::get('/grafica/{periodoId}', [GraficaController::class, 'mostrarGrafica'])->name('grafica.general');
+Route::get('/periodos', [GraficaController::class, 'seleccionarPeriodo'])->name('seleccionarPeriodo');
+Route::get('/grafica/{periodo}', [GraficaController::class, 'mostrarGrafica'])->name('mostrarGrafica');
+Route::get('/periodos', [GraficaController::class, 'seleccionarPeriodo'])->name('seleccionarPeriodo');
+
 // Ruta para las carreras y graficas
 Route::get('/mostrar-carreras', [GraficaController::class, 'mostrarCarreras'])->name('mostrar_carreras');
 Route::get('/mostrar-carrera/{carrera}', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');

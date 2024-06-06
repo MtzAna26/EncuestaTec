@@ -10,19 +10,19 @@ async function obtenerDatos() {
     console.log(datos);
 
     const preguntasMap = {
-        'Serpregunta_1': 'Tiene un horario adecuado de consultas',
-        'Serpregunta_2': 'El personal es atento y servicial',
-        'Serpregunta_3': 'Las instalaciones son adecuadas',
-        'Serpregunta_4': 'Los recursos disponibles son suficientes',
-        'Serpregunta_5': 'La información proporcionada es clara',
-        'Serpregunta_6': 'El tiempo de espera es razonable',
-        'Serpregunta_7': 'La atención es personalizada',
-        'Estrucpregunta_1': 'La estructura de la información es adecuada',
-        'Estrucpregunta_2': 'La información es accesible',
-        'Estrucpregunta_3': 'La presentación de la información es atractiva',
-        'Estrucpregunta_4': 'El contenido es relevante y actualizado',
-        'Estrucpregunta_5': 'La organización de los recursos es lógica',
-        'Estrucpregunta_6': 'La calidad de los materiales es alta'
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
+        'Serpregunta_7': '7',
+        'Estrucpregunta_1': '8',
+        'Estrucpregunta_2': '9',
+        'Estrucpregunta_3': '10',
+        'Estrucpregunta_4': '11',
+        'Estrucpregunta_5': '12',
+        'Estrucpregunta_6': '13'
     };
 
     const ponderaciones = {

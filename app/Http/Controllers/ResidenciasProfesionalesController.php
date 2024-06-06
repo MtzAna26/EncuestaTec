@@ -50,7 +50,7 @@ class ResidenciasProfesionalesController extends Controller
         }
         $evaluacion->save();
         $evaluacion->fill($validatedData);
-        return redirect()->route('encuestas.centro_computo')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('alumno.fin_encuestas')->with('success', '¡Encuesta enviada correctamente!');
     }
 
     // Para el Admin 

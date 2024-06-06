@@ -40,7 +40,7 @@
     </div>
 <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
-    </div>ss
+    </div>
     <script src="{{ asset('js/graficaCentroComputo.js') }}"></script>
 </body>
 </html>

@@ -74,5 +74,4 @@ class CentroInformacionController extends Controller
         }
     }
 
-
 }

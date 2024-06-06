@@ -25,6 +25,13 @@
         <strong>{{ Session::get('success') }}</strong>
     </div>
     @endif
+    <form action="{{ route('encuestas.omitir') }}" method="POST" class="mt-5">
+        @csrf
+        <button type="submit" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded">
+            Saltarse esta sección si su carrera no incluye Talleres y Laboratorios.
+        </button>
+    </form>
+    <br>
     <div class="container mx-auto px-4 bg-gray-200">
         <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE TALLERES Y LABORATORIOS</h2>
         <h1 class="text-3xl font-semibold mb-4">¡Participa en nuestra encuesta!</h1>
@@ -39,7 +46,6 @@
                 <input type="hidden" name="no_control" value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 <input type="hidden" name="carrera" value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
                 @csrf
-
                 <table class="w-full">
                     <tr>
                         <th>EVALUACION AL SERVICIO</th>
@@ -132,8 +138,6 @@
                     respuestas[nombre] = true;
                 }
             });
-    
-            // Verificar si se ha dejado un comentario
             if (comentario === '') {
                 event.preventDefault();
                 alert('Por favor, deja un comentario antes de enviar la encuesta.');

@@ -11,13 +11,13 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'Tiene un horario adecuado de atención',
-        'Serpregunta_2': 'Me proporciona información necesaria para el manejo de mi retícula de carrera',
-        'Serpregunta_3': 'Me da orientación adecuada cuando requiero realizar trámites en la institución',
-        'Serpregunta_4': 'Me atiende en forma amable cuando solicito su apoyo',
-        'Serpregunta_5': 'Me orienta sobre el proceso para la reinscripción de alumnos',
-        'Serpregunta_6': 'Me dan la orientación necesaria para la realización de trámites de titulación',
-        'Serpregunta_7': 'Mantienen una relación atenta conmigo durante mi estancia',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
+        'Serpregunta_7': '7',
         
     };
 
