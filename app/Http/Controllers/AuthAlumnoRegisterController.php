@@ -95,7 +95,7 @@ public function resetAlumnos()
         return redirect()->route('alumnos.index')->with('success', 'Todos los alumnos eliminados y el ID reiniciado.');
     }
 
-    // Graficas 
+    // Graficas por semestre y carreras
     public function GraficasSemestre($carrera, $semestre)
     {
     $alumnos = Alumno::where('carrera', $carrera)
@@ -105,28 +105,36 @@ public function resetAlumnos()
     return view('administrador.comparativas', compact('alumnos', 'carrera', 'semestre'));
     }
 
-    // Para obtener el periodo
     public function mostrarGrafica(Request $request)
     {
-        $periodos = Periodo::all();
-
-        $datosGrafica = [];
-
-        if ($request->has('periodo')) {
-            $periodoSeleccionado = Periodo::find($request->input('periodo'));
-
-            if ($periodoSeleccionado) {
-                $count = Alumno::whereBetween('created_at', [$periodoSeleccionado->fecha_inicio, $periodoSeleccionado->fecha_fin])->count();
-                $datosGrafica[$periodoSeleccionado->nombre] = $count;
-            }
-        } else {
-            // Contar los alumnos por cada periodo
-            foreach ($periodos as $periodo) {
-                $count = Alumno::whereBetween('created_at', [$periodo->fecha_inicio, $periodo->fecha_fin])->count();
-                $datosGrafica[$periodo->nombre] = $count;
-            }
+        // Obtener la fecha actual
+        $fechaActual = now();
+    
+        // Obtener el año actual
+        $añoActual = $fechaActual->year;
+    
+        // Determinar los periodos futuros
+        $periodosFuturos = [];
+        for ($i = 1; $i <= 10; $i++) { 
+            $año = $añoActual + $i;
+            $periodoEneroJunio = $año . '-enero-junio';
+            $periodoAgostoDiciembre = $año . '-agosto-diciembre';
+            $periodosFuturos[] = $periodoEneroJunio;
+            $periodosFuturos[] = $periodoAgostoDiciembre;
         }
-
+    
+        // Obtener todos los periodos (tanto pasados como futuros)
+        $periodos = Periodo::whereIn('nombre', $periodosFuturos)->get();
+    
+        $datosGrafica = [];
+    
+        // Contar los alumnos por cada periodo
+        foreach ($periodos as $periodo) {
+            $count = Alumno::whereBetween('created_at', [$periodo->fecha_inicio, $periodo->fecha_fin])->count();
+            $datosGrafica[$periodo->nombre] = $count;
+        }
+    
         return view('administrador.comparativas', compact('datosGrafica', 'periodos'));
     }
+    
 }

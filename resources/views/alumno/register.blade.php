@@ -40,7 +40,7 @@
                 <option value="Ingenieria en Mineria">Ingenieria en Mineria (Escolarizado)</option>
                 <option value="Ingenieria en Agronomia">Ingenieria en Agronomia (Escolarizado)</option>
                 <option value="Licenciatura en Administracion">Licenciatura en Administracion (Escolarizado)</option>
-                <option value="Ingenieria en Gestion Empresarial">Ingenieria en Gestion Empresarial (Escolarizado)</option>
+                <option value="Ingenieria en Gestion Empresarial(Escolarizado)">Ingenieria en Gestion Empresarial (Escolarizado)</option>
                 <option value="Ingenieria en Sistemas Computacionales">Ingenieria en Sistemas Computacionales (Escolarizado)</option>
                 <option value="Ingenieria Informática">Ingenieria Informática (Semiescolarizado)</option>
                 <option value="Ingenieria en Gestion Empresarial(Semiescolarizado)">Ingenieria en Gestion Empresarial (Semiescolarizado)</option>

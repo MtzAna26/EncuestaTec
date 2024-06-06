@@ -32,23 +32,21 @@
                 <th class="px-4 py-2 bg-gray-300 text-left">ID</th>
                 <th class="px-4 py-2 bg-gray-300 text-left">Nombre</th>
                 <th class="px-4 py-2 bg-gray-300 text-left">Correo</th>
-		<th class="px-4 py-2 bg-gray-300 text-left">Acción</th>
+                <th class="px-4 py-2 bg-gray-300 text-left">Rol</th>
             </tr>
         </thead>
         @foreach($users as $user)
-    <tr>
-        <td class="border px-4 py-2">{{ $user->id }}</td>
-        <td class="border px-4 py-2">{{ $user->name }}</td>
-        <td class="border px-4 py-2">{{ $user->email }}</td>
-        <td class="border px-4 py-2">
-            <form action="{{ route('users.destroy', $user->id) }}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Eliminar</button>
-            </form>
-        </td>
-    </tr>
-@endforeach
+        <tr>
+            <td class="border px-4 py-2">{{ $user->id }}</td>
+            <td class="border px-4 py-2">{{ $user->name }}</td>
+            <td class="border px-4 py-2">{{ $user->email }}</td>
+            <td class="border px-4 py-2">{{ $user->role }}</td>
+            <td class="border px-4 py-2">
+                
+            </td>
+        </tr>
+        @endforeach
+        
 </table>
 <br>
     <a href="{{ route('dashboard') }}" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mb-3 inline-block">Regresar al inicio</a>

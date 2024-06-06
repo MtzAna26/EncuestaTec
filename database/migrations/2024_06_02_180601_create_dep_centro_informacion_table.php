@@ -16,11 +16,12 @@ return new class extends Migration
                 ->on('alumnos')
                 ->onDelete('cascade');
             
-            $table->unsignedBigInteger('periodo_id')->nullable();
-            $table->foreign('periodo_id')
-                ->references('id')
-                ->on('periodos')
-                ->onDelete('set null'); 
+                $table->unsignedBigInteger('periodo_id')->nullable();
+                $table->foreign('periodo_id')
+                    ->references('id')
+                    ->on('periodos')
+                    ->onDelete('set null'); 
+                
             
             $table->string('no_control');
             $table->string('carrera');
