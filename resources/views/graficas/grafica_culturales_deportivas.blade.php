@@ -35,11 +35,32 @@
         </a>
         &nbsp;
         <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
+        &nbsp;
+        <button id="guardarGraficaCulturalesDeportivas" class="bg-blue-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+            Guardar Gráfica Actividades Culturales y Deportivas
+        </button>
     </div>
     
 <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
     </div>
     <script src="{{ asset('js/graficaCulturalesDeportivas.js') }}"></script>
+
+    <script>
+        document.getElementById('guardarGraficaCulturalesDeportivas').addEventListener('click', function() {
+            var canvas = document.getElementById('graficaRespuestas');
+            var chartImage = canvas.toDataURL('image/png');
+
+            // Crear un enlace invisible para la descarga
+            var downloadLink = document.createElement('a');
+            downloadLink.href = chartImage;
+            downloadLink.download = 'grafica_actividades_culturales_deportivas.png';
+
+            // Desencadenar la descarga manualmente
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+    </script>
 </body>
 </html>

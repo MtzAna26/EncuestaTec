@@ -16,7 +16,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="flex justify-center space-x-4 py-4">
         <button id="guardarGrafica" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
@@ -56,8 +55,6 @@
     
         <canvas id="grafica"></canvas>
     </div>
-    
-
     
     <script>
         // Obtiene los datos para la gráfica
@@ -100,7 +97,6 @@
             downloadLink.click();
             document.body.removeChild(downloadLink);
         });
-        
     </script>
 </body>
 </html>

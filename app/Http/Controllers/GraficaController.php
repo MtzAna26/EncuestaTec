@@ -23,115 +23,141 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 
-
 class GraficaController extends Controller
 {
-
-
+    /*
+    public function testGenerarPeriodo()
+    {
+        $alumno = new Alumno();
+        
+        // Probar con diferentes fechas
+        $fechasDePrueba = [
+            '2024-01-15',
+            '2024-08-15',
+            '2025-01-15',
+            '2025-08-15',
+            '2026-01-15',
+            '2026-08-15',
+        ];
+        
+        foreach ($fechasDePrueba as $fecha) {
+            $periodoInfo = $alumno->generarPeriodo(null, $fecha);
+            echo "Fecha de prueba: $fecha\n";
+            print_r($periodoInfo);
+            echo "\n";
+        }
+    }
+    */
     public function seleccionarPeriodo()
     {
+        // Obtener todos los periodos
         $periodos = Periodo::all();
+        $uniquePeriodos = $periodos->map(function ($periodo) {
+            $nombreNormalizado = strtolower(str_replace(' ', '', $periodo->nombre));
+            return [
+                'original' => $periodo->nombre,
+                'normalizado' => $nombreNormalizado
+            ];
+        })->unique('normalizado')->values();
+        $periodos = $uniquePeriodos->pluck('original');
         return view('administrador.periodos', compact('periodos'));
     }
 
-    public function mostrarGrafica(Request $request)
+    public function generarPeriodo($year = null)
     {
+        // Si no se proporciona un año, usar el año actual
+        $anio = $year ?? date('Y');
 
-        $periodoActual = Periodo::where('fecha_inicio', '<=', now())
-            ->where('fecha_fin', '>=', now())
-            ->value('nombre');
-        if (!$periodoActual) {
-            $periodoActual = 'agosto-diciembre-2024'; // Ajusta esto según tus necesidades
+        // Calcular el período específico
+        $mes = date('n');
+        if ($mes <= 7) {
+            // Enero-Julio (semestre par)
+            $nombrePeriodo = "Enero-Julio $anio";
+            $periodo = 'Par';
+            $fechaInicio = "$anio-01-01";
+            $fechaFin = "$anio-07-31";
+        } else {
+            // Agosto-Diciembre (semestre impar)
+            $nombrePeriodo = "Agosto-Diciembre $anio";
+            $periodo = 'Impar';
+            $fechaInicio = "$anio-08-01";
+            $fechaFin = "$anio-12-31";
         }
-        // Aqui crea un nuevo registro y guardar la gráfica
-        //Esto lo quitas si no sirve
-        $periodo = Periodo::firstOrCreate(
-            ['nombre' => 'agosto-diciembre-2024'],
-            ['fecha_inicio' => '2024-08-01', 'fecha_fin' => '2024-12-31']
-        );
 
-        // Obtener la gráfica asociada al período
-        $grafica = $periodo->grafica;
-
-
-        // Calcular los promedios de cada departamento
-        $promedio_ci = CentroInformacion::avg('promedio_final');
-        $promedio_cc = CoordinacionCarreras::avg('promedio_final');
-        $promedio_rf = RecursosFinancieros::avg('promedio_final');
-        $promedio_rp = ResidenciasProfesionales::avg('promedio_final');
-        $promedio_cco = CentroComputo::avg('promedio_final');
-        $promedio_ss = ServicioSocial::avg('promedio_final');
-        $promedio_se = ServiciosEscolares::avg('promedio_final');
-        $promedio_becas = Becas::avg('promedio_final');
-        $promedio_tl = TalleresLaboratorios::avg('promedio_final');
-        $promedio_cafeteria = Cafeteria::avg('promedio_final');
-        $promedio_sm = ServicioMedico::avg('promedio_final');
-        $promedio_acd = ActividadesCulturalesDeportivas::avg('promedio_final');
-
-
-        // Crear un array con los promedios de cada departamento
-        $data = [
-            'Centro de Información' => [
-                'Promedio' => $promedio_ci,
-                'Promedio General' => $promedio_ci,
-            ],
-            'Coordinación de Carreras' => [
-                'Promedio' => $promedio_cc,
-                'Promedio General' => $promedio_cc,
-            ],
-            'Recursos Financieros' => [
-                'Promedio' => $promedio_rf,
-                'Promedio General' => $promedio_rf,
-            ],
-            'Residencias Profesionales' => [
-                'Promedio' => $promedio_rp,
-                'Promedio General' => $promedio_rp,
-            ],
-            'Centro de Computo' => [
-                'Promedio' => $promedio_cco,
-                'Promedio General' => $promedio_cco,
-            ],
-            'Servicio Social' => [
-                'Promedio' => $promedio_ss,
-                'Promedio General' => $promedio_ss,
-            ],
-            'Servicios Escolares' => [
-                'Promedio' => $promedio_se,
-                'Promedio General' => $promedio_se,
-            ],
-            'Becas' => [
-                'Promedio' => $promedio_becas,
-                'Promedio General' => $promedio_becas,
-            ],
-            'Talleres y Laboratorios' => [
-                'Promedio' => $promedio_tl,
-                'Promedio General' => $promedio_tl,
-            ],
-            'Cafeteria' => [
-                'Promedio' => $promedio_cafeteria,
-                'Promedio General' => $promedio_cafeteria,
-            ],
-            'Servicio Medico' => [
-                'Promedio' => $promedio_sm,
-                'Promedio General' => $promedio_sm,
-            ],
-            'Actividades Culturales Deportivas' => [
-                'Promedio' => $promedio_acd,
-                'Promedio General' => $promedio_acd,
-            ],
+        return [
+            'nombre' => $nombrePeriodo,
+            'inicio' => $fechaInicio,
+            'fin' => $fechaFin,
+            'año' => $anio,
+            'periodo' => $periodo,
         ];
-        $promedio_general_global = array_sum(array_column($data, 'Promedio')) / count($data);
-        $data['Promedio General'] = [
-            'Promedio' => $promedio_general_global,
-            'Promedio General' => $promedio_general_global,
-        ];
-
-        //$promedio_general = ($promedio_ci + $promedio_cc + $promedio_rf + $promedio_rp + $promedio_cco + $promedio_ss + $promedio_se + $promedio_becas + $promedio_tl + $promedio_cafeteria + $promedio_sm + $promedio_acd) / 12;
-        return view('administrador.grafica_index', compact('data', 'promedio_general_global', 'periodoActual'));
     }
 
+    public function generarYGuardarPeriodo($year = null)
+    {
+        // Generar el período usando la función ajustada
+        $datosPeriodo = $this->generarPeriodo($year);
 
-    // Grafica por semstres (carreras)
+        // Crear una nueva instancia del modelo Periodo y asignar los valores
+        $periodo = new Periodo();
+        $periodo->nombre = $datosPeriodo['nombre'];
+        $periodo->fecha_inicio = $datosPeriodo['inicio'];
+        $periodo->fecha_fin = $datosPeriodo['fin'];
+        $periodo->año = $datosPeriodo['año'];
+        $periodo->periodo = $datosPeriodo['periodo'];
+
+        // Guardar en la base de datos
+        $periodo->save();
+
+        return $periodo;
+    }
+
+    public function mostrarGrafica($periodo)
+    {
+        // Normaliza el nombre del periodo
+        $nombreNormalizado = strtolower(str_replace(' ', '', $periodo));
+    
+        // Buscar el periodo basado en el nombre normalizado
+        $periodo = Periodo::whereRaw("LOWER(REPLACE(nombre, ' ', '')) = ?", [$nombreNormalizado])->first();
+    
+        if (!$periodo) {
+            return redirect()->back()->withErrors(['error' => 'El período no existe.']);
+        }
+    
+        // Calcular los promedios de cada departamento para el período específico
+        $promedio_ci = CentroInformacion::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_cc = CoordinacionCarreras::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_rf = RecursosFinancieros::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_rp = ResidenciasProfesionales::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_cco = CentroComputo::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_ss = ServicioSocial::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_se = ServiciosEscolares::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_becas = Becas::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_tl = TalleresLaboratorios::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_cafeteria = Cafeteria::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_sm = ServicioMedico::where('periodo_id', $periodo->id)->avg('promedio_final');
+        $promedio_acd = ActividadesCulturalesDeportivas::where('periodo_id', $periodo->id)->avg('promedio_final');
+    
+        // Crear un array con los promedios de cada departamento
+        $data = [
+            'Centro de Información' => ['Promedio' => $promedio_ci],
+            'Coordinación de Carreras' => ['Promedio' => $promedio_cc],
+            'Recursos Financieros' => ['Promedio' => $promedio_rf],
+            'Residencias Profesionales' => ['Promedio' => $promedio_rp],
+            'Centro de Computo' => ['Promedio' => $promedio_cco],
+            'Servicio Social' => ['Promedio' => $promedio_ss],
+            'Servicios Escolares' => ['Promedio' => $promedio_se],
+            'Becas' => ['Promedio' => $promedio_becas],
+            'Talleres y Laboratorios' => ['Promedio' => $promedio_tl],
+            'Cafeteria' => ['Promedio' => $promedio_cafeteria],
+            'Servicio Medico' => ['Promedio' => $promedio_sm],
+            'Actividades Culturales Deportivas' => ['Promedio' => $promedio_acd],
+        ];
+    
+        $promedio_general_global = array_sum(array_column($data, 'Promedio')) / count($data);
+    
+        return view('administrador.grafica_index', compact('data', 'promedio_general_global', 'periodo'));
+    }
     public function mostrarCarreras(Request $request)
     {
         // Carreras faltantes
@@ -153,7 +179,6 @@ class GraficaController extends Controller
         return view('administrador.mostrar_carreras', compact('carreras'));
     }
 
-
     public function mostrarGraficaPorCarrera(Request $request, $carrera)
     {
         $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
@@ -173,10 +198,15 @@ class GraficaController extends Controller
             'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
         ];
 
+        // Filtrar promedios válidos (no nulos)
+        $promediosValidos = array_filter($promedios, function ($promedio) {
+            return $promedio !== null;
+        });
 
-        $promedio_general_global = array_sum(array_filter($promedios)) / count(array_filter($promedios));
+        // Calcular el promedio general global
+        $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
 
-        $data = array_map(function ($promedio) {
+        $data = array_map(function ($promedio) use ($promedio_general_global) {
             return [
                 'Promedio' => $promedio,
                 'Promedio General' => $promedio,
@@ -190,105 +220,6 @@ class GraficaController extends Controller
 
         $periodoActual = 'agosto-diciembre-2024';
 
-
         return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
-    }
-
-
-    // Para guardar la gráfica en el ordenador
-    public function guardarGrafica(Request $request)
-    {
-        try {
-            +$validator = Validator::make($request->all(), [
-                'image' => 'required',
-                'periodo' => 'required',
-            ]);
-
-            if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()->first()], 400);
-            }
-
-            $imageData = $request->input('image');
-            $periodo = $request->input('periodo');
-
-            // Verificar si ya existe una gráfica para el período dado
-            $graficaExistente = Grafica::where('periodo', $periodo)->first();
-            if ($graficaExistente) {
-                return response()->json(['message' => 'Ya existe una gráfica para este período'], 400);
-            }
-
-            // Decodificar la imagen base64
-            $imageName = 'grafica_' . $periodo . '.png';
-            $imageData = str_replace('data:image/png;base64,', '', $imageData);
-            $imageData = str_replace(' ', '+', $imageData);
-            $imageData = base64_decode($imageData);
-
-            // Ruta de la carpeta en el escritorio
-            $desktopPath = 'C:\Users\Propietario\Documents\Grafica_General';
-            if (!file_exists($desktopPath)) {
-                mkdir($desktopPath, 0777, true);
-            }
-            $path = $desktopPath . DIRECTORY_SEPARATOR . $imageName;
-
-            // Guardar la imagen en la carpeta del escritorio
-            file_put_contents($path, $imageData);
-
-            // Almacenar la ruta de la imagen en la base de datos
-            $grafica = new Grafica();
-            $grafica->ruta_imagen = $path;
-            $grafica->periodo = $periodo;
-            $grafica->save();
-            Session::flash('success', '¡La gráfica general se ha guardado exitosamente!');
-            return response()->json(['message' => 'Gráfica General guardada exitosamente en la ruta especificada']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
-    }
-
-
-
-
-    // Para guardar la gráfica del Centro de Información en una ruta específica
-    public function guardarGraficaCentroInformacion(Request $request)
-    {
-        try {
-            // Validar la solicitud
-            $validator = Validator::make($request->all(), [
-                'image' => 'required',
-                'periodo' => 'required',
-            ]);
-
-            if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()->first()], 400);
-            }
-
-            $imageData = $request->input('image');
-            $periodo = $request->input('periodo');
-
-            $imageName = 'grafica_centro_informacion_' . $periodo . '.png';
-            $imageData = str_replace('data:image/png;base64,', '', $imageData);
-            $imageData = str_replace(' ', '+', $imageData);
-            $imageData = base64_decode($imageData);
-
-            // Ruta de la carpeta en la dirección específica
-            $specificPath = 'C:\Users\Propietario\Documents\Grafica_General\Grafica_Encuestas_Agosto_Diciembre2024';
-            if (!file_exists($specificPath)) {
-                mkdir($specificPath, 0777, true);
-            }
-            $path = $specificPath . DIRECTORY_SEPARATOR . $imageName;
-
-            // Guardar la imagen en la carpeta especificada
-            file_put_contents($path, $imageData);
-
-            // Almacenar la ruta de la imagen en la base de datos
-            $grafica = new Grafica();
-            $grafica->ruta_imagen = $path;
-            $grafica->periodo = $periodo;
-            $grafica->save();
-            Session::flash('success', '¡La gráfica del Centro de Información se ha guardado exitosamente!');
-            return response()->json(['message' => 'Gráfica del Centro de Información guardada exitosamente en la ruta especificada']);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
     }
 }

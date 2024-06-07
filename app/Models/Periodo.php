@@ -74,5 +74,8 @@ class Periodo extends Model
     {
         return $this->hasMany(ActividadesCulturalesDeportivas::class);
     }
-
+    public function alumnos()
+    {
+        return $this->hasMany(Alumno::class); // Relación de uno a muchos con alumnos
+    }
 }

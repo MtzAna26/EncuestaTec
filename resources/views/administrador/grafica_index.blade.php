@@ -12,7 +12,7 @@
 <body>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica General</h1> 
-        <h2 class="text-2xl font-bold mt-2">Período: <span id="periodoTexto">{{ $periodoActual }}</span></h2>  
+        <h2 class="text-2xl font-bold mt-2">Período: <span id="periodoTexto">{{ $periodo->nombre }}</span></h2>  
     </div>
     <br>
     <div class="flex justify-center">
@@ -60,8 +60,6 @@
                     <td class="border px-4 py-2 font-bold">Promedio General Global</td>
                     <td class="border px-4 py-2 font-bold bg-yellow-400">{{ $promedio_general_global }}</td>
                 </tr>
-                
-                
             </tbody>
         </table>
     </div>
@@ -104,19 +102,6 @@
                 document.body.removeChild(downloadLink);
             });
         });
-
-        function cambiarPeriodo(select) {
-            var periodoSeleccionado = select.value;
-            var periodoActual = {!! json_encode($periodoActual) !!};
-
-            if (periodoSeleccionado === periodoActual) {
-                document.getElementById('grafica').style.display = 'block';
-                document.getElementById('chartMessage').style.display = 'none';
-            } else {
-                document.getElementById('grafica').style.display = 'none';
-                document.getElementById('chartMessage').style.display = 'block';
-            }
-        }
     </script>
 </body>
 </html>

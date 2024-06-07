@@ -30,15 +30,17 @@ class AuthAlumnoRegisterController extends Controller
         $alumno->carrera = $request->carrera;
         $alumno->semestre = $request->semestre;
     
-        // Convertir el semestre en período
-        $periodoInfo = $alumno->generarPeriodo($request->semestre);
+        // Obtener la información del período
+        $periodoInfo = $alumno->generarPeriodo();
     
-        // Guardar el período en la tabla "periodos"
-        $periodo = new Periodo();
-        $periodo->nombre = $periodoInfo['nombre'];
-        $periodo->fecha_inicio = $periodoInfo['inicio'];
-        $periodo->fecha_fin = $periodoInfo['fin'];
-        $periodo->save();
+        // Crear el período
+        $periodo = Periodo::create([
+            'nombre' => $periodoInfo['nombre'],
+            'fecha_inicio' => $periodoInfo['inicio'],
+            'fecha_fin' => $periodoInfo['fin'],
+            'año' => $periodoInfo['año'],
+            'periodo' => $periodoInfo['periodo'],
+        ]);
     
         if ($alumno->save()) {
             return redirect()->route('alumno.login')->with('success', '¡Registro exitoso! Por favor, inicia sesión.');
@@ -46,6 +48,7 @@ class AuthAlumnoRegisterController extends Controller
             return back()->withInput()->withErrors(['error' => 'Hubo un problema al guardar el registro. Por favor, intenta de nuevo.']);
         }
     }
+    
 
     // Para el administrador
     public function mostrarAlumnosPorCarreraYSemestre($carrera, $semestre)

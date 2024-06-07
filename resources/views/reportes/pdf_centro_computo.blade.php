@@ -40,7 +40,7 @@
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
-                        <th class="px-4 py-2" colspan="5">CALIFICACION</th>
+                        <th class="px-4 py-2" colspan="5">CALIFICACIÓN</th>
                         <th class="px-4 py-2" rowspan="2">Promedio</th>
                     </tr>
                     <tr>

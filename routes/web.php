@@ -124,6 +124,7 @@ Route::get('/generate-question-report', [PDFController::class, 'generateQuestion
 Route::post('/download-question-report', [PDFController::class, 'downloadQuestionReport'])->name('download-question-report');
 // Guardar la gráfica en el ordenador
 Route::post('/guardar-grafica-centro-informacion', [GraficaController::class, 'guardarGraficaCentroInformacion'])->name('guardar-grafica-centro-informacion');
+Route::get('/api/grafica-centro-informacion', [CentroInformacionController::class, 'obtenerDatosGrafica']);
 
 // Ruta para la vista que muestra la gráfica
 Route::get('/grafica-respuestas', function () {
@@ -255,4 +256,6 @@ Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPD
 
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
+/* Para pruebas de los peridoos
+Route::get('/test-generar-periodo', [GraficaController::class, 'testGenerarPeriodo']); */
 require __DIR__.'/auth.php';
