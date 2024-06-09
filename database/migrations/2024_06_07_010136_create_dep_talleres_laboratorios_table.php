@@ -9,23 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('dep_recursos_financieros', function (Blueprint $table) {
-            $table->id();
+        Schema::create('dep_talleres_laboratorios', function (Blueprint $table) {
             $table->unsignedBigInteger('alumno_id');
-            $table->foreign('alumno_id', 'dep_recursos_financieros_alumno_foreign')
+            $table->foreign('alumno_id', 'dep_talleres_laboratorios_alumno_foreign')
                 ->references('id')
                 ->on('alumnos')
                 ->onDelete('cascade');
 
-
             $table->unsignedBigInteger('periodo_id')->nullable();
             $table->foreign('periodo_id')
-                    ->references('id')
-                    ->on('periodos')
-                    ->onDelete('set null'); 
-                
+                ->references('id')
+                ->on('periodos')
+                ->onDelete('set null');
+
             $table->string('no_control');
             $table->string('carrera');
             $table->integer('Serpregunta_1')->nullable();
@@ -33,7 +31,6 @@ return new class extends Migration
             $table->integer('Serpregunta_3')->nullable();
             $table->integer('Serpregunta_4')->nullable();
             $table->integer('Serpregunta_5')->nullable();
-            $table->integer('Serpregunta_6')->nullable();
             $table->text('comentario')->nullable();
             $table->decimal('promedio_final', 8, 2)->nullable();
             $table->timestamps();
@@ -45,9 +42,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('dep_recursos_financieros', function (Blueprint $table) {
-            $table->dropForeign('dep_recursos_financieros_alumno_foreign');
+        Schema::table('dep_talleres_laboratorios', function (Blueprint $table) {
+            $table->dropForeign('dep_talleres_laboratorios_alumno_foreign');
         });
-        Schema::dropIfExists('dep_recursos_financieros');
+        Schema::dropIfExists('dep_talleres_laboratorios');
     }
 };

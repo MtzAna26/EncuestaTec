@@ -23,9 +23,10 @@
             <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
                 Imprimir PDF
             </button>
-            <!--<a href="{{-- route('download-question-report') --}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 hide-on-print">
-                Descargar PDF
-            </a>--->
+            &nbsp;
+            <button id="guardarGrafica" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">
+                Guardar Gráfica
+            </button>
             &nbsp;
             <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
         @endif
@@ -40,7 +41,7 @@
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
-                        <th class="px-4 py-2" colspan="5">CALIFICACION</th>
+                        <th class="px-4 py-2" colspan="5">CALIFICACIÓN</th>
                         <th class="px-4 py-2" rowspan="2">Promedio</th>
                     </tr>
                     <tr>
@@ -78,5 +79,6 @@
             <canvas id="graficaRespuestas"></canvas>
         </div>
     </div>
+    
 </body>
 </html>

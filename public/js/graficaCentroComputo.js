@@ -11,13 +11,13 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'El Servicio de Cómputo tiene un horario adecuado.',
-        'Serpregunta_2': 'Por lo regular hay máquinas disponibles para realizar mi trabajo.',
-        'Serpregunta_3': 'Siempre tengo disponible una conexión de Internet.',
-        'Serpregunta_4': 'Me proporcionan atención adecuada en el servicio de Internet.',
-        'Serpregunta_5': 'Me proporcionan atención adecuada en caso de presentarse fallas en el equipo que se me asignó.',
-        'Serpregunta_6': 'Me proporcionan asesoría adecuada para resolver mis dudas sobre el uso de software.',
-        'Serpregunta_7': 'Mantienen una relación atenta conmigo durante toda mi estancia en las instalaciones.',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
+        'Serpregunta_7': '7',
         
     };
 

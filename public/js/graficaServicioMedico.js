@@ -11,10 +11,10 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'Se cubre el horario establecido de atención',
-        'Serpregunta_2': 'La atención del médico es oportuna y adecuada',
-        'Serpregunta_3': 'El espacio donde te atiende es limpio y adecuado para el servicio brindado',
-        'Serpregunta_4': 'Se cuenta con botiquín de primeros auxilios',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
         
     };
 

@@ -11,10 +11,10 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'El horario establecido para las actividades es adecuado',
-        'Serpregunta_2': 'El catálogo de actividades a las que puedes inscribirte es idóneo',
-        'Serpregunta_3': 'El trato que recibes del personal que te atiende en las actividades es adecuado',
-        'Serpregunta_4': 'La publicidad y difusión dada a las actividades es adecuada',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
         
     };
 

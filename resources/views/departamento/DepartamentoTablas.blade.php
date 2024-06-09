@@ -22,12 +22,12 @@
             border-collapse: collapse; /* Para evitar espacios entre bordes */
         }
         .td1 {
-            padding: 8px; /* Espaciado dentro de la celda */
-            white-space: nowrap; /* Evitar que el texto se quiebre */
+            padding: 8px; 
+            white-space: nowrap; 
         }
        
         
-        /* Estilos específicos para la impresión */
+        
         @media print {
             .no-print {
                 display: none !important;
@@ -41,10 +41,9 @@
             .footer {
                 display: block;
             }
-            /* Puedes ajustar más estilos aquí para mejorar la presentación impresa */
+            
         }
 
-        /* Estilos específicos para la pantalla */
         .print-only {
             display: none;
         }

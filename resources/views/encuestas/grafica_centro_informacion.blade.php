@@ -12,7 +12,6 @@
 </head>
 <body class="bg-gray-100">
     <header class="bg-white shadow-md"> 
-    <!--- <header class="bg-custom-color shadow-md"> COLOR GUINDA---> 
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
             <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
             <div class="titles text-black">
@@ -35,13 +34,32 @@
             Generar PDF
         </a>
         &nbsp;
-        <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
+        <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
+        &nbsp;
+        <button id="guardarGraficaCentroInformacion" class="bg-blue-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+            Guardar Gráfica Centro Información
+        </button>
     </div>
-    
 
     <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
     </div>
     <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
+    <script>
+        document.getElementById('guardarGraficaCentroInformacion').addEventListener('click', function() {
+            var canvas = document.getElementById('graficaRespuestas');
+            var chartImage = canvas.toDataURL('image/png');
+
+            // Crear un enlace invisible para la descarga
+            var downloadLink = document.createElement('a');
+            downloadLink.href = chartImage;
+            downloadLink.download = 'grafica_centro_informacion.png';
+
+            // Desencadenar la descarga manualmente
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+    </script>
 </body>
 </html>

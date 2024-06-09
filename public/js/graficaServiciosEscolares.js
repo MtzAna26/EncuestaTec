@@ -9,11 +9,11 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'La limpieza en los talleres y los laboratorios es adecuada',
-        'Serpregunta_2': 'Los materiales y/o equipo para realizar las prácticas siempre están disponibles',
-        'Serpregunta_3': 'Las medidas de seguridad son las apropiadas dentro del Taller y/o Laboratorio ',
-        'Serpregunta_4': 'Identifico fácilmente el reglamento del Taller y/o Laboratorio',
-        'Serpregunta_5': 'El coordinador de Talleres y Laboratorios brinda el apoyo necesario para la realización de las prácticas.',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
     };
 
     // Inicializa acumuladores y contador de alumnos

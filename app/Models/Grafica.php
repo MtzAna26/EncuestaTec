@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Grafica extends Model
 {
     use HasFactory;
-    protected $fillable = ['ruta_imagen', 'periodo']; 
+    protected $fillable = ['ruta_imagen', 'periodo', 'ruta_pdf']; 
 
     protected $casts = [
         'datos' => 'array',

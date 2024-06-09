@@ -1,50 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EncuestaTec</title>
+    <title>Gráfica General</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
-
-<body class="bg-gray-100">
-    <header class="bg-white shadow-md">
-        <div class="container mx-auto py-4 px-6 flex justify-between items-center">
-            <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
-            <div class="titles text-black">
-                <h2 class="text-lg font-semibold">SISTEMA DE ENCUESTAS</h2>
-                <h3 class="text-sm">EncuestaTec</h3>
-                <h1 class="text-xl font-bold">INSTITUTO TECNOLÓGICO SUPERIOR ZACATECAS OCCIDENTE</h1>
-            </div>
-            <img src="{{ asset('img/itszologo.jpeg') }}" alt="Logo de Tecnm">
-        </div>
-    </header>
-
+<body>
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Gráfica General</h1>   
+        <h1 class="text-4xl font-bold">Gráfica General</h1> 
+        <h2 class="text-2xl font-bold mt-2">Período: <span id="periodoTexto">{{ $periodo->nombre }}</span></h2>  
     </div>
     <br>
     <div class="flex justify-center">
-        <button id="guardarGrafica" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <button id="guardarGrafica" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
             Guardar Gráfica
+        </button>
+        
+        &nbsp;
+        <button onclick="window.print()" class="bg-red-800 hover:bg-red-600 text-white font-bold py-2 px-4 rounded hide-on-print">
+            Imprimir PDF
         </button>
         &nbsp;
         <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
     </div>
 
     <div class="container mx-auto py-6">   
-        <div class="flex items-center justify-center mb-4">
-            <label for="periodo" class="mr-2">Seleccionar Período:</label>
-            <select id="periodo" class="border border-gray-300 rounded px-4 py-2 focus:outline-none focus:border-blue-500" onchange="cambiarPeriodo(this)">
-                <option value="agosto-diciembre-2024">Agosto - Diciembre 2024</option>
-                <option value="enero-junio-2025">Enero - Junio 2025</option>
-                <option value="agosto-diciembre-2025">Agosto - Diciembre 2025</option>
-            </select>
-        </div>
         @if(Session::has('success'))
         <div class="alert alert-success">
             {{ Session::get('success') }}
@@ -56,7 +40,29 @@
             <p id="chartMessage" style="display: none;">La gráfica para el período seleccionado no está disponible.</p>
         </div>
     </div>
-    
+    <div class="mt-8">
+        <h2 class="text-2xl font-bold mb-4">Promedio General de cada Departamento</h2>
+        <table class="table-auto border-collapse w-full">
+            <thead>
+                <tr>
+                    <th class="border px-4 py-2">Departamento</th>
+                    <th class="border px-4 py-2">Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($data as $departamento => $info)
+                <tr>
+                    <td class="border px-4 py-2">{{ $departamento }}</td>
+                    <td class="border px-4 py-2">{{ $info['Promedio'] }}</td>
+                </tr>
+                @endforeach
+                <tr>
+                    <td class="border px-4 py-2 font-bold">Promedio General Global</td>
+                    <td class="border px-4 py-2 font-bold bg-yellow-400">{{ $promedio_general_global }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var ctx = document.getElementById('grafica').getContext('2d');
@@ -88,42 +94,14 @@
             document.getElementById('guardarGrafica').addEventListener('click', function() {
                 var canvas = document.getElementById('grafica');
                 var chartImage = canvas.toDataURL('image/png');
-
-                $.ajax({
-                    type: "POST",
-                    url: "{{ url('/guardar-grafica') }}",
-                    data: {
-                        image: chartImage,
-                        periodo: document.getElementById('periodo').value,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        console.log('Imagen guardada exitosamente');
-                    },
-                    error: function(err) {
-                        console.error('Error al guardar la imagen', err);
-                    }
-                });
+                var downloadLink = document.createElement('a');
+                downloadLink.href = chartImage;
+                downloadLink.download = 'grafica_general.png';
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
             });
-
-            cambiarPeriodo(document.getElementById('periodo'));
         });
-
-        function cambiarPeriodo(select) {
-            var periodoSeleccionado = select.value;
-            var periodoActual = {!! json_encode($periodoActual) !!};
-
-            if (periodoSeleccionado === periodoActual) {
-                document.getElementById('grafica').style.display = 'block';
-                document.getElementById('chartMessage').style.display = 'none';
-            } else {
-                document.getElementById('grafica').style.display = 'none';
-                document.getElementById('chartMessage').style.display = 'block';
-            }
-        }
-
-        
     </script>
 </body>
-
 </html>

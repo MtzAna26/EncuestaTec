@@ -5,15 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Datos recibidos:', data);
 
             const labels = [
-                'La División de Estudios Profesionales me proporciona información del banco de proyectos de Residencias Profesionales', 
-                'A lo largo de tu carrera te brindaron la información necesaria para desarrollo de anteproyectos', 
-                'La División de Estudios Profesionales me da información de las opciones para realizar los Anteproyectos', 
-                'La División de Estudios me proporciona información acerca de los periodos para la recepción de anteproyectos de Residencias Profesionales', 
-                'El Docente Asignado para revisar mi anteproyecto de residencias y el Jefe de Carrera dictaminan en el periodo establecido', 
-                'Mi Asesor Interno me proporciona asesoría para el desarrollo de mi proyecto de Residencias Profesionales', 
-                'Mi Asesor Interno revisa mis informes parciales de Residencias Profesionales y me orienta para realizar las correcciones y cambios', 
-                'Mi Asesor Interno me da a conocer la calificación durante el periodo establecido', 
-                'El Departamento de Gestión Tecnológica y Vinculación me entrega en tiempo la carta de presentación y agradecimiento para la empresa'
+                '1', 
+                '2', 
+                '3', 
+                '4', 
+                '5', 
+                '6', 
+                '7', 
+                '8', 
+                '9'
             ];
             
             const dataset = labels.map((label, index) => {

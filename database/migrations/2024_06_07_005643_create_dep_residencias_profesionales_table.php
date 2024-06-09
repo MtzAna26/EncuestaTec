@@ -53,3 +53,5 @@ return new class extends Migration
         Schema::dropIfExists('dep_residencias_profesionales');
     }
 };
+
+

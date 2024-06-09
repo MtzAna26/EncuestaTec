@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('graficas', function (Blueprint $table) {
             $table->id();
             $table->string('ruta_imagen')->nullable();
-            $table->string('periodo')->unique();
+            $table->string('periodo')->nullable();
             $table->timestamps();
         });
     }

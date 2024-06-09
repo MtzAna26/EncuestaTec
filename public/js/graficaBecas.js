@@ -9,11 +9,11 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'Se cumple con el horario de atención establecido',
-        'Serpregunta_2': 'Conozco a dónde dirigirme para que me informen sobre el trámite de solicitud de beca',
-        'Serpregunta_3': 'Se dan a conocer oportunamente y apropiadamente las convocatorias para los diferentes tipos de becas',
-        'Serpregunta_4': 'Resuelven mis dudas oportuna y claramente',
-        'Serpregunta_5': 'Si se presenta algún problema con mi trámite me lo informan oportunamente',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
     };
 
     // Inicializa acumuladores y contador de alumnos

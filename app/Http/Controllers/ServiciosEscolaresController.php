@@ -41,7 +41,7 @@ class ServiciosEscolaresController extends Controller
             }
         }
         $evaluacion->save();
-        return redirect()->route('encuestas.becas')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('encuestas.talleres_laboratorios')->with('success', '¡Encuesta enviada correctamente!');
     }
 
         //Para el admin

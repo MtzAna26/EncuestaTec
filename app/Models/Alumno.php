@@ -83,43 +83,66 @@ public function encuestas()
     }
 
 
-    public function generarPeriodo($semestre)
+    public  static function generarPeriodo($year = null)
     {
-        // Divide el semestre en su número y tipo
-        list($numero, $tipo) = explode("_", $semestre);
-    
-        // Define el nombre del periodo
-        $nombrePeriodo = '';
-        if ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') {
-            $nombrePeriodo = 'enero-junio';
+        // Si no se proporciona un año, usar el año actual
+        $anio = $year ?? date('Y');
+
+        // Calcular el período específico
+        $mes = date('n');
+        if ($mes <= 7) {
+            // Enero-Julio (semestre par)
+            $nombrePeriodo = "Enero-Julio $anio";
+            $periodo = 'Par';
+            $fechaInicio = "$anio-01-01";
+            $fechaFin = "$anio-07-31";
         } else {
-            $nombrePeriodo = 'agosto-diciembre';
+            // Agosto-Diciembre (semestre impar)
+            $nombrePeriodo = "Agosto-Diciembre $anio";
+            $periodo = 'Impar';
+            $fechaInicio = "$anio-08-01";
+            $fechaFin = "$anio-12-31";
         }
-    
-        // Define las fechas de inicio y fin del periodo
-        $añoActual = date('Y');
-        $añoSiguiente = date('Y') + 1;
-    
-        $fechaInicio = ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') ?
-            "$añoActual-01-01" :
-            "$añoActual-08-01";
-    
-        $fechaFin = ($tipo == 'primer' || $tipo == 'tercer' || $tipo == 'quinto' || $tipo == 'septimo' || $tipo == 'noveno') ?
-            "$añoActual-06-30" :
-            "$añoActual-12-31";
-    
-        // Si el semestre es segundo, cuarto, sexto u octavo, ajustamos las fechas para el siguiente año académico
-        if ($tipo == 'segundo' || $tipo == 'cuarto' || $tipo == 'sexto' || $tipo == 'octavo') {
-            $fechaInicio = "$añoSiguiente-01-01";
-            $fechaFin = "$añoSiguiente-06-30";
-        }
-    
-        // Retorna un arreglo con las fechas de inicio y fin del periodo y el nombre del periodo
+
         return [
-            'nombre' => $nombrePeriodo . ' ' . $añoActual,
+            'nombre' => $nombrePeriodo,
             'inicio' => $fechaInicio,
             'fin' => $fechaFin,
+            'año' => $anio,
+            'periodo' => $periodo,
         ];
     }
     
+    /*
+        public function generarPeriodo($year = null)
+    {
+        // Si no se proporciona un año, usar el año actual
+        $anio = $year ?? date('Y');
+
+        // Calcular el período específico
+        $mes = date('n');
+        if ($mes <= 7) {
+            // Enero-Julio (semestre par)
+            $nombrePeriodo = "Enero-Julio $anio";
+            $periodo = 'Par';
+            $fechaInicio = "$anio-01-01";
+            $fechaFin = "$anio-07-31";
+        } else {
+            // Agosto-Diciembre (semestre impar)
+            $nombrePeriodo = "Agosto-Diciembre $anio";
+            $periodo = 'Impar';
+            $fechaInicio = "$anio-08-01";
+            $fechaFin = "$anio-12-31";
+        }
+
+        return [
+            'nombre' => $nombrePeriodo,
+            'inicio' => $fechaInicio,
+            'fin' => $fechaFin,
+            'año' => $anio,
+            'periodo' => $periodo,
+        ];
+    }
+*/
+
 }

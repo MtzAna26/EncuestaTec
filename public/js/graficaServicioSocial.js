@@ -11,14 +11,14 @@ async function obtenerDatos() {
 
     // Mapa de nombres de columnas a preguntas descriptivas
     const preguntasMap = {
-        'Serpregunta_1': 'La oficina de Servicio Social tiene un horario adecuado para realizar mis trámites',
-        'Serpregunta_2': 'La oficina de Servicio Social me ofrece un catálogo de instituciones en donde pueda realizarlo',
-        'Serpregunta_3': 'La oficina de Servicio Social me brinda el apoyo para desarrollar mis actividades',
-        'Serpregunta_4': 'Me proporcionan atención  adecuada cuando realizo mis trámites',
-        'Serpregunta_5': 'Me apoyan adecuadamente en la búsqueda, en caso de no tener en donde hacerlo',
-        'Serpregunta_6': 'Me proporcionan asesoría para desarrollar en forma adecuada el Servicio Social',
-        'Serpregunta_7': 'Me atienden en forma inmediata al solicitar información',
-        'Serpregunta_8': 'Mantienen una relación atenta conmigo durante toda mi estancia en su oficina',
+        'Serpregunta_1': '1',
+        'Serpregunta_2': '2',
+        'Serpregunta_3': '3',
+        'Serpregunta_4': '4',
+        'Serpregunta_5': '5',
+        'Serpregunta_6': '6',
+        'Serpregunta_7': '7',
+        'Serpregunta_8': '8',
         
     };
 

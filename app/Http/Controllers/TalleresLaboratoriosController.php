@@ -41,9 +41,15 @@ class TalleresLaboratoriosController extends Controller
             }
         }
         $evaluacion->save();
-        return redirect()->route('encuestas.cafeteria')->with('success', '¡Encuesta enviada correctamente!');
+        return redirect()->route('encuestas.becas')->with('success', '¡Encuesta enviada correctamente!');
     }
 
+    public function omitirEncuesta(Request $request)
+    {
+        // Lógica para redirigir a la siguiente vista
+        return redirect()->route('encuestas.becas')->with('success', '¡Encuesta omitida correctamente!');
+    }
+    
     //Para el admin
     public function mostrarFormularioGrafica()
     {
