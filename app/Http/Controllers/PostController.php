@@ -10,8 +10,9 @@ class PostController extends Controller
    
 
      public function verficar()  {
-        $estado = Estado_Encuesta::findOrFail(1);
-        return $estado;
+      //$jsonString = file_get_contents('C:\xampp\htdocs\prorecto\EncuestaTec\configEncuesta.json');
+      //$data = json_decode($jsonString, true);
+      return "f" ;
      }
 
      public function modificar($Estado)  {

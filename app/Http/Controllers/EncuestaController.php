@@ -9,7 +9,10 @@ class EncuestaController extends Controller
 {
     public function menu()
     {
-        return view('encuestas.menu');
+        $jsonString = file_get_contents('C:\xampp\htdocs\prorecto\EncuestaTec\configEncuesta.json');
+        $data = json_decode($jsonString, true);
+
+        return view('encuestas.menu',['Es'=>$data["Activa"]]);
     }
 
     public function comenzarEncuestasCentroDeInformacion()

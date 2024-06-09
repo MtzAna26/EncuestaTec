@@ -29,10 +29,14 @@
                 </button>
             </a>
         </div>
-    
+        @php
+        $Es
+        @endphp
+        
+        @if ($Es == "v")
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <a href="{{ route('encuestas.centro_informacion') }}" class="text-lg font-semibold">CENTRO DE INFORMACIÓN</a>
+                 <a href="{{ route('encuestas.centro_informacion') }}" class="text-lg font-semibold">CENTRO DE INFORMACIÓN</a>
             </div>
             <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
                 <button class="text-lg font-semibold">COORDINACIÓN DE CARRERAS</button>
@@ -68,6 +72,10 @@
                 <button class="text-lg font-semibold">ACTIVIDADES CULTURALES Y DEPORTIVAS</button>
             </div>
         </div>
+        @else
+            <p>no ay encuetas por contestar </p>
+        @endif
+        
     </div>
     
 </body>

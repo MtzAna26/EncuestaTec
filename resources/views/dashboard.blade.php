@@ -35,6 +35,7 @@
 
 <body class="bg-gray-100" onload="init()">
 
+
     <header class="bg-white shadow-md">
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
             <img src="{{ asset('img/logoencuesta.png') }}" alt="Logo de EncuestaTec">
@@ -353,21 +354,27 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-    let activo = "v"
-    function init() {
-        
+    
+    async function init() {
+        const response = await axios.get('/Estado/get');
+
+       let activo =  response.data.Activa
+      
+       
         const div = document.getElementById('btn');
             if (activo == "v") {
-                
-                
                 div.innerHTML = '<button id="myButton" class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">Encuestas activas</button>'
 
                 document.getElementById('myButton').onclick = function() {
+                    
+                    fun("f")
                     activo = "f"
                 }
             }else{
                 div.innerHTML = '<button id="myButton" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Encuestas desactivadas </button> '
                 document.getElementById('myButton').onclick =function() {
+                    
+                    fun("v")
                     activo = "v"
                 }
             }
@@ -375,8 +382,17 @@
    
     
     
-    function btnActivar(valor) {
+    async function name() {
+        const response = await axios.get('/Estado/get');
+        console.log(activo);
+        return response.data.Activa
+
+    }
+    async function fun(es) {
        
+        const response = await axios.get('/Estado/cambiar/'+es);
+        location.reload();
+        
     }
 </script>
 
