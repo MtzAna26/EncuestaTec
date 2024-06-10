@@ -9,7 +9,7 @@ class EncuestaController extends Controller
 {
     public function menu()
     {
-        $jsonString = file_get_contents('C:\xampp\htdocs\prorecto\EncuestaTec\configEncuesta.json');
+        $jsonString = file_get_contents('..\configEncuesta.json');
         $data = json_decode($jsonString, true);
 
         return view('encuestas.menu',['Es'=>$data["Activa"]]);

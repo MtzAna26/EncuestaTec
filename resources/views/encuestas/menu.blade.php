@@ -57,10 +57,16 @@
     </head>
 
     <body>
+        
+        @php
+        $Es
+        @endphp
+        
+        
+        @if ($Es == "v")
         <div class="container">
 
-            </head>
-
+            
             <body>
                 <a href="/buzon-de-quejas">
                     <button
@@ -82,51 +88,14 @@
                         Encuestas</button>
                 </a>
         </div>
-        @php
-        $Es
-        @endphp
-        
-        @if ($Es == "v")
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                 <a href="{{ route('encuestas.centro_informacion') }}" class="text-lg font-semibold">CENTRO DE INFORMACIÓN</a>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">COORDINACIÓN DE CARRERAS</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">RECURSOS FINANCIEROS</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">RESIDENCIAS PROFESIONALES</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">CENTRO DE CÓMPUTO</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">SERVICIO SOCIAL</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">SERVICIOS ESCOLARES</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">BECAS</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">TALLERES Y LABORATORIOS</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">CAFETERÍA</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">SERVICIO MÉDICO</button>
-            </div>
-            <div class="bg-red-800 hover:bg-red-600 text-white py-4 px-6 rounded-lg text-center transition duration-300 ease-in-out transform hover:scale-105">
-                <button class="text-lg font-semibold">ACTIVIDADES CULTURALES Y DEPORTIVAS</button>
-            </div>
-        </div>
         @else
-            <p>no ay encuetas por contestar </p>
+        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mt-4" role="alert">
+            <strong class="font-bold">¡Advertencia!</strong>
+            <span class="block sm:inline">Por el momento las encuestas no se encuentran disponibles, para más información favor de pasar al demartamento de calidad.</span>
+            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                <svg class="fill-current h-6 w-6 text-yellow-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Cerrar</title><path d="M14.348 5.652a.5.5 0 1 0-.707-.707L10 8.586 6.36 4.946a.5.5 0 1 0-.707.707l3.64 3.64-3.64 3.64a.5.5 0 0 0 .707.707l3.64-3.64 3.64 3.64a.5.5 0 0 0 .707-.707L10.707 10l3.64-3.64z"/></svg>
+            </span>
+        </div>
         @endif
         
     </div>
