@@ -299,15 +299,21 @@ Route::get('/periodos', [GraficaController::class, 'seleccionarPeriodo'])->name(
 Route::get('/grafica/{periodo}', [GraficaController::class, 'mostrarGrafica'])->name('mostrarGrafica');
 Route::get('/periodos', [GraficaController::class, 'seleccionarPeriodo'])->name('seleccionarPeriodo');
 
-// Ruta para las carreras y graficas
+// Ruta para mostrar las carreras
 Route::get('/mostrar-carreras', [GraficaController::class, 'mostrarCarreras'])->name('mostrar_carreras');
+
+// Ruta para mostrar la gráfica por carrera
 Route::get('/mostrar-carrera/{carrera}', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');
 
-// Rutas para guardar la gráfica general.
+// Rutas para guardar la gráfica general
 Route::post('/guardar-grafica', [GraficaController::class, 'guardarGrafica']);
-// Ruta para pdf grafica general 
+
+// Ruta para generar PDF de la gráfica general
 Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPDF'])->name('generate.pdf');
+
+// Ruta para obtener alumnos por semestre
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
+Route::get('/mostrar-carrera', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');
 
 
 

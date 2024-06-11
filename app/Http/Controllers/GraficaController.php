@@ -160,6 +160,7 @@ class GraficaController extends Controller
     }
     public function mostrarCarreras(Request $request)
     {
+        $periodosDisponibles = Periodo::pluck('nombre')->toArray();
         $carreras = [
             'Ingenieria Industrial',
             'Ingenieria en Mineria',
@@ -170,52 +171,54 @@ class GraficaController extends Controller
             'Ingenieria Informática',
             'Ingenieria en Gestion Empresarial(Semiescolarizado)',
         ];
-
+    
         $carrerasDB = Alumno::select('carrera')->distinct()->pluck('carrera');
         $carreras = $carrerasDB->merge($carreras)->unique()->values()->all();
-
-        return view('administrador.mostrar_carreras', compact('carreras'));
+    
+        return view('administrador.mostrar_carreras', compact('carreras', 'periodosDisponibles'));
     }
+    
+    public function mostrarGraficaPorCarrera(Request $request)
+{
+    $carrera = $request->input('carrera');
+    $periodoActual = $request->input('periodo');
 
-    public function mostrarGraficaPorCarrera(Request $request, $carrera)
-    {
-        $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
-        $totalAlumnos = $alumnos->count();
-        $promedios = [
-            'Centro de Información' => CentroInformacion::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Coordinación de Carreras' => CoordinacionCarreras::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Recursos Financieros' => RecursosFinancieros::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Residencias Profesionales' => ResidenciasProfesionales::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Centro de Computo' => CentroComputo::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Servicio Social' => ServicioSocial::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Servicios Escolares' => ServiciosEscolares::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Becas' => Becas::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Talleres y Laboratorios' => TalleresLaboratorios::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Cafeteria' => Cafeteria::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Servicio Medico' => ServicioMedico::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-            'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
+    $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
+    $totalAlumnos = $alumnos->count();
+    $promedios = [
+        'Centro de Información' => CentroInformacion::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Coordinación de Carreras' => CoordinacionCarreras::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Recursos Financieros' => RecursosFinancieros::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Residencias Profesionales' => ResidenciasProfesionales::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Centro de Computo' => CentroComputo::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Servicio Social' => ServicioSocial::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Servicios Escolares' => ServiciosEscolares::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Becas' => Becas::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Talleres y Laboratorios' => TalleresLaboratorios::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Cafeteria' => Cafeteria::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Servicio Medico' => ServicioMedico::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+        'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
+    ];
+
+    $promediosValidos = array_filter($promedios, function ($promedio) {
+        return $promedio !== null;
+    });
+
+    $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
+
+    $data = array_map(function ($promedio) use ($promedio_general_global) {
+        return [
+            'Promedio' => $promedio,
+            'Promedio General' => $promedio,
         ];
+    }, $promedios);
 
-        $promediosValidos = array_filter($promedios, function ($promedio) {
-            return $promedio !== null;
-        });
+    $data['Promedio General'] = [
+        'Promedio' => $promedio_general_global,
+        'Promedio General' => $promedio_general_global,
+    ];
 
-        $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
+    return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
+}
 
-        $data = array_map(function ($promedio) use ($promedio_general_global) {
-            return [
-                'Promedio' => $promedio,
-                'Promedio General' => $promedio,
-            ];
-        }, $promedios);
-
-        $data['Promedio General'] = [
-            'Promedio' => $promedio_general_global,
-            'Promedio General' => $promedio_general_global,
-        ];
-
-        $periodoActual = 'agosto-diciembre-2024';
-
-        return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
-    }
 }
