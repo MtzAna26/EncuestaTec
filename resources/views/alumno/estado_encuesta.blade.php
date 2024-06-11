@@ -1,1 +1,1 @@
-<h1>esta encuesta no esta disponible</h1>
+<h1>Esta encuesta no esta disponible</h1>

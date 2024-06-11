@@ -24,8 +24,7 @@
                         <h2 class="text-xl font-bold mb-2">{{ $periodo->nombre }}</h2>
                         <p><strong>Fecha de Inicio:</strong> {{ $periodo->fecha_inicio }}</p>
                         <p><strong>Fecha de Fin:</strong> {{ $periodo->fecha_fin }}</p>
-                        <button onclick="verGrafica({{ $periodo->id }})"
-                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+                        <button onclick="verGrafica({{ $periodo->id }})" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
                             Ver Gráfica
                         </button>
 
@@ -43,7 +42,5 @@
             window.location.href = '/coordinacion_carreras/grafica/' + periodoId;
         }
     </script>
-
 </body>
-
 </html>

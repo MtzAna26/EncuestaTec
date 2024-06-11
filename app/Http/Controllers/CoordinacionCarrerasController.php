@@ -59,13 +59,11 @@ class CoordinacionCarrerasController extends Controller
 
         public function mostrarFormularioGrafica()
         {
-            // Verificar si ya se ha almacenado el periodo actual en la sesión
             if (!Session::has('periodoActual')) {
-                // Si no está almacenado, obtener y almacenar el periodo actual
+                
                 $periodoActual = $this->obtenerPeriodoActual();
                 Session::put('periodoActual', $periodoActual);
             } else {
-                // Si ya está almacenado, recuperar el periodo actual de la sesión
                 $periodoActual = Session::get('periodoActual');
             }
     

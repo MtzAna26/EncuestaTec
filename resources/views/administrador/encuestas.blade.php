@@ -1,1 +1,1 @@
-encuestas no encontrada
+Encuestas no encontrada

@@ -12,7 +12,11 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Recursos Financieros</h1>
-        
+        @if ($periodoActual)
+        <h2 class="text-center text-lg font-bold">Período: {{ $periodoActual->nombre }}</h2>
+    @else
+        <h2 class="text-center text-lg font-bold">Período: No disponible</h2>
+    @endif
         @if (!request()->is('download-question-report'))
         <style>
             @media print {

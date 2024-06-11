@@ -87,12 +87,6 @@ class PDFController extends Controller
     // Coordinacion carreras
     public function generateCoordinacionCarrerasPDF()
     {
-        $coordinacionCarrerasController = new CoordinacionCarrerasController();
-
-        // Llamar a la función obtenerPeriodoActual() del controlador CoordinacionCarrerasController
-        $periodoActual = $coordinacionCarrerasController->obtenerPeriodoActual();
-
-
         $questions = [
             'Serpregunta_1' => 'Tiene un horario adecuado de atención',
             'Serpregunta_2' => 'Me proporciona información necesaria para el manejo de mi retícula de carrera',
@@ -106,7 +100,19 @@ class PDFController extends Controller
         $tableName = 'dep_coordinacion_carreras';
         $data = $this->getQuestionsData($tableName, $questions);
 
-        return view('encuestas.pdf_coordinacion_carreras', compact('periodoActual', 'data'));
+        $fechaActual = now();
+        $periodoActual = Periodo::where('fecha_inicio', '<=', $fechaActual)
+            ->where('fecha_fin', '>=', $fechaActual)
+            ->orderBy('fecha_inicio', 'DESC')
+            ->first();
+
+
+        return view('encuestas.pdf_coordinacion_carreras',  [
+            'data' => $data['data'],
+            'totalRespondents' => $data['totalRespondents'],
+            'generalAverage' => $data['generalAverage'],
+            'periodoActual' => $periodoActual,
+        ]);
     }
 
 
@@ -123,12 +129,25 @@ class PDFController extends Controller
             'Serpregunta_5' => 'Me proporcionan asesoría adecuada cuando desconozco qué o cuánto pagar',
             'Serpregunta_6' => 'Mantienen una relación atenta conmigo durante todo el tiempo en que me otorga el servicio',
         ];
-
+    
         $tableName = 'dep_recursos_financieros';
         $data = $this->getQuestionsData($tableName, $questions);
-
-        return view('reportes.pdf_recursos_financieros', $data);
+    
+        $fechaActual = now();
+        $periodoActual = Periodo::where('fecha_inicio', '<=', $fechaActual)
+            ->where('fecha_fin', '>=', $fechaActual)
+            ->orderBy('fecha_inicio', 'DESC')
+            ->first();
+    
+        // Pasar el período como parámetro a la vista
+        return view('reportes.pdf_recursos_financieros', [
+            'data' => $data['data'],
+            'totalRespondents' => $data['totalRespondents'],
+            'generalAverage' => $data['generalAverage'],
+            'periodoActual' => $periodoActual,
+        ]);
     }
+    
 
 
     // RESIDENCIAS PROFESIONALES
@@ -168,7 +187,18 @@ class PDFController extends Controller
         $tableName = 'dep_centro_computos';
         $data = $this->getQuestionsData($tableName, $questions);
 
-        return view('reportes.pdf_centro_computo', $data);
+        $fechaActual = now();
+        $periodoActual = Periodo::where('fecha_inicio', '<=', $fechaActual)
+            ->where('fecha_fin', '>=', $fechaActual)
+            ->orderBy('fecha_inicio', 'DESC')
+            ->first();
+
+        return view('reportes.pdf_centro_computo',[
+            'data' => $data['data'],
+            'totalRespondents' => $data['totalRespondents'],
+            'generalAverage' => $data['generalAverage'],
+            'periodoActual' => $periodoActual,
+        ]);
     }
 
     //Servicio Social

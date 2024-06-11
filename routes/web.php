@@ -155,8 +155,7 @@ Route::get('/coordinacion_carreras/grafica', [CoordinacionCarrerasController::cl
 Route::get('/coordinacion_carreras/pdf', [PDFController::class, 'generateCoordinacionCarrerasPDF'])->name('generate_coordinacion_carreras_pdf');
 // Para lo periodos coordinacion de carreras
 Route::get('/coordinacion_carreras_periodos', [CoordinacionCarrerasController::class, 'mostrarPeriodos'])->name('encuestas.mostrarPeriodos');
-
-
+Route::get('/coordinacion_carreras/grafica/{periodo_id}', [CoordinacionCarrerasController::class, 'mostrarFormularioGrafica'])->name('encuestas.grafica_coordinacion_carreras');
 
 
 // Ruta para mostrar el formulario de encuestas de Recursos Financieros
