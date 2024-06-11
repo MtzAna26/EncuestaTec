@@ -55,9 +55,10 @@ class ResidenciasProfesionalesController extends Controller
 
     // Para el Admin 
 
-    public function mostrarFormularioGrafica()
+    public function mostrarFormularioGrafica($periodoId)
     {
-        return view('graficas.grafica_residencias_profesionales');
+        $periodoActual = Periodo::findOrFail($periodoId);
+        return view('graficas.grafica_residencias_profesionales', compact('periodoActual'));
     }
     // Otra alternativa para poder gráficar
     public function getChartData()
@@ -77,6 +78,10 @@ class ResidenciasProfesionalesController extends Controller
         return response()->json($data);
     }
     
-
+    public function mostrarPeriodosResidencias()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.residencias_profesionales_periodos', compact('periodos'));
+    }
 }
 

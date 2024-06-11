@@ -25,9 +25,14 @@
 
     <br>
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Gráfica Departamento Actividades Culturales y Deportivas</h1>   
+        <h1 class="text-4xl font-bold">Gráfica Actividades Culturales y Deportivas</h1>
+        @if ($periodoActual)
+            <h2 class="text-2xl font-semibold">Periodo Actual: {{ $periodoActual->nombre }}</h2>
+        @else
+            <h2 class="text-2xl font-semibold">No hay un periodo actual disponible</h2>
+        @endif
     </div>
-
+    
     <br>
     <div class="flex justify-center">
         <a href="{{route('generate_reporte_culturales_deportivas_pdf')}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">

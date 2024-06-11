@@ -29,11 +29,11 @@ class RecursosFinancierosController extends Controller
             'Serpregunta_6' => 'required|integer',
             'comentario' => 'required|string',
         ]);
-    
+
         // Crear una nueva evaluación
         $periodos = Periodo::all();
         $alumnos = Alumno::all();
-        
+
         foreach ($alumnos as $alumno) {
             foreach ($periodos as $periodo) {
                 $evaluacion = new RecursosFinancieros();
@@ -41,30 +41,41 @@ class RecursosFinancierosController extends Controller
                 $evaluacion->alumno_id = $alumno->id;
                 $evaluacion->no_control = $alumno->no_control;
                 $evaluacion->carrera = $alumno->carrera;
-                $evaluacion->periodo_id = $periodo->id;  
+                $evaluacion->periodo_id = $periodo->id;
                 $evaluacion->calcularPromedioFinal();
             }
-
         }
         $evaluacion->save();
-    
+
         return redirect()->route('encuestas.centro_computo')->with('success', '¡Encuesta enviada correctamente!');
     }
 
-        // Para el admin
+    // Para el admin
 
-        public function mostrarFormularioGrafica()
-        {
-            return view('graficas.grafica_recursos_financieros');
+    public function mostrarFormularioGrafica()
+    {
+        return view('graficas.grafica_recursos_financieros');
+    }
+
+    public function obtenerRespuestas()
+    {
+        $respuestas = RecursosFinancieros::all();
+        if ($respuestas->isNotEmpty()) {
+            return response()->json($respuestas);
+        } else {
+            return response()->json(['error' => 'No se encontraron respuestas'], 404);
         }
-        
-        public function obtenerRespuestas()
-        {
-            $respuestas = RecursosFinancieros::all();
-            if ($respuestas->isNotEmpty()) {
-                return response()->json($respuestas);
-            } else {
-                return response()->json(['error' => 'No se encontraron respuestas'], 404);
-            }
-        }
+    }
+
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.listado_periodos', compact('periodos'));
+    }
+
+    public function verGraficaPeriodo($periodoId)
+    {
+        $periodo = Periodo::findOrFail($periodoId);
+    return view('graficas.grafica_recursos_financieros', compact('periodo'));
+    }
 }

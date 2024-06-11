@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Periodo;
+use Carbon\Carbon;
 use App\Models\Alumno;
 use App\Models\ActividadesCulturalesDeportivas;
 
@@ -44,8 +45,22 @@ class CulturalesDeportivasController extends Controller
     }
 
     // Para el admin 
-    public function mostrarFormularioGrafica()
+    public function obtenerPeriodoActual()
     {
-        return view('graficas.grafica_culturales_deportivas');
+        return Periodo::whereDate('fecha_inicio', '<=', Carbon::now())
+            ->whereDate('fecha_fin', '>=', Carbon::now())
+            ->first();
+    }
+
+public function mostrarFormularioGrafica()
+    {
+        $periodoActual = $this->obtenerPeriodoActual();
+        return view('graficas.grafica_culturales_deportivas', compact('periodoActual'));
+    }
+
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.culturales_deportivas_periodos', compact('periodos'));
     }
 }

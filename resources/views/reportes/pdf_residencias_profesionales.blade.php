@@ -7,11 +7,13 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/graficaResidenciasProfesionales.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-    <title>Reporte Departamento Residencias Profesionales </title>
+    <title>Reporte Departamento Residencias Profesionales</title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Residencias Profesionales</h1>
+        <h5 class="text-2xl font-semibold text-center">Período: {{ $periodoActual->nombre }}</h5>
+
         @if (!request()->is('download-question-report'))
         <style>
             @media print {
@@ -23,9 +25,6 @@
         <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
             Imprimir PDF
         </button>
-        <!--- <a href="{{--route('download-residencias-profesionales')--}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 hide-on-print">
-            Descargar PDF
-        </a>-->
         &nbsp;
         <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
         @endif
@@ -36,7 +35,6 @@
                         <td colspan="7" class="border px-4 py-2 text-center font-bold">No. DE ENCUESTADOS</td>
                         <td class="border px-4 py-2 font-bold">{{ $totalRespondents }}</td>
                     </tr>
-                </tr>
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
@@ -67,8 +65,8 @@
                         @php $rowNumber++; @endphp
                     @endforeach
                     <tr>
-                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td> 
-                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td> 
+                        <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td>
+                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -76,7 +74,6 @@
         <div class="chart-container">
             <canvas id="graficaRespuestas"></canvas>
         </div>
-        
     </div>
-    </body>
+</body>
 </html>

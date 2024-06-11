@@ -14,6 +14,7 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Talleres y Laboratorios</h1>
+        <h6 class="text-center text-3xl font-bold mb-8">Período: {{ $periodo->nombre }}</h6>
         @if (!request()->is('download-question-report'))
         <style>
             @media print {

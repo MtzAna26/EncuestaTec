@@ -12,6 +12,8 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Coordinación de Carreras</h1>
+        <!-- <h2 class="text-center text-2xl font-semibold">Periodo Actual: {{--$periodoActual->nombre--}}</h2>-->
+        
         @if (!request()->is('download-question-report'))
         <style>
             @media print {
@@ -23,9 +25,6 @@
         <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
             Imprimir PDF
         </button>
-        <!--<a href="{{-- route('download-coordinacion-carreras') --}}" class="bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 hide-on-print">
-            Descargar PDF
-        </a>--->
         &nbsp;
         <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
     @endif

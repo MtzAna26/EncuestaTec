@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{ asset('css/base/css/menu.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-100">
@@ -24,10 +23,14 @@
     </header>
 
     <br>
+
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Centro Información</h1>   
+        @if(isset($periodoActual))
+        <h5 class="text-xl">Período: {{ $periodoActual->nombre }}</h5>
+        @endif
     </div>
-
+    
     <br>
     <div class="flex justify-center">
         <a href="{{ route('generate-question-report') }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
@@ -41,9 +44,12 @@
         </button>
     </div>
 
+    <br>
+
     <div class="chart-container">
         <canvas id="graficaRespuestas"></canvas>
     </div>
+
     <script src="{{ asset('js/graficaCentroInformacion.js') }}"></script>
     <script>
         document.getElementById('guardarGraficaCentroInformacion').addEventListener('click', function() {

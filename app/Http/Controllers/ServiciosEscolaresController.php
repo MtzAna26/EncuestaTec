@@ -45,9 +45,11 @@ class ServiciosEscolaresController extends Controller
     }
 
         //Para el admin
-        public function mostrarFormularioGrafica()
+        public function mostrarFormularioGrafica(Request $request)
         {
-            return view('graficas.grafica_servicios_escolares');
+            $periodo_id = $request->input('periodo_id');
+            $periodo = Periodo::findOrFail($periodo_id);
+            return view('graficas.grafica_servicios_escolares', compact('periodo'));
         }
         
     
@@ -59,5 +61,11 @@ class ServiciosEscolaresController extends Controller
             } else {
                 return response()->json(['error' => 'No se encontraron respuestas'], 404);
             }
+        }
+
+        public function mostrarPeriodos()
+        {
+            $periodos = Periodo::all();
+            return view('periodos.periodos_servicios_escolares', compact('periodos'));
         }
 }

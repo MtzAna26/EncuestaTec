@@ -25,12 +25,14 @@
     <br>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Residencias Profesionales</h1>
+        <h2 class="text-2xl font-semibold">Periodo Actual: {{ $periodoActual->nombre }}</h2>
     </div>
     <br>
     <div class="flex justify-center">
-        <a href="{{ route('generate_reporte_residencias_pdf') }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('generate_reporte_residencias_pdf', ['periodoId' => $periodoActual->id]) }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
+        
         &nbsp;
         <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
         &nbsp;

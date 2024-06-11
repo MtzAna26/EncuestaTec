@@ -12,6 +12,12 @@
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Centro de Información</h1>
+        @if ($periodoActual)
+        <h2 class="text-center text-lg font-bold">Período: {{ $periodoActual->nombre }}</h2>
+    @else
+        <h2 class="text-center text-lg font-bold">Período: No disponible</h2>
+    @endif
+        
         @if (!request()->is('download-question-report'))
         <style>
             @media print {
@@ -22,10 +28,6 @@
         </style>
             <button onclick="window.print()" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded hide-on-print">
                 Imprimir PDF
-            </button>
-            &nbsp;
-            <button id="guardarGrafica" class="bg-red-600 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">
-                Guardar Gráfica
             </button>
             &nbsp;
             <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>

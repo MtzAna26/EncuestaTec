@@ -28,6 +28,7 @@
     <br>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Centro Cómputo</h1>   
+        <h2 class="text-2xl font-semibold">Periodo Actual: {{ $periodoActual->nombre }}</h2>
     </div>
 
     <br>

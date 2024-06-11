@@ -40,7 +40,7 @@ class ServicioSocialController extends Controller
                 $evaluacion->alumno_id = $alumno->id;
                 $evaluacion->no_control = $alumno->no_control;
                 $evaluacion->carrera = $alumno->carrera;
-                $evaluacion->periodo_id = $periodo->id; 
+                $evaluacion->periodo_id = $periodo->id;
                 $evaluacion->calcularPromedioFinal();
             }
         }
@@ -49,11 +49,13 @@ class ServicioSocialController extends Controller
     }
 
     //Para el admin
-    public function mostrarFormularioGrafica()
+    public function mostrarFormularioGrafica(Request $request)
     {
-        return view('graficas.grafica_servicio_social');
+        $periodo_id = $request->input('periodo_id');
+        $periodo = Periodo::find($periodo_id);
+        return view('graficas.grafica_servicio_social', compact('periodo'));
     }
-    
+
 
     public function obtenerRespuestas()
     {
@@ -65,5 +67,23 @@ class ServicioSocialController extends Controller
         }
     }
 
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.servicio_social_periodos', compact('periodos'));
+    }
+
+    public function mostrarGraficaPorPeriodo($periodo_id)
+    {
+        $periodo = Periodo::findOrFail($periodo_id);
+        $data = $this->obtenerDatosGrafica($periodo_id);
+
+        return view('graficas.grafica_servicio_social', compact('periodo', 'data'));
+    }
     
+    private function obtenerDatosGrafica($periodo_id)
+    {
+        $respuestas = ServicioSocial::where('periodo_id', $periodo_id)->get();
+        return $respuestas;
+    }
 }

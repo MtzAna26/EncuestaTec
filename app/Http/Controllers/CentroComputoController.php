@@ -53,7 +53,14 @@ class CentroComputoController extends Controller
 
     // Para el admin 
 
-    public function mostrarFormularioGrafica(){
-        return view('graficas.grafica_centro_computo');
+    public function mostrarFormularioGrafica($periodo_id){
+        $periodoActual = Periodo::findOrFail($periodo_id);
+        return view('graficas.grafica_centro_computo', compact('periodoActual'));
+    }
+    
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.centro_computo_periodos', compact('periodos'));
     }
 }

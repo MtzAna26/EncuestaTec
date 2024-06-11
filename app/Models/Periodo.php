@@ -76,6 +76,6 @@ class Periodo extends Model
     }
     public function alumnos()
     {
-        return $this->hasMany(Alumno::class); // Relación de uno a muchos con alumnos
+        return $this->hasMany(Alumno::class); 
     }
 }

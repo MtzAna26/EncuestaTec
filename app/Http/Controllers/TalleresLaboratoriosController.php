@@ -46,14 +46,28 @@ class TalleresLaboratoriosController extends Controller
 
     public function omitirEncuesta(Request $request)
     {
-        // Lógica para redirigir a la siguiente vista
         return redirect()->route('encuestas.becas')->with('success', '¡Encuesta omitida correctamente!');
     }
     
     //Para el admin
-    public function mostrarFormularioGrafica()
+    public function mostrarGrafica($periodo_id)
     {
-        return view('graficas.grafica_talleres_laboratorios');
+        $periodo = Periodo::find($periodo_id);
+        $datosGrafica = $this->obtenerDatosGrafica($periodo_id);
+        return view('graficas.grafica_talleres_laboratorios', compact('periodo', 'datosGrafica'));
     }
+    
 
+        public function mostrarPeriodos()
+        {
+            $periodos = Periodo::all();
+            return view('periodos.talleres_laboratorio', compact('periodos'));
+        }
+
+        private function obtenerDatosGrafica($periodo_id)
+        {
+            $becas =TalleresLaboratorios::where('periodo_id', $periodo_id)->get();
+            $datosGrafica = [];
+            return $datosGrafica;
+        }
 }

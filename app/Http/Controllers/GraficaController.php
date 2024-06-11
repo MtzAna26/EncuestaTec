@@ -160,7 +160,6 @@ class GraficaController extends Controller
     }
     public function mostrarCarreras(Request $request)
     {
-        // Carreras faltantes
         $carreras = [
             'Ingenieria Industrial',
             'Ingenieria en Mineria',
@@ -172,7 +171,6 @@ class GraficaController extends Controller
             'Ingenieria en Gestion Empresarial(Semiescolarizado)',
         ];
 
-        // Combinar las carreras de la base de datos con las carreras faltantes
         $carrerasDB = Alumno::select('carrera')->distinct()->pluck('carrera');
         $carreras = $carrerasDB->merge($carreras)->unique()->values()->all();
 
@@ -198,12 +196,10 @@ class GraficaController extends Controller
             'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
         ];
 
-        // Filtrar promedios válidos (no nulos)
         $promediosValidos = array_filter($promedios, function ($promedio) {
             return $promedio !== null;
         });
 
-        // Calcular el promedio general global
         $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
 
         $data = array_map(function ($promedio) use ($promedio_general_global) {

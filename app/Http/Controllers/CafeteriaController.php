@@ -51,4 +51,24 @@ class CafeteriaController extends Controller
         {
             return view('graficas.grafica_cafeteria');
         }
+
+        public function mostrarPeriodos()
+        {
+            $periodos = Periodo::all();
+            return view('periodos.cafeteria_periodos', compact('periodos'));
+        }
+
+        public function mostrarGraficaPorPeriodo($periodo_id)
+    {
+        $periodo = Periodo::findOrFail($periodo_id);
+        $data = $this->obtenerDatosGrafica($periodo_id);
+
+        return view('graficas.grafica_cafeteria', compact('periodo', 'data'));
+    }
+
+    private function obtenerDatosGrafica($periodo_id)
+    {
+        $respuestas = Cafeteria::where('periodo_id', $periodo_id)->get();
+        return $respuestas;
+    }
 }

@@ -159,9 +159,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('centros-informacion.grafica') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('encuestas.periodos.index')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -173,9 +173,14 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('encuestas.grafica_coordinacion_carreras') }}">
+                    <!-- <a href="{{-- route('encuestas.grafica_coordinacion_carreras') ---}}">
                         <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                             Gráfica
+                        </button>
+                    </a>--->
+                    <a href="{{route('encuestas.mostrarPeriodos')}}">
+                        <button class="bg-blue-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -187,9 +192,14 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.recursos_financieros') }}">
+                    <!--<a href="{{-- route('graficas.recursos_financieros') --}}">
                         <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                             Gráfica
+                        </button>
+                    </a>--->
+                    <a href="{{route('periodos.listado_periodos')}}">
+                        <button class="bg-blue-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -201,9 +211,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.grafica_residencias_profesionales') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('periodos.residencias_profesionales')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -215,9 +225,14 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.centro_computo') }}">
+                    <!-- <a href="{{-- route('graficas.centro_computo')--}}">
                         <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
                             Gráfica
+                        </button>
+                    </a>--->
+                    <a href="{{route('encuestas.centro_computo_periodos')}}">
+                        <button class="bg-blue-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -229,9 +244,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.servicio_social') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('servicio_social.mostrarPeriodos')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -243,9 +258,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.servicios_escolares') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('servicios_escolares.mostrarPeriodos')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -257,9 +272,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.becas') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('periodos.becas')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -271,9 +286,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.talleres_laboratorios') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('periodos.talleres_laboratorio')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -285,9 +300,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.cafeteria') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('cafeteria.mostrarPeriodos')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -299,9 +314,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.servicio_medico') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('servicio_medico.mostrarPeriodos')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>
@@ -313,9 +328,9 @@
                         Ver
                     </a>
                     &nbsp;
-                    <a href="{{ route('graficas.culturales_deportivas') }}">
-                        <button class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
-                            Gráfica
+                    <a href="{{route('periodos.culturales_deportivas')}}">
+                        <button class="bg-yellow-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">
+                            Periodos
                         </button>
                     </a>
                 </td>

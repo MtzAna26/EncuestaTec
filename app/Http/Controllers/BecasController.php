@@ -46,8 +46,26 @@ class BecasController extends Controller
     }
 
     // Para el admin
-    public function mostrarFormularioGrafica()
+    public function mostrarFormularioGrafica($periodo_id)
     {
-        return view('graficas.grafica_becas');
+        $periodo = Periodo::find($periodo_id);
+        $datosGrafica = $this->obtenerDatosGrafica($periodo_id);
+        return view('graficas.grafica_becas', compact('periodo', 'datosGrafica'));
     }
+
+    // Para mostrar todos los periodos
+
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.becas', compact('periodos'));
+    }
+    
+    private function obtenerDatosGrafica($periodo_id)
+    {
+        $becas = Becas::where('periodo_id', $periodo_id)->get();
+        $datosGrafica = [];
+        return $datosGrafica;
+    }
+    
 }

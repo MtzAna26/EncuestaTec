@@ -25,8 +25,14 @@
 
     <br>
     <div class="text-center">
-        <h1 class="text-4xl font-bold">Gráfica Departamento Coordinacion Carreras</h1>   
+        <h1 class="text-4xl font-bold">Gráfica Departamento Coordinacion Carreras</h1>
+        @if ($periodoActual)
+            <h2 class="text-2xl font-semibold">Periodo Actual: {{ $periodoActual->nombre }}</h2>
+        @else
+            <h2 class="text-2xl font-semibold">No hay periodo actual definido</h2>
+        @endif
     </div>
+    
 
     <br>
 
@@ -37,7 +43,7 @@
         &nbsp;
         <a href="{{ route('dashboard')}}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
         &nbsp;
-        <button id="guardarGraficaCentroInformacion" class="bg-blue-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
+        <button id="guardarGraficaCoordinacionCarreras" class="bg-blue-900 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded">
             Guardar Gráfica Coordinación Carreras
         </button>
     </div>

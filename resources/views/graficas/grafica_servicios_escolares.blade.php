@@ -28,11 +28,13 @@
     <br>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Servicios Escolares</h1>   
+        <h4 class="text-2xl mt-2">Período: {{ isset($periodo) ? $periodo->nombre : 'Periodo no definido' }}</h4>
+
     </div>
 
     <br>
     <div class="flex justify-center">
-        <a href="{{route('generate_reporte_escolares_pdf')}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <a href=" {{ route('generate_servicios_escolares_pdf', ['periodo_id' => $periodo->id]) }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
         &nbsp;

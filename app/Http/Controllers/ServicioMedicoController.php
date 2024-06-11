@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Alumno;
 use App\Models\ServicioMedico;
 use App\Models\Periodo;
 use App\Models\User;
+
 
 use Illuminate\Http\Request;
 
@@ -36,7 +38,7 @@ class ServicioMedicoController extends Controller
                 $evaluacion->alumno_id = $alumno->id;
                 $evaluacion->no_control = $alumno->no_control;
                 $evaluacion->carrera = $alumno->carrera;
-                $evaluacion->periodo_id = $periodo->id;  
+                $evaluacion->periodo_id = $periodo->id;
                 $evaluacion->calcularPromedioFinal();
             }
         }
@@ -44,20 +46,29 @@ class ServicioMedicoController extends Controller
         return redirect()->route('encuestas.actividades_culturales_deportivas')->with('success', '¡Encuesta enviada correctamente!');
     }
 
-     //Para el admin
-        public function mostrarFormularioGrafica()
-        {
-            return view('graficas.grafica_servicio_medico');
+    //Para el admin
+    public function mostrarFormularioGrafica(Request $request)
+    {
+        $periodo_id = $request->input('periodo_id');
+        $periodo = Periodo::findOrFail($periodo_id);
+        return view('graficas.grafica_servicio_medico', compact('periodo'));
+    }
+
+
+    // PARA MOSTRAR LOS PERIODOS
+    public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.periodos_servicio_medico', compact('periodos'));
+    }
+
+    public function obtenerRespuestas()
+    {
+        $respuestas = ServicioMedico::all();
+        if ($respuestas->isNotEmpty()) {
+            return response()->json($respuestas);
+        } else {
+            return response()->json(['error' => 'No se encontraron respuestas'], 404);
         }
-        
-    
-        public function obtenerRespuestas()
-        {
-            $respuestas = ServicioMedico::all();
-            if ($respuestas->isNotEmpty()) {
-                return response()->json($respuestas);
-            } else {
-                return response()->json(['error' => 'No se encontraron respuestas'], 404);
-            }
-        }
+    }
 }

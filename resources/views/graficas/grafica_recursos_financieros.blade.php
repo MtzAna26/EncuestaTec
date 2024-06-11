@@ -28,6 +28,7 @@
     <br>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Recursos Financieros</h1>   
+        <h5 class="text-2xl font-semibold">Periodo Actual: {{ $periodo->nombre }}</h5>
     </div>
 
     <br>

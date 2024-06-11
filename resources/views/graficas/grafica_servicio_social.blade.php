@@ -28,11 +28,13 @@
     <br>
     <div class="text-center">
         <h1 class="text-4xl font-bold">Gráfica Departamento Servicio Social</h1>   
+        @if($periodo)
+            <h6 class="text-4xl font-bold">Periodo: {{ $periodo->nombre }}</h6>
+        @endif
     </div>
-
     <br>
     <div class="flex justify-center">
-        <a href="{{route('generate_reporte_social_pdf')}}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+        <a href="{{ route('generate_servicio_social_pdf', ['periodo_id' => $periodo->id]) }}" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
             Generar PDF
         </a>
         &nbsp;
