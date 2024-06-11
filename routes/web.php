@@ -310,6 +310,24 @@ Route::post('/guardar-grafica', [GraficaController::class, 'guardarGrafica']);
 Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPDF'])->name('generate.pdf');
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 
-/* Para pruebas de los peridoos
-Route::get('/test-generar-periodo', [GraficaController::class, 'testGenerarPeriodo']); */
+
+
+Route::get('/Estado/get', function () {
+    $jsonString = file_get_contents('..\configEncuesta.json');
+    $data = json_decode($jsonString, true);
+    return  $data ;
+});
+//Route::get('/Estado/get', [PostController::class, 'verficar']);
+Route::get('/Estado/cambiar/{estado}', function ($estado) {
+    $jsonString = file_get_contents('..\configEncuesta.json');
+    $data = json_decode($jsonString, true);
+    $data['Activa']=$estado;
+    $newJsonString = json_encode($data, JSON_PRETTY_PRINT);
+
+    if (file_put_contents('C:\xampp\htdocs\prorecto\EncuestaTec\configEncuesta.json', $newJsonString) === false) {
+        die('Error al guardar el archivo JSON');
+    }
+    return  $data ;
+});
+
 require __DIR__.'/auth.php';

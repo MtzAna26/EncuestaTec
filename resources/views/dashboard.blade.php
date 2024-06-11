@@ -33,7 +33,8 @@
 
 </head>
 
-<body class="bg-gray-100">
+<body class="bg-gray-100" onload="init()">
+
 
     <header class="bg-white shadow-md">
         <div class="container mx-auto py-4 px-6 flex justify-between items-center">
@@ -138,10 +139,11 @@
 
                 <!-- Lista de Departamentos y encuestas -->
                 <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-xl font-semibold mb-4">Encuestas</h2>
+                <h2 class="text-xl font-semibold mb-4">Encuestas</h2>
+                <div id="btn" ></div>
     <div class="overflow-y-auto max-h-96">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-50">
+            <thead class="">
                 <tr>
                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Departamento
@@ -366,6 +368,50 @@
             menu.classList.toggle('menu-hidden');
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    
+    async function init() {
+        const response = await axios.get('/Estado/get');
+
+       let activo =  response.data.Activa
+      
+       
+        const div = document.getElementById('btn');
+            if (activo == "v") {
+                div.innerHTML = '<button id="myButton" class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">Encuestas activas</button>'
+
+                document.getElementById('myButton').onclick = function() {
+                    
+                    fun("f")
+                    activo = "f"
+                }
+            }else{
+                div.innerHTML = '<button id="myButton" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Encuestas desactivadas </button> '
+                document.getElementById('myButton').onclick =function() {
+                    
+                    fun("v")
+                    activo = "v"
+                }
+            }
+    }
+   
+    
+    
+    async function name() {
+        const response = await axios.get('/Estado/get');
+        console.log(activo);
+        return response.data.Activa
+
+    }
+    async function fun(es) {
+       
+        const response = await axios.get('/Estado/cambiar/'+es);
+        location.reload();
+        
+    }
+</script>
 
 </body>
 </html>
