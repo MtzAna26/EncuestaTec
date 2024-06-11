@@ -23,8 +23,8 @@ class CoordinacionCarrerasController extends Controller
     {
         // Validación de los datos del formulario
         $validatedData = $request->validate([
-            'no_control' => 'unique:alumnos',
-            'carrera' => 'unique:alumnos',
+            'no_control' => 'required|unique:alumnos,no_control',
+            'carrera' => 'required|unique:alumnos,carrera',
             'Serpregunta_1' => 'required|integer',
             'Serpregunta_2' => 'required|integer',
             'Serpregunta_3' => 'required|integer',
@@ -34,27 +34,29 @@ class CoordinacionCarrerasController extends Controller
             'Serpregunta_7' => 'required|integer',
             'comentario' => 'required|string',
         ]);
-    
+
         // Crear una nueva evaluación
-        //$periodos = Periodo::all();
         $alumnos = Alumno::all();
         
-        foreach ($alumnos as $alumno) {
-            foreach ($request->periodos as $periodo_id) {
-                $evaluacion = new CoordinacionCarreras();
-                $evaluacion->fill($request->all());
-                $evaluacion->alumno_id = $alumno->id;
-                $evaluacion->no_control = $alumno->no_control;
-                $evaluacion->carrera = $alumno->carrera;
-                $evaluacion->periodo_id = $periodo_id;  
-                $evaluacion->calcularPromedioFinal();
+        if ($request->has('periodos')) {
+            foreach ($alumnos as $alumno) {
+                foreach ($request->periodos as $periodo_id) {
+                    $evaluacion = new CoordinacionCarreras();
+                    $evaluacion->fill($request->all());
+                    $evaluacion->alumno_id = $alumno->id;
+                    $evaluacion->no_control = $alumno->no_control;
+                    $evaluacion->carrera = $alumno->carrera;
+                    $evaluacion->periodo_id = $periodo_id;  
+                    $evaluacion->calcularPromedioFinal();
+                    $evaluacion->save(); // Mueve el save() dentro del bucle para que se guarde cada evaluación
+                }
             }
+        } else {
+            return back()->withErrors(['periodos' => 'Debe seleccionar al menos un periodo.']);
         }
-        $evaluacion->save();
-        $evaluacion->fill($validatedData);
+
         return redirect()->route('encuestas.recursos_financieros')->with('success', '¡Encuesta enviada correctamente!');
     }
-    
         // Admin pueda ver gráficas
 
         public function mostrarFormularioGrafica()
