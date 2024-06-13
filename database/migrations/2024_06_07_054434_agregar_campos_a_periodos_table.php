@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('periodos', function (Blueprint $table) {
+        Schema::create('periodos', function (Blueprint $table) {
             $table->year('año')->default(DB::raw('(YEAR(CURRENT_DATE))'));
             $table->string('periodo')->default('1');
         });
