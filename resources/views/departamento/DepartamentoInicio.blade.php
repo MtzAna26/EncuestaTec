@@ -78,7 +78,7 @@
             <div class="col">
                 <div>
                     <canvas id="myChart"></canvas>
-                    <h4>ciclo escolar 1</h4> <br>
+                    <h4>Ciclo Escolar 1</h4> <br>
                     <button class="btn btn-primary" style="background:#7A0611"
                         onclick="OnClicbtnPreguntas(2024)">Preguntas</button>
                 </div>

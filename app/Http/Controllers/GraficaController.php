@@ -115,14 +115,14 @@ class GraficaController extends Controller
     public function mostrarGrafica($periodo)
     {
         $nombreNormalizado = strtolower(str_replace(' ', '', $periodo));
-    
+
         // Buscar el periodo basado en el nombre normalizado
         $periodo = Periodo::whereRaw("LOWER(REPLACE(nombre, ' ', '')) = ?", [$nombreNormalizado])->first();
-    
+
         if (!$periodo) {
             return redirect()->back()->withErrors(['error' => 'El período no existe.']);
         }
-    
+
         // Calcular los promedios de cada departamento para el período específico
         $promedio_ci = CentroInformacion::where('periodo_id', $periodo->id)->avg('promedio_final');
         $promedio_cc = CoordinacionCarreras::where('periodo_id', $periodo->id)->avg('promedio_final');
@@ -136,7 +136,7 @@ class GraficaController extends Controller
         $promedio_cafeteria = Cafeteria::where('periodo_id', $periodo->id)->avg('promedio_final');
         $promedio_sm = ServicioMedico::where('periodo_id', $periodo->id)->avg('promedio_final');
         $promedio_acd = ActividadesCulturalesDeportivas::where('periodo_id', $periodo->id)->avg('promedio_final');
-    
+
         // Crear un array con los promedios de cada departamento
         $data = [
             'Centro de Información' => ['Promedio' => $promedio_ci],
@@ -152,16 +152,16 @@ class GraficaController extends Controller
             'Servicio Medico' => ['Promedio' => $promedio_sm],
             'Actividades Culturales Deportivas' => ['Promedio' => $promedio_acd],
         ];
-    
+
         // Calcular el promedio general global excluyendo valores null
-        $promedios_validos = array_filter(array_column($data, 'Promedio'), function($value) {
+        $promedios_validos = array_filter(array_column($data, 'Promedio'), function ($value) {
             return !is_null($value);
         });
         $promedio_general_global = count($promedios_validos) ? array_sum($promedios_validos) / count($promedios_validos) : 0;
-    
+
         return view('administrador.grafica_index', compact('data', 'promedio_general_global', 'periodo'));
     }
-    
+
 
     public function mostrarCarreras(Request $request)
     {
@@ -176,54 +176,56 @@ class GraficaController extends Controller
             'Ingenieria Informática',
             'Ingenieria en Gestion Empresarial(Semiescolarizado)',
         ];
-    
+
         $carrerasDB = Alumno::select('carrera')->distinct()->pluck('carrera');
         $carreras = $carrerasDB->merge($carreras)->unique()->values()->all();
-    
+
         return view('administrador.mostrar_carreras', compact('carreras', 'periodosDisponibles'));
     }
-    
+
     public function mostrarGraficaPorCarrera(Request $request)
-{
-    $carrera = $request->input('carrera');
-    $periodoActual = $request->input('periodo');
+    {
+        $carrera = $request->input('carrera');
+        $periodoActual = $request->input('periodo');
 
-    $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
-    $totalAlumnos = $alumnos->count();
-    $promedios = [
-        'Centro de Información' => CentroInformacion::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Coordinación de Carreras' => CoordinacionCarreras::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Recursos Financieros' => RecursosFinancieros::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Residencias Profesionales' => ResidenciasProfesionales::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Centro de Computo' => CentroComputo::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Servicio Social' => ServicioSocial::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Servicios Escolares' => ServiciosEscolares::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Becas' => Becas::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Talleres y Laboratorios' => TalleresLaboratorios::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Cafeteria' => Cafeteria::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Servicio Medico' => ServicioMedico::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
-        'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
-    ];
-
-    $promediosValidos = array_filter($promedios, function ($promedio) {
-        return $promedio !== null;
-    });
-
-    $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
-
-    $data = array_map(function ($promedio) use ($promedio_general_global) {
-        return [
-            'Promedio' => $promedio,
-            'Promedio General' => $promedio,
+        $alumnos = Alumno::where('carrera', $carrera)->pluck('id');
+        $totalAlumnos = $alumnos->count();
+        $promedios = [
+            'Centro de Información' => CentroInformacion::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Coordinación de Carreras' => CoordinacionCarreras::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Recursos Financieros' => RecursosFinancieros::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Residencias Profesionales' => ResidenciasProfesionales::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Centro de Computo' => CentroComputo::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Servicio Social' => ServicioSocial::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Servicios Escolares' => ServiciosEscolares::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Becas' => Becas::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Talleres y Laboratorios' => TalleresLaboratorios::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Cafeteria' => Cafeteria::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Servicio Medico' => ServicioMedico::whereIn('alumno_id', $alumnos)->avg('promedio_final'),
+            'Actividades Culturales Deportivas' => ActividadesCulturalesDeportivas::whereIn('alumno_id', $alumnos)->avg('promedio_final')
         ];
-    }, $promedios);
 
-    $data['Promedio General'] = [
-        'Promedio' => $promedio_general_global,
-        'Promedio General' => $promedio_general_global,
-    ];
+        $promediosValidos = array_filter($promedios, function ($promedio) {
+            return $promedio !== null;
+        });
 
-    return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
-}
+        $promedio_general_global = count($promediosValidos) > 0 ? array_sum($promediosValidos) / count($promediosValidos) : 0;
+
+        $data = array_map(function ($promedio) use ($promedio_general_global) {
+            return [
+                'Promedio' => $promedio,
+                'Promedio General' => $promedio,
+            ];
+        }, $promedios);
+
+        $data['Promedio General'] = [
+            'Promedio' => $promedio_general_global,
+            'Promedio General' => $promedio_general_global,
+        ];
+
+        return view('administrador.grafica_por_carrera', compact('data', 'promedio_general_global', 'carrera', 'periodoActual', 'totalAlumnos'));
+    }
+
+
 
 }

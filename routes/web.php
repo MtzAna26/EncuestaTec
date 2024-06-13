@@ -318,6 +318,13 @@ Route::get('/generate-pdf', [GraficaController::class, 'generateGraficaGeneralPD
 Route::get('/obtener-alumnos-por-semestre', [AuthAlumnoRegisterController::class, 'obtenerAlumnosPorSemestre']);
 Route::get('/mostrar-carrera', [GraficaController::class, 'mostrarGraficaPorCarrera'])->name('mostrar_carrera');
 
+// Semestrees
+Route::get('admin/mostrar-semestres', [AuthAlumnoRegisterController::class, 'mostrarSemestres'])
+    ->name('admin.mostrar_semestres');
+
+Route::post('admin/grafica-por-semestre', [AuthAlumnoRegisterController::class, 'graficaPorSemestre'])
+    ->name('admin.grafica_por_semestre');
+
 
 
 Route::get('/Estado/get', function () {

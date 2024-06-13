@@ -90,9 +90,12 @@
                     class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-300 rounded-md shadow-lg z-10">
                     <a href="{{ route('alumnos.index') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Lista
                         Alumnos</a>
+                        <a href="{{ route('admin.mostrar_semestres') }}" class="block px-4 py-2 text-gray-800 hover:bg-gray-200">
+                            Semestres
+                        </a>
+                        
                     <a href="{{ route('mostrar_carreras') }}"
                         class="block px-4 py-2 text-gray-800 hover:bg-gray-200">Carreras</a>
-
                 </div>
             </div>
             <br>

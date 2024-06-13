@@ -40,6 +40,7 @@
                     value="{{ isset(Auth::user()->no_control) ? Auth::user()->no_control : '' }}">
                 <input type="hidden" name="carrera"
                     value="{{ isset(Auth::user()->carrera) ? Auth::user()->carrera : '' }}">
+                    <input type="hidden" name="semestre" value="{{ isset(Auth::user()->semestre) ? Auth::user()->semestre : '' }}">
                 @csrf
 
                 <table class="w-full">

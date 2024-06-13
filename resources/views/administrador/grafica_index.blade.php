@@ -15,7 +15,7 @@
             }
         }
         .bg-red {
-            background-color: rgba(211, 37, 37, 0.979); /* Cambia este valor según el tono de rojo deseado */
+            background-color: rgba(211, 37, 37, 0.979); 
         }
     </style>
 </head>

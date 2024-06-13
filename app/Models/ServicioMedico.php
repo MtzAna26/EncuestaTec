@@ -14,6 +14,7 @@ class ServicioMedico extends Model
         'alumno_id',
         'no_control',
         'carrera',
+        'semestre',
         'Serpregunta_1',
         'Serpregunta_2',
         'Serpregunta_3',
