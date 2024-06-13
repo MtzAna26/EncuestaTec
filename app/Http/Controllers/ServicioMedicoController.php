@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use Illuminate\Support\Facades\DB;
 use App\Models\ServicioMedico;
 use App\Models\Periodo;
 use App\Models\User;
@@ -56,9 +57,13 @@ class ServicioMedicoController extends Controller
 
 
     // PARA MOSTRAR LOS PERIODOS
+
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.periodos_servicio_medico', compact('periodos'));
     }
 

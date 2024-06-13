@@ -147,11 +147,9 @@
         document.getElementById("enviarRespuestas").addEventListener("click", function(event) {
             var comentario = document.getElementById("comentario").value;
             if (comentario.trim() === "") {
-                // Si no hay comentario, mostrar advertencia y prevenir el envío de la encuesta
                 event.preventDefault();
                 document.getElementById("mensajeAdvertencia").classList.remove("hidden");
-                window.scrollTo(0, 0); // Scroll hacia arriba para mostrar el mensaje
-            }
+                window.scrollTo(0, 0);
         });
     </script>
     </body>

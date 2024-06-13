@@ -8,6 +8,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @media print {
+            .hide-on-print {
+                display: none;
+            }
+        }
+        .bg-red {
+            background-color: rgba(211, 37, 37, 0.979); /* Cambia este valor según el tono de rojo deseado */
+        }
+    </style>
 </head>
 <body>
     <div class="text-center">
@@ -35,34 +45,36 @@
         </div>
         @endif
 
-        <div id="chartContainer" class="flex justify-center">
+        <div class="mt-8">
+            <h2 class="text-2xl font-bold mb-4">Promedio General de cada Departamento</h2>
+            <table class="table-auto border-collapse w-full">
+                <thead>
+                    <tr>
+                        <th class="border px-4 py-2">Departamento</th>
+                        <th class="border px-4 py-2">Promedio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($data as $departamento => $info)
+                    <tr>
+                        <td class="border px-4 py-2">{{ $departamento }}</td>
+                        <td class="border px-4 py-2 @if($info['Promedio'] < 3.5) bg-red @endif">{{ $info['Promedio'] }}</td>
+                    </tr>
+                    @endforeach
+                    <tr>
+                        <td class="border px-4 py-2 font-bold">Promedio General</td>
+                        <td class="border px-4 py-2 font-bold bg-yellow-400">{{ $promedio_general_global }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div id="chartContainer" class="flex justify-center mt-8">
             <canvas id="grafica" width="800" height="400"></canvas>
             <p id="chartMessage" style="display: none;">La gráfica para el período seleccionado no está disponible.</p>
         </div>
     </div>
-    <div class="mt-8">
-        <h2 class="text-2xl font-bold mb-4">Promedio General de cada Departamento</h2>
-        <table class="table-auto border-collapse w-full">
-            <thead>
-                <tr>
-                    <th class="border px-4 py-2">Departamento</th>
-                    <th class="border px-4 py-2">Promedio</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($data as $departamento => $info)
-                <tr>
-                    <td class="border px-4 py-2">{{ $departamento }}</td>
-                    <td class="border px-4 py-2">{{ $info['Promedio'] }}</td>
-                </tr>
-                @endforeach
-                <tr>
-                    <td class="border px-4 py-2 font-bold">Promedio General Global</td>
-                    <td class="border px-4 py-2 font-bold bg-yellow-400">{{ $promedio_general_global }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             var ctx = document.getElementById('grafica').getContext('2d');

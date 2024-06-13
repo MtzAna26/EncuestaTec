@@ -103,10 +103,14 @@ class CentroInformacionController extends Controller
 
     public function verPeriodos()
     {
-        $periodos = Periodo::distinct()->get(['nombre', 'fecha_inicio', 'fecha_fin']);
+        $periodos = DB::table('periodos')
+                        ->select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                        ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                        ->get();
         return view('encuestas.periodos', ['periodos' => $periodos]);
     }
-
+    
+    
     public function obtenerDatosGraficaPeriodo($periodoId)
     {
         // Obtener los datos necesarios para la gráfica del período dado

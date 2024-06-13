@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Periodo;
@@ -60,7 +62,10 @@ public function mostrarFormularioGrafica()
 
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.culturales_deportivas_periodos', compact('periodos'));
     }
 }

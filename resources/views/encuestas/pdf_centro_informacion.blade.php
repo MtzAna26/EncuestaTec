@@ -13,10 +13,10 @@
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Centro de Información</h1>
         @if ($periodoActual)
-        <h2 class="text-center text-lg font-bold">Período: {{ $periodoActual->nombre }}</h2>
-    @else
-        <h2 class="text-center text-lg font-bold">Período: No disponible</h2>
-    @endif
+            <h2 class="text-center text-lg font-bold">Período: {{ $periodoActual->nombre }}</h2>
+        @else
+            <h2 class="text-center text-lg font-bold">Período: No disponible</h2>
+        @endif
         
         @if (!request()->is('download-question-report'))
         <style>
@@ -65,14 +65,18 @@
                             <td class="border px-4 py-2">{{ $row->count_3 }}</td>
                             <td class="border px-4 py-2">{{ $row->count_4 }}</td>
                             <td class="border px-4 py-2">{{ $row->count_5 }}</td>
-                            <td class="border px-4 py-2">{{ $row->average_score ? number_format($row->average_score, 2) : '-' }}</td>
+                            <td class="border px-4 py-2 {{ $row->average_score < 3.5 ? 'bg-red-700 text-white' : '' }}">
+                                {{ $row->average_score ? number_format($row->average_score, 2) : '-' }}
+                            </td>
                         </tr>
                         @php $rowNumber++; @endphp
                     @endforeach
 
                     <tr>
                         <td colspan="7" class="border px-4 py-2 text-center">Promedio general del servicio</td>
-                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">{{ number_format($generalAverage, 2) }}</td>
+                        <td class="border px-4 py-2" style="background-color: #f3eb09; font-weight: bold;">
+                            {{ number_format($generalAverage, 2) }}
+                        </td>
                     </tr>
                 </tbody>
             </table>

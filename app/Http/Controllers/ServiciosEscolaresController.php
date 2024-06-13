@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ServiciosEscolares;
+use Illuminate\Support\Facades\DB;
 use App\Models\Alumno;
 use App\Models\User;
 use App\Models\Periodo;
@@ -65,7 +66,10 @@ class ServiciosEscolaresController extends Controller
 
         public function mostrarPeriodos()
         {
-            $periodos = Periodo::all();
+            $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
             return view('periodos.periodos_servicios_escolares', compact('periodos'));
         }
 }

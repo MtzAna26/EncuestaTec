@@ -14,6 +14,13 @@
                 display: none !important;
             }
         }
+
+        .promedio-bajo {
+            background-color: rgb(224, 28, 28); 
+        }
+        .promedio-general {
+            background-color: rgb(250, 250, 22); 
+        }
     </style>
 </head>
 <body>
@@ -35,21 +42,15 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Departamento</th>
                     <th class="px-6 py-3 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Promedio</th>
-                    <th class="px-6 py-3 text-left text-sm leading-4 text-gray-600 uppercase tracking-wider">Promedio General</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($data as $departamento => $valores)
                     <tr class="{{ $loop->even ? 'bg-gray-50' : 'bg-white' }}">
                         <td class="px-6 py-4">{{ $departamento }}</td>
-                        <td class="px-6 py-4">{{ $valores['Promedio'] }}</td>
-                        <td class="px-6 py-4 {{ $valores['Promedio General'] == $promedio_general_global ? 'font-bold' : '' }}">{{ $valores['Promedio General'] }}</td>
+                        <td class="px-6 py-4 {{ $loop->last ? 'promedio-general' : ($valores['Promedio'] < 3.5 ? 'promedio-bajo' : '') }}">{{ $valores['Promedio'] }}</td>
                     </tr>
                 @endforeach
-                <tr class="bg-gray-200">
-                    <td class="px-6 py-4 font-bold" colspan="2">Promedio General Global</td>
-                    <td class="px-6 py-4 bg-yellow-400 font-bold">{{ $promedio_general_global }}</td>
-                </tr>
             </tbody>
         </table>
     
@@ -57,11 +58,9 @@
     </div>
     
     <script>
-        // Obtiene los datos para la gráfica
         var departamentos = @json(array_keys($data));
         var promedios = @json(array_column($data, 'Promedio'));
 
-        // Configura y dibuja la gráfica
         var ctx = document.getElementById('grafica').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -78,7 +77,7 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true // Comienza en cero en el eje y
+                        beginAtZero: true 
                     }
                 }
             }
@@ -87,12 +86,10 @@
             var canvas = document.getElementById('grafica');
             var chartImage = canvas.toDataURL('image/png');
 
-            // Crear un enlace invisible para la descarga
             var downloadLink = document.createElement('a');
             downloadLink.href = chartImage;
             downloadLink.download = 'grafica_por_carrera.png';
 
-            // Desencadenar la descarga manualmente
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);

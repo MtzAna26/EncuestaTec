@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\RecursosFinancieros;
 use App\Models\Alumno;
 use App\Models\Periodo;
@@ -69,10 +70,13 @@ class RecursosFinancierosController extends Controller
 
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.listado_periodos', compact('periodos'));
     }
-
+    
     public function verGraficaPeriodo($periodoId)
     {
         $periodo = Periodo::findOrFail($periodoId);

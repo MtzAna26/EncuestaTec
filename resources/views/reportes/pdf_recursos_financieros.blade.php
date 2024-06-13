@@ -71,7 +71,9 @@
                         <td class="border px-4 py-2">{{ $row->count_3 }}</td>
                         <td class="border px-4 py-2">{{ $row->count_4 }}</td>
                         <td class="border px-4 py-2">{{ $row->count_5 }}</td>
-                        <td class="border px-4 py-2">{{ $row->average_score ? number_format($row->average_score, 2) : '-' }}</td>
+                        <td class="border px-4 py-2 {{ $row->average_score < 3.5 ? 'bg-red-700 text-white' : '' }}">
+                            {{ $row->average_score ? number_format($row->average_score, 2) : '-' }}
+                        </td>
                     </tr>
                     @php $rowNumber++; @endphp
                 @endforeach

@@ -5,16 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script src="{{ asset('js/graficaServiciosEscolares.js') }}"></script>
-
     <link rel="stylesheet" href="{{ asset('css/graficas/css/grafica.css') }}">
-    <title>Reporte Departamento Cafeteria </title>
+    <title>Reporte Departamento Cafeteria</title>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto py-8 px-4">
         <h1 class="text-center text-3xl font-bold mb-8">Reporte Cafeteria</h1>
-        <h6 class="text-center text-2xl font-bold mb-8">Periodo: {{ $periodoActual ? $periodoActual->nombre : 'Ninguno' }}</h6>
+        <h6 class="text-center text-2xl font-bold mb-8">Periodo: {{ $periodo ? $periodo->nombre : 'Ninguno' }}</h6>
         @if (!request()->is('download-question-report'))
         <style>
             @media print {
@@ -29,7 +27,7 @@
         </button>
         &nbsp;
         <a href="{{ route('dashboard') }}" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded hide-on-print">Regresar al inicio</a>
-    @endif
+        @endif
     
         <div class="overflow-x-auto">
             <table class="table-auto border-collapse w-full">
@@ -38,7 +36,6 @@
                         <td colspan="7" class="border px-4 py-2 text-center font-bold">No. DE ENCUESTADOS</td>
                         <td class="border px-4 py-2 font-bold">{{ $totalRespondents }}</td>
                     </tr>
-                </tr>
                     <tr>
                         <th class="px-4 py-2" rowspan="2">NO</th>
                         <th class="px-4 py-2" rowspan="2">Pregunta</th>
@@ -64,7 +61,9 @@
                             <td class="border px-4 py-2">{{ $row->count_3 }}</td>
                             <td class="border px-4 py-2">{{ $row->count_4 }}</td>
                             <td class="border px-4 py-2">{{ $row->count_5 }}</td>
-                            <td class="border px-4 py-2">{{ $row->average_score ? number_format($row->average_score, 2) : '-' }}</td>
+                            <td class="border px-4 py-2 {{ $row->average_score < 3.5 ? 'bg-red-700 text-white' : '' }}">
+                                {{ $row->average_score ? number_format($row->average_score, 2) : '-' }}
+                            </td>
                         </tr>
                         @php $rowNumber++; @endphp
                     @endforeach
@@ -78,7 +77,6 @@
         <div class="chart-container">
             <canvas id="graficaRespuestas"></canvas>
         </div>
-        
     </div>
-    </body>
+</body>
 </html>

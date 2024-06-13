@@ -22,8 +22,7 @@
                         <h2 class="text-xl font-bold mb-2">{{ $periodo->nombre }}</h2>
                         <p><strong>Fecha de Inicio:</strong> {{ $periodo->fecha_inicio }}</p>
                         <p><strong>Fecha de Fin:</strong> {{ $periodo->fecha_fin }}</p>
-                        <a href="{{ route('graficas.culturales_deportivas', ['periodoId' => $periodo->id]) }}" class="btn btn-primary">Ver Gráfica</a>
-
+                        <a href="{{ route('graficas.culturales_deportivas', ['periodoId' => $periodo->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">Ver Gráfica</a>
                     </div>
                 @endforeach
             </div>

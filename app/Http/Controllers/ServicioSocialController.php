@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\ServicioSocial;
 use App\Models\Alumno;
 use App\Models\User;
@@ -69,9 +70,17 @@ class ServicioSocialController extends Controller
 
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.servicio_social_periodos', compact('periodos'));
     }
+    /*public function mostrarPeriodos()
+    {
+        $periodos = Periodo::all();
+        return view('periodos.servicio_social_periodos', compact('periodos'));
+    }*/
 
     public function mostrarGraficaPorPeriodo($periodo_id)
     {

@@ -49,12 +49,12 @@
             var canvas = document.getElementById('graficaRespuestas');
             var chartImage = canvas.toDataURL('image/png');
 
-            // Crear un enlace invisible para la descarga
+
             var downloadLink = document.createElement('a');
             downloadLink.href = chartImage;
             downloadLink.download = 'grafica_residencias.png';
 
-            // Desencadenar la descarga manualmente
+
             document.body.appendChild(downloadLink);
             downloadLink.click();
             document.body.removeChild(downloadLink);

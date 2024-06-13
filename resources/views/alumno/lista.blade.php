@@ -33,7 +33,7 @@
             <form action="{{ route('alumnos.reset') }}" method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar todos los alumnos y reiniciar encuestas?');">
                 @csrf
                 @method('DELETE')
-                <button type="submit" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Iniciar Nuevo Registro y Encuestas</button>
+                <button type="submit" class="bg-red-900 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Iniciar Nuevo Registro Alumnos</button>
             </form>
         </div>
 

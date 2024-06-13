@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CentroComputo;
+use Illuminate\Support\Facades\DB;
 use App\Models\Alumno;
 use App\Models\Periodo;
 use App\Models\User;
@@ -60,7 +61,10 @@ class CentroComputoController extends Controller
     
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.centro_computo_periodos', compact('periodos'));
     }
 }

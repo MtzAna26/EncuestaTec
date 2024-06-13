@@ -309,15 +309,18 @@ public function generateBecasPDF(Request $request)
             'Serpregunta_6' => 'Identifico fácilmente la lista de precios',
             'Serpregunta_7' => 'Considero que los precios son apropiados',
         ];
-
+    
         $tableName = 'dep_cafeteria';
         $data = $this->getQuestionsData($tableName, $questions);
-
+    
         // Agregar el periodo a los datos
         $periodo = Periodo::find($periodo_id);
         $data['periodo'] = $periodo;
+        $data['totalRespondents'] = $data['totalRespondents'] ?? 0;
+        $data['generalAverage'] = $data['generalAverage'] ?? 0;
         return view('reportes.pdf_cafeteria', $data);
     }
+    
 
     // Servicio medico 
     public function generateServicioMedicoPDF($periodo_id)
@@ -353,12 +356,12 @@ public function generateBecasPDF(Request $request)
         $tableName = 'dep_actividades_culturales_deportivas';
         $data = $this->getQuestionsData($tableName, $questions);
 
-        // Obtener el periodo actual
+
         $periodoActual = Periodo::whereDate('fecha_inicio', '<=', Carbon::now())
         ->whereDate('fecha_fin', '>=', Carbon::now())
         ->first();
 
-         // Agregar el periodo actual al array de datos
+        
         $data['periodoActual'] = $periodoActual;
 
         return view('reportes.pdf_culturales_deportivas', $data);

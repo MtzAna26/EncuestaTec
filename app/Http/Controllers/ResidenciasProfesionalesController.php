@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ResidenciasProfesionales;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use App\Models\Periodo;
 use App\Models\Alumno;
 use Illuminate\Http\Request;
@@ -60,6 +61,8 @@ class ResidenciasProfesionalesController extends Controller
         $periodoActual = Periodo::findOrFail($periodoId);
         return view('graficas.grafica_residencias_profesionales', compact('periodoActual'));
     }
+
+    
     // Otra alternativa para poder gráficar
     public function getChartData()
     {
@@ -80,8 +83,12 @@ class ResidenciasProfesionalesController extends Controller
     
     public function mostrarPeriodosResidencias()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+        ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+        ->distinct()
+        ->get();
         return view('periodos.residencias_profesionales_periodos', compact('periodos'));
     }
+
 }
 

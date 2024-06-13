@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Periodo;
 use App\Models\Alumno;
@@ -60,7 +61,10 @@ class TalleresLaboratoriosController extends Controller
 
         public function mostrarPeriodos()
         {
-            $periodos = Periodo::all();
+            $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
             return view('periodos.talleres_laboratorio', compact('periodos'));
         }
 

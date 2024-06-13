@@ -146,14 +146,17 @@ Route::middleware('auth')->group(function () {
 });
 
 
-// Departamento de coordinacion de carreras (encuesta)
+// Departamento de coordinación de carreras (encuesta)
 Route::get('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'mostrarFormulario'])->name('encuestas.coordinacion_carreras');
 Route::post('/coordinacion_carreras', [CoordinacionCarrerasController::class, 'guardarRespuestas'])->name('encuestas.guardar_coordinacion_carreras');
-// Departamento de coordinacion de carreras (gráficas)
+
+// Departamento de coordinación de carreras (gráficas)
 Route::get('/coordinacion_carreras/grafica', [CoordinacionCarrerasController::class, 'mostrarFormularioGrafica'])->name('encuestas.grafica_coordinacion_carreras');
-// Departamento de coordinacion de carreras (PDF)
+
+// Departamento de coordinación de carreras (PDF)
 Route::get('/coordinacion_carreras/pdf', [PDFController::class, 'generateCoordinacionCarrerasPDF'])->name('generate_coordinacion_carreras_pdf');
-// Para lo periodos coordinacion de carreras
+
+// Para los periodos de coordinación de carreras
 Route::get('/coordinacion_carreras_periodos', [CoordinacionCarrerasController::class, 'mostrarPeriodos'])->name('encuestas.mostrarPeriodos');
 Route::get('/coordinacion_carreras/grafica/{periodo_id}', [CoordinacionCarrerasController::class, 'mostrarFormularioGrafica'])->name('encuestas.grafica_coordinacion_carreras');
 
@@ -329,7 +332,7 @@ Route::get('/Estado/cambiar/{estado}', function ($estado) {
     $data['Activa']=$estado;
     $newJsonString = json_encode($data, JSON_PRETTY_PRINT);
 
-    if (file_put_contents('C:\xampp\htdocs\prorecto\EncuestaTec\configEncuesta.json', $newJsonString) === false) {
+    if (file_put_contents('C:\xampp\htdocs\EncuestaTec\configEncuesta.json', $newJsonString) === false) {
         die('Error al guardar el archivo JSON');
     }
     return  $data ;

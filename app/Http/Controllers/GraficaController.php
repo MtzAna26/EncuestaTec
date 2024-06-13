@@ -114,7 +114,6 @@ class GraficaController extends Controller
 
     public function mostrarGrafica($periodo)
     {
-        // Normaliza el nombre del periodo
         $nombreNormalizado = strtolower(str_replace(' ', '', $periodo));
     
         // Buscar el periodo basado en el nombre normalizado
@@ -154,13 +153,19 @@ class GraficaController extends Controller
             'Actividades Culturales Deportivas' => ['Promedio' => $promedio_acd],
         ];
     
-        $promedio_general_global = array_sum(array_column($data, 'Promedio')) / count($data);
+        // Calcular el promedio general global excluyendo valores null
+        $promedios_validos = array_filter(array_column($data, 'Promedio'), function($value) {
+            return !is_null($value);
+        });
+        $promedio_general_global = count($promedios_validos) ? array_sum($promedios_validos) / count($promedios_validos) : 0;
     
         return view('administrador.grafica_index', compact('data', 'promedio_general_global', 'periodo'));
     }
+    
+
     public function mostrarCarreras(Request $request)
     {
-        $periodosDisponibles = Periodo::pluck('nombre')->toArray();
+        $periodosDisponibles = Periodo::pluck('nombre')->unique()->toArray();
         $carreras = [
             'Ingenieria Industrial',
             'Ingenieria en Mineria',

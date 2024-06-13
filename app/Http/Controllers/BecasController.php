@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Alumno;
+use Illuminate\Support\Facades\DB;
 use App\Models\Becas;
 use App\Models\User;
 use App\Models\Periodo;
@@ -57,7 +58,10 @@ class BecasController extends Controller
 
     public function mostrarPeriodos()
     {
-        $periodos = Periodo::all();
+        $periodos = Periodo::select('nombre', 'fecha_inicio', 'fecha_fin', DB::raw('MIN(id) as id'))
+                            ->groupBy('nombre', 'fecha_inicio', 'fecha_fin')
+                            ->distinct()
+                            ->get();
         return view('periodos.becas', compact('periodos'));
     }
     
