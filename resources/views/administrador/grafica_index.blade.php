@@ -58,7 +58,10 @@
                     @foreach($data as $departamento => $info)
                     <tr>
                         <td class="border px-4 py-2">{{ $departamento }}</td>
-                        <td class="border px-4 py-2 @if($info['Promedio'] < 3.5) bg-red @endif">{{ $info['Promedio'] }}</td>
+                        <td class="border px-4 py-2 @if($info['Promedio'] < 3.5 || $info['Promedio'] === null) bg-red @endif">
+                            {{ $info['Promedio'] ?? 'N/A' }}
+                        </td>
+                        
                     </tr>
                     @endforeach
                     <tr>
