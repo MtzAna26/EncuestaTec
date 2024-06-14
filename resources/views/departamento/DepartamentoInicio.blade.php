@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col py-2">
                 <button class="btn btn-light" onclick="goBack()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-arrow-left-square" viewBox="0 0 16 16">
@@ -54,8 +54,8 @@
                     </svg>
                 </button>
             </div>
-            <div class="col"></div>
-            <div class="col"></div>
+            <div class="col py-2"></div>
+            <div class="col py-2"></div>
         </div>
     </div>
 
@@ -68,26 +68,69 @@
 
     <div class="container">
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
+            <div class="col py-2"></div>
+            <div class="col py-2">
                 <h1> <label id="tit"></label> </h1>
             </div>
-            <div class="col"></div>
+            <div class="col py-2"></div>
         </div>
+
         <div class="row">
-            <div class="col">
+            <div class="col py-2"></div>
+            <div class="col py-2">  <div>
+                    <canvas id="myChart1"></canvas>
+                    <h4>grafica de reslutados histotco </h4> <br>
+
+                    
+                </div></div>
+            <div class="col py-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col py-2">
                 <div>
-                    <canvas id="myChart"></canvas>
-                    <h4>Ciclo Escolar 1</h4> <br>
                     <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas(2024)">Preguntas</button>
+                        onclick="OnClicbtnPreguntas('2024-02-01','2024-06-20')">'2024-02-01'-'2024-06-20'</button>
                 </div>
             </div>
-            <div class="col">
-
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2024-07-01','2024-12-20')">'2024-07-01'-'2024-12-20'</button>
             </div>
-            <div class="col">
-
+            <div class="col py-2">
+                <button class="btn btn-primary" style="background:#7A0611"
+                onclick="OnClicbtnPreguntas('2025-02-01','2025-06-20')">'2025-02-01'-'2025-06-20'</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+            onclick="OnClicbtnPreguntas('2025-07-01','2025-12-20')">'2025-07-01'-'2025-12-20'</button>
+            </div>
+            <div class="col py-2">
+                <div>
+                    <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2026-02-01','2024-06-20')">'2026-02-01'-'2024-06-20'</button>
+                </div>
+            </div>
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2026-07-01','2024-12-20')">'2026-07-01'-'2024-12-20'</button>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col py-2">
+                <div>
+                    <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2027-02-01','2024-06-20')">'2027-02-01'-'2024-06-20'</button>
+                </div>
+            </div>
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2027-07-01','2024-12-20')">'2027-07-01'-'2024-12-20'</button>
+            </div>
+            <div class="col py-2">
+            
             </div>
         </div>
     </div>
@@ -106,14 +149,16 @@
 
 
 
-        const ctx = document.getElementById('myChart').getContext('2d');
+        const ctx1 = document.getElementById('myChart1').getContext('2d');
+        
 
 
         const tit = document.getElementById('tit').innerHTML = titulo;
 
+        console.log(datos);
 
-
-        new Chart(ctx, {
+   
+        new Chart(ctx1, {
             type: 'bar',
             data: {
                 labels: preguntas,
@@ -136,13 +181,14 @@
                 }
             }
         });
+        
+        
 
 
 
+        let OnClicbtnPreguntas = (ciclo1,ciclo2) => {
 
-        let OnClicbtnPreguntas = (ciclo) => {
-
-            window.location.href = '/departamento/tablas/' + titulo + '/' + ciclo
+            window.location.href = '/departamento/tablas/' + titulo + '/' + ciclo1 + '/'+ciclo2
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

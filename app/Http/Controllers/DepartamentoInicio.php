@@ -71,7 +71,7 @@ class DepartamentoInicio extends Controller
     public function ParseCentroDeInformacion($DepartamentoP){
         $registros = CentroInformacion::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1 ','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Estrucpregunta_1','Estrucpregunta_2','Estrucpregunta_3','Estrucpregunta_4','Estrucpregunta_5','Estrucpregunta_6'];
+        $preguntas = ['1 ','2','3','4','5','6','7','1','2','3','4','5','6'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -86,6 +86,7 @@ class DepartamentoInicio extends Controller
         $Estrucpregunta_4=[];
         $Estrucpregunta_5=[];
         $Estrucpregunta_6=[];
+        $FechaDeAlta=[];
 
         foreach ($registros as $item) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
@@ -101,9 +102,12 @@ class DepartamentoInicio extends Controller
             array_push($Estrucpregunta_4, $item->Estrucpregunta_4);
             array_push($Estrucpregunta_5, $item->Estrucpregunta_5);
             array_push($Estrucpregunta_6, $item->Estrucpregunta_6);
+            array_push($FechaDeAlta, $item->created_at);
+            
             
         }
-
+        
+        
         $suma1 = array_sum($Serpregunta_1);
         $suma2 = array_sum($Serpregunta_2);
         $suma3 = array_sum($Serpregunta_3);
@@ -131,21 +135,39 @@ class DepartamentoInicio extends Controller
         $numElementos11 = count($Estrucpregunta_4);
         $numElementos12 = count($Estrucpregunta_5);
         $numElementos13 = count($Estrucpregunta_6);
-        
 
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-        array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma7/ $numElementos7));
-        array_push($Datos, ($suma8 / $numElementos8));
-        array_push($Datos, ($suma9 / $numElementos9));
-        array_push($Datos, ($suma10 / $numElementos10));
-        array_push($Datos, ($suma11 / $numElementos11));
-        array_push($Datos, ($suma12 / $numElementos12));
-        array_push($Datos, ($suma13 / $numElementos13));
+       
+        
+        if ($numElementos1 == 0) {
+            array_push($Datos, ($suma1 / 1));
+            array_push($Datos, ($suma2 /1));
+            array_push($Datos, ($suma3 /1));
+            array_push($Datos, ($suma4 /1));
+            array_push($Datos, ($suma5 /1));
+            array_push($Datos, ($suma6 /1));
+            array_push($Datos, ($suma7/  1));
+            array_push($Datos, ($suma8 / 1));
+            array_push($Datos, ($suma9 / 1));
+            array_push($Datos, ($suma10 / 1));
+            array_push($Datos, ($suma11 / 1));
+            array_push($Datos, ($suma12 / 1));
+            array_push($Datos, ($suma13 / 1));
+        }else {
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+            array_push($Datos, ($suma5 / $numElementos5));
+            array_push($Datos, ($suma6 / $numElementos6));
+            array_push($Datos, ($suma7/ $numElementos7));
+            array_push($Datos, ($suma8 / $numElementos8));
+            array_push($Datos, ($suma9 / $numElementos9));
+            array_push($Datos, ($suma10 / $numElementos10));
+            array_push($Datos, ($suma11 / $numElementos11));
+            array_push($Datos, ($suma12 / $numElementos12));
+            array_push($Datos, ($suma13 / $numElementos13));
+        }
+
     
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
@@ -155,7 +177,7 @@ class DepartamentoInicio extends Controller
     public function ParseCentroComputo($DepartamentoP){
         $registros = CentroComputo::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Serpregunta_8','Serpregunta_9'];
+        $preguntas = ['1','2','3','4','5','6','7','8','9'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -204,18 +226,28 @@ class DepartamentoInicio extends Controller
         $numElementos9 = count($Serpregunta_9);
        
         
-
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-        array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma7/ $numElementos7));
-        array_push($Datos, ($suma8 / $numElementos8));
-        array_push($Datos, ($suma9 / $numElementos9));
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7/ 1));
+        array_push($Datos, ($suma8 / 1));
+        array_push($Datos, ($suma9 / 1));
       
-    
+        }else{
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+            array_push($Datos, ($suma5 / $numElementos5));
+            array_push($Datos, ($suma6 / $numElementos6));
+            array_push($Datos, ($suma7/ $numElementos7));
+            array_push($Datos, ($suma8 / $numElementos8));
+            array_push($Datos, ($suma9 / $numElementos9));
+        }
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
     }
@@ -224,7 +256,7 @@ class DepartamentoInicio extends Controller
     public function ParseCoordinacionCarreras($DepartamentoP){
         $registros = CoordinacionCarreras::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7'];
+        $preguntas = ['1','2','3','4','5','6','7'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -268,7 +300,16 @@ class DepartamentoInicio extends Controller
        
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7/ 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
@@ -276,7 +317,8 @@ class DepartamentoInicio extends Controller
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7/ $numElementos7));
-       
+        }
+        
       
     
 
@@ -287,7 +329,7 @@ class DepartamentoInicio extends Controller
     public function ParseRecursosFinancieros($DepartamentoP){
         $registros = RecursosFinancieros::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6'];
+        $preguntas = ['1','2','3','4','5','6'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -327,14 +369,22 @@ class DepartamentoInicio extends Controller
 
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 /1));
+        array_push($Datos, ($suma2 /1));
+        array_push($Datos, ($suma3 /1));
+        array_push($Datos, ($suma4 /1));
+        array_push($Datos, ($suma5 /1));
+        array_push($Datos, ($suma6 /1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
-       
+        }
       
     
 
@@ -345,7 +395,7 @@ class DepartamentoInicio extends Controller
         $registros = ResidenciasProfesionales::all();
         $Datos = [];
        
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Serpregunta_8','Serpregunta_9'];
+        $preguntas = ['1','2','3','4','5','6','7','8','9'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -397,17 +447,28 @@ class DepartamentoInicio extends Controller
 
        
         
-
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-        array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma4 / $numElementos7));
-        array_push($Datos, ($suma5 / $numElementos8));
-        array_push($Datos, ($suma6 / $numElementos9));
-       
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        } 
+        else {
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+            array_push($Datos, ($suma5 / $numElementos5));
+            array_push($Datos, ($suma6 / $numElementos6));
+            array_push($Datos, ($suma4 / $numElementos7));
+            array_push($Datos, ($suma5 / $numElementos8));
+            array_push($Datos, ($suma6 / $numElementos9));
+        } 
       
     
 
@@ -417,7 +478,7 @@ class DepartamentoInicio extends Controller
     public function ParseServiciosEscolares($DepartamentoP){
         $registros = ServiciosEscolares::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4'];
+        $preguntas = ['1','2','3','4'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -443,11 +504,19 @@ class DepartamentoInicio extends Controller
         $numElementos3 = count($Serpregunta_3);
         $numElementos4 = count($Serpregunta_4);
         
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        }
+        else{
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));  
+        }
 
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
     }
@@ -455,7 +524,7 @@ class DepartamentoInicio extends Controller
     public function ParseServicioSocial($DepartamentoP){
         $registros = ServicioSocial::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7','Serpregunta_8'];
+        $preguntas = ['1','2','3','4','5','6','7','8'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -500,7 +569,17 @@ class DepartamentoInicio extends Controller
         $numElementos8 = count($Serpregunta_8);
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7/ 1));
+        array_push($Datos, ($suma8 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
@@ -508,8 +587,8 @@ class DepartamentoInicio extends Controller
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7/ $numElementos7));
-        array_push($Datos, ($suma8 / $numElementos8));
-      
+        array_push($Datos, ($suma8 / $numElementos8)); 
+        }
     
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
@@ -518,7 +597,7 @@ class DepartamentoInicio extends Controller
     public function ParseBecas($DepartamentoP){
         $registros = Becas::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5'];
+        $preguntas = ['1','2','3','4','5'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -550,13 +629,20 @@ class DepartamentoInicio extends Controller
         $numElementos4 = count($Serpregunta_4);
         $numElementos5 = count($Serpregunta_5);
        
-    
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-       
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        }
+        else{
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+            array_push($Datos, ($suma5 / $numElementos5));   
+        }
       
     
 
@@ -566,7 +652,7 @@ class DepartamentoInicio extends Controller
     public function ParseTalleresLaboratorios($DepartamentoP){
         $registros = Becas::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5'];
+        $preguntas = ['1','2','3','4','5'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -598,14 +684,21 @@ class DepartamentoInicio extends Controller
         $numElementos4 = count($Serpregunta_4);
         $numElementos5 = count($Serpregunta_5);
        
-    
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
         array_push($Datos, ($suma5 / $numElementos5));
-       
-      
+        } 
+        
     
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
@@ -614,7 +707,7 @@ class DepartamentoInicio extends Controller
     public function ParseCafeteria($DepartamentoP){
         $registros = Cafeteria::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4','Serpregunta_5','Serpregunta_6','Serpregunta_7'];
+        $preguntas = ['1','2','3','4','5','6','7'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -654,15 +747,24 @@ class DepartamentoInicio extends Controller
         $numElementos6 = count($Serpregunta_6);
         $numElementos7 = count($Serpregunta_7);
         
-
+        if ($numElementos1 == 0) {
+        rray_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_paush($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7/ 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma7/ $numElementos7));
-      
+        array_push($Datos, ($suma7/ $numElementos7)); 
+        }
     
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
@@ -671,7 +773,7 @@ class DepartamentoInicio extends Controller
     public function ParseServicioMedico($DepartamentoP){
         $registros = ServicioMedico::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4'];
+        $preguntas = ['1','2','3','4'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -697,11 +799,19 @@ class DepartamentoInicio extends Controller
         $numElementos3 = count($Serpregunta_3);
         $numElementos4 = count($Serpregunta_4);
         
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        }
+        else{
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+        }
 
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
 
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
     }
@@ -709,7 +819,7 @@ class DepartamentoInicio extends Controller
     public function ParseActividadesCulturalesDeportivas($DepartamentoP){
         $registros = ActividadesCulturalesDeportivas::all();
         $Datos = [];
-        $preguntas = ['Serpregunta_1','Serpregunta_2','Serpregunta_3','Serpregunta_4'];
+        $preguntas = ['1','2','3','4'];
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -735,14 +845,20 @@ class DepartamentoInicio extends Controller
         $numElementos3 = count($Serpregunta_3);
         $numElementos4 = count($Serpregunta_4);
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
-
+        }
         return ['datos'=> $Datos,'preguntas'=>$preguntas,"dep"=>$DepartamentoP];
     }
 
-
 }
+
