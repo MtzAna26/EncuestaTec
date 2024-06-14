@@ -15,69 +15,71 @@ use App\Models\TalleresLaboratorios;
 use App\Models\Cafeteria;
 use App\Models\ServicioMedico;
 use App\Models\ActividadesCulturalesDeportivas;
+use DateTime;
 
 class DepartamentoTablas extends Controller
 {
-    public function inicio($Departamento,$ciclo)
+    public function inicio($Departamento,$cicloinicio ,$ciclofin)
     {
         $Encuesta = array(
             "pregunta 1" => [80,55,20],
             "pregunta 2" => [5,20,75],
             "pregunta 3" => [25,50,25],
         );
+        $ciclo = $cicloinicio;
 
         if ($Departamento == "CENTRO DE INFORMACIÓN") {
-            return view('departamento.DepartamentoTablas',$this->ParseCentroDeInformacion($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseCentroDeInformacion($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
         
         if ($Departamento == "CAFETERIA") {
-            return view('departamento.DepartamentoTablas',$this->ParseCafeteria($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseCafeteria($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "COORDINACIÓN DE CARRERAS") {
-            return view('departamento.DepartamentoTablas',$this->ParseCoordinacionCarreras($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseCoordinacionCarreras($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
         
         if ($Departamento == "RECURSOS FINANCIEROS") {
-            return view('departamento.DepartamentoTablas',$this->ParseRecursosFinancieros($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseRecursosFinancieros($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
         
         if ($Departamento == "RESIDENCIAS PROFESIONALES") {
-            return view('departamento.DepartamentoTablas',$this->ParseResidenciasProfesionales($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseResidenciasProfesionales($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
         
         if ($Departamento == "CENTRO DE CÓMPUTO") {
-            return view('departamento.DepartamentoTablas',$this->ParseCentroComputo($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseCentroComputo($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "SERVICIO SOCIAL") {
-            return view('departamento.DepartamentoTablas',$this->ParseServicioSocial($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseServicioSocial($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
         
         if ($Departamento == "SERVICIOS ESCOLARES") {
-            return view('departamento.DepartamentoTablas',$this->ParseServiciosEscolares($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseServiciosEscolares($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "BECAS") {
-            return view('departamento.DepartamentoTablas',$this->ParseBecas($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseBecas($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "TALLERES Y LABORATORIOS") {
-            return view('departamento.DepartamentoTablas',$this->ParseTalleresLaboratorios($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseTalleresLaboratorios($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "SERVICIO MÉDICO") {
-            return view('departamento.DepartamentoTablas',$this->ParseServicioMedico($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseServicioMedico($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
 
         if ($Departamento == "ACTIVIDADES CULTURALES Y DEPORTIVAS") {
-            return view('departamento.DepartamentoTablas',$this->ParseActividadesCulturalesDeportivas($Departamento,$ciclo));
+            return view('departamento.DepartamentoTablas',$this->ParseActividadesCulturalesDeportivas($Departamento,$ciclo,$cicloinicio ,$ciclofin));
         }
        
        
     }
 
-    public function ParseCentroDeInformacion($DepartamentoP,$cicloP){
+    public function ParseCentroDeInformacion($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
        
         $Comentarios = [];
         $registros = CentroInformacion::all();
@@ -98,21 +100,32 @@ class DepartamentoTablas extends Controller
         $Estrucpregunta_5=[];
         $Estrucpregunta_6=[];
 
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
+
+
         foreach ($registros as $item) {
-            array_push($Serpregunta_1, $item->Serpregunta_1);
-            array_push($Serpregunta_2, $item->Serpregunta_2);
-            array_push($Serpregunta_3, $item->Serpregunta_3);
-            array_push($Serpregunta_4, $item->Serpregunta_4);
-            array_push($Serpregunta_5, $item->Serpregunta_5);
-            array_push($Serpregunta_6, $item->Serpregunta_6);
-            array_push($Serpregunta_7, $item->Serpregunta_7);
-            array_push($Estrucpregunta_1, $item->Estrucpregunta_1);
-            array_push($Estrucpregunta_2, $item->Estrucpregunta_2);
-            array_push($Estrucpregunta_3, $item->Estrucpregunta_3);
-            array_push($Estrucpregunta_4, $item->Estrucpregunta_4);
-            array_push($Estrucpregunta_5, $item->Estrucpregunta_5);
-            array_push($Estrucpregunta_6, $item->Estrucpregunta_6);
-            array_push($Comentarios, [$item->comentario,$item->carrera]);
+
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
+                array_push($Serpregunta_1, $item->Serpregunta_1);
+                array_push($Serpregunta_2, $item->Serpregunta_2);
+                array_push($Serpregunta_3, $item->Serpregunta_3);
+                array_push($Serpregunta_4, $item->Serpregunta_4);
+                array_push($Serpregunta_5, $item->Serpregunta_5);
+                array_push($Serpregunta_6, $item->Serpregunta_6);
+                array_push($Serpregunta_7, $item->Serpregunta_7);
+                array_push($Estrucpregunta_1, $item->Estrucpregunta_1);
+                array_push($Estrucpregunta_2, $item->Estrucpregunta_2);
+                array_push($Estrucpregunta_3, $item->Estrucpregunta_3);
+                array_push($Estrucpregunta_4, $item->Estrucpregunta_4);
+                array_push($Estrucpregunta_5, $item->Estrucpregunta_5);
+                array_push($Estrucpregunta_6, $item->Estrucpregunta_6);
+                array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
+
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -144,19 +157,37 @@ class DepartamentoTablas extends Controller
         $numElementos13 = count($Estrucpregunta_6);
         
 
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-        array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma7/ $numElementos7));
-        array_push($Datos, ($suma8 / $numElementos8));
-        array_push($Datos, ($suma9 / $numElementos9));
-        array_push($Datos, ($suma10 / $numElementos10));
-        array_push($Datos, ($suma11 / $numElementos11));
-        array_push($Datos, ($suma12 / $numElementos12));
-        array_push($Datos, ($suma13 / $numElementos13));
+        if ($numElementos1 == 0) {
+            array_push($Datos, ($suma1 / 1));
+            array_push($Datos, ($suma2 /1));
+            array_push($Datos, ($suma3 /1));
+            array_push($Datos, ($suma4 /1));
+            array_push($Datos, ($suma5 /1));
+            array_push($Datos, ($suma6 /1));
+            array_push($Datos, ($suma7/  1));
+            array_push($Datos, ($suma8 / 1));
+            array_push($Datos, ($suma9 / 1));
+            array_push($Datos, ($suma10 / 1));
+            array_push($Datos, ($suma11 / 1));
+            array_push($Datos, ($suma12 / 1));
+            array_push($Datos, ($suma13 / 1));
+        }else {
+            array_push($Datos, ($suma1 / $numElementos1));
+            array_push($Datos, ($suma2 / $numElementos2));
+            array_push($Datos, ($suma3 / $numElementos3));
+            array_push($Datos, ($suma4 / $numElementos4));
+            array_push($Datos, ($suma5 / $numElementos5));
+            array_push($Datos, ($suma6 / $numElementos6));
+            array_push($Datos, ($suma7/ $numElementos7));
+            array_push($Datos, ($suma8 / $numElementos8));
+            array_push($Datos, ($suma9 / $numElementos9));
+            array_push($Datos, ($suma10 / $numElementos10));
+            array_push($Datos, ($suma11 / $numElementos11));
+            array_push($Datos, ($suma12 / $numElementos12));
+            array_push($Datos, ($suma13 / $numElementos13));
+        }
+
+    
 
        
        
@@ -272,14 +303,14 @@ class DepartamentoTablas extends Controller
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
 
-    public function ParseCentroComputo($DepartamentoP,$cicloP){
+    public function ParseCentroComputo($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = CentroComputo::all();
         $Datos = [];
         $preguntas = ['1','2','3','4','5','6','7','8','9'];
 
 
-
+       
 
         $Serpregunta_1=[];
         $Serpregunta_2=[];
@@ -290,9 +321,15 @@ class DepartamentoTablas extends Controller
         $Serpregunta_7=[];
         $Serpregunta_8=[];
         $Serpregunta_9=[];
-        
+
+         $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
 
         foreach ($registros as $item) {
+            
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -303,6 +340,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_8, $item->Serpregunta_8);
             array_push($Serpregunta_9, $item->Serpregunta_9);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
            
         
            
@@ -331,17 +369,28 @@ class DepartamentoTablas extends Controller
         $numElementos9 = count($Serpregunta_9);
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos ($suma5 /  1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7 / 1));
+        array_push($Datos, ($suma8 / 1));
+        array_push($Datos, ($suma9 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
+        array_push($Datos ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7 / $numElementos7));
         array_push($Datos, ($suma8 / $numElementos8));
         array_push($Datos, ($suma9 / $numElementos9));
-
+        }
 
        
        
@@ -443,7 +492,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseCoordinacionCarreras($DepartamentoP,$cicloP){
+    public function ParseCoordinacionCarreras($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = CoordinacionCarreras::all();
         $Datos = [];
@@ -459,9 +508,15 @@ class DepartamentoTablas extends Controller
         $Serpregunta_5=[];
         $Serpregunta_6=[];
         $Serpregunta_7=[];
+
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
       
         
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -470,7 +525,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_6, $item->Serpregunta_6);
             array_push($Serpregunta_7, $item->Serpregunta_7);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
-           
+            }
         
            
             
@@ -495,7 +550,16 @@ class DepartamentoTablas extends Controller
     
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
@@ -503,8 +567,7 @@ class DepartamentoTablas extends Controller
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7 / $numElementos7));
-       
-
+        }
         $repeticionesp1=[];
         $repeticionesp2=[];
         $repeticionesp3=[];
@@ -580,7 +643,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseRecursosFinancieros($DepartamentoP,$cicloP){
+    public function ParseRecursosFinancieros($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
        
         $Comentarios = [];
         $registros = RecursosFinancieros::all();
@@ -594,7 +657,13 @@ class DepartamentoTablas extends Controller
         $Serpregunta_5=[];
         $Serpregunta_6=[];
 
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -602,6 +671,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_5, $item->Serpregunta_5);
             array_push($Serpregunta_6, $item->Serpregunta_6);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -687,7 +757,7 @@ class DepartamentoTablas extends Controller
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
 
-    public function ParseResidenciasProfesionales($DepartamentoP,$cicloP){
+    public function ParseResidenciasProfesionales($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = ResidenciasProfesionales::all();
         $Datos = [];
@@ -706,8 +776,13 @@ class DepartamentoTablas extends Controller
         $Serpregunta_8=[];
         $Serpregunta_9=[];
         
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
 
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -718,6 +793,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_8, $item->Serpregunta_8);
             array_push($Serpregunta_9, $item->Serpregunta_9);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
            
         
            
@@ -746,17 +822,28 @@ class DepartamentoTablas extends Controller
         $numElementos9 = count($Serpregunta_9);
        
         
-
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
-        array_push($Datos, ($suma6 / $numElementos6));
-        array_push($Datos, ($suma7 / $numElementos7));
-        array_push($Datos, ($suma8 / $numElementos8));
-        array_push($Datos, ($suma9 / $numElementos9));
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 /1));
+        array_push($Datos, ($suma2 /1));
+        array_push($Datos, ($suma3 /1));
+        array_push($Datos, ($suma4 /1));
+        array_push($Datos, ($suma5 /1));
+        array_push($Datos, ($suma6 /1));
+        array_push($Datos, ($suma7 /1));
+        array_push($Datos, ($suma8 /1));
+        array_push($Datos, ($suma9 /1));
+        }
+        else{
+       array_push($Datos, ($suma1 / $numElementos1));
+       array_push($Datos, ($suma2 / $numElementos2));
+       array_push($Datos, ($suma3 / $numElementos3));
+       array_push($Datos, ($suma4 / $numElementos4));
+       array_push($Datos, ($suma5 / $numElementos5));
+       array_push($Datos, ($suma6 / $numElementos6));
+       array_push($Datos, ($suma7 / $numElementos7));
+       array_push($Datos, ($suma8 / $numElementos8));
+       array_push($Datos, ($suma9 / $numElementos9));   
+        }
 
        
        
@@ -857,7 +944,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseServiciosEscolares($DepartamentoP,$cicloP){
+    public function ParseServiciosEscolares($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
        
         $Comentarios = [];
         $registros = ServiciosEscolares::all();
@@ -869,12 +956,19 @@ class DepartamentoTablas extends Controller
         $Serpregunta_3=[];
         $Serpregunta_4=[];
         
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
             array_push($Serpregunta_4, $item->Serpregunta_4);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -887,10 +981,18 @@ class DepartamentoTablas extends Controller
         $numElementos3 = count($Serpregunta_3);
         $numElementos4 = count($Serpregunta_4);
 
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
+        }
 
         $repeticionesp1=[];
         $repeticionesp2=[];
@@ -936,7 +1038,7 @@ class DepartamentoTablas extends Controller
         return ['datos'=>$Encuesta1,"dep"=>$DepartamentoP,"ciclo"=>$cicloP,'Gdatos'=>$Datos,'preguntas'=>$preguntas, "Comentarios" => $Comentarios];
     }
 
-    public function ParseServicioSocial($DepartamentoP,$cicloP){
+    public function ParseServicioSocial($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = ServicioSocial::all();
         $Datos = [];
@@ -954,8 +1056,14 @@ class DepartamentoTablas extends Controller
         $Serpregunta_7=[];
         $Serpregunta_8=[];
         
+ 
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
 
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -965,9 +1073,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_7, $item->Serpregunta_7);
             array_push($Serpregunta_8, $item->Serpregunta_8);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
-           
-        
-           
+            }
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -992,7 +1098,16 @@ class DepartamentoTablas extends Controller
         $numElementos8 = count($Serpregunta_8);
        
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7 / 1));
+        array_push($Datos, ($suma8 / 1));
+        }else {
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
@@ -1001,8 +1116,7 @@ class DepartamentoTablas extends Controller
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7 / $numElementos7));
         array_push($Datos, ($suma8 / $numElementos8));
-
-
+        }
        
        
 
@@ -1096,7 +1210,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseBecas($DepartamentoP,$cicloP){
+    public function ParseBecas($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = Becas::all();
         $Datos = [];
@@ -1111,17 +1225,20 @@ class DepartamentoTablas extends Controller
         $Serpregunta_4=[];
         $Serpregunta_5=[];
         
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
             array_push($Serpregunta_4, $item->Serpregunta_4);
             array_push($Serpregunta_5, $item->Serpregunta_5);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
-           
-        
-           
-            
+            }
         }
         $suma1 = array_sum($Serpregunta_1);
         $suma2 = array_sum($Serpregunta_2);
@@ -1139,12 +1256,21 @@ class DepartamentoTablas extends Controller
     
        
         
-
+        if ($numElementos1 == 0) {
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
         array_push($Datos, ($suma5 / $numElementos5));
+        }
+        else{
+        array_push($Datos, ($suma1 / $numElementos1));
+        array_push($Datos, ($suma2 / $numElementos2));
+        array_push($Datos, ($suma3 / $numElementos3));
+        array_push($Datos, ($suma4 / $numElementos4));
+        array_push($Datos, ($suma5 / $numElementos5));
+        }
+
 
         $repeticionesp1=[];
         $repeticionesp2=[];
@@ -1203,7 +1329,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseTalleresLaboratorios($DepartamentoP,$cicloP){
+    public function ParseTalleresLaboratorios($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = TalleresLaboratorios::all();
         $Datos = [];
@@ -1214,8 +1340,15 @@ class DepartamentoTablas extends Controller
         $Serpregunta_3=[];
         $Serpregunta_4=[];
         $Serpregunta_5=[];
+
         
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -1223,9 +1356,7 @@ class DepartamentoTablas extends Controller
             array_push($Serpregunta_5, $item->Serpregunta_5);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
            
-        
-           
-            
+            }
         }
         $suma1 = array_sum($Serpregunta_1);
         $suma2 = array_sum($Serpregunta_2);
@@ -1243,12 +1374,21 @@ class DepartamentoTablas extends Controller
     
        
         
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        }
+        else{
+       array_push($Datos, ($suma1 / $numElementos1));
+       array_push($Datos, ($suma2 / $numElementos2));
+       array_push($Datos, ($suma3 / $numElementos3));
+       array_push($Datos, ($suma4 / $numElementos4));
+       array_push($Datos, ($suma5 / $numElementos5));
+        }
 
-        array_push($Datos, ($suma1 / $numElementos1));
-        array_push($Datos, ($suma2 / $numElementos2));
-        array_push($Datos, ($suma3 / $numElementos3));
-        array_push($Datos, ($suma4 / $numElementos4));
-        array_push($Datos, ($suma5 / $numElementos5));
 
         $repeticionesp1=[];
         $repeticionesp2=[];
@@ -1311,7 +1451,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseCafeteria($DepartamentoP,$cicloP){
+    public function ParseCafeteria($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
         $Comentarios = [];
         $registros = Cafeteria::all();
         $Datos = [];
@@ -1326,7 +1466,13 @@ class DepartamentoTablas extends Controller
         $Serpregunta_7=[];
         
 
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
@@ -1337,7 +1483,7 @@ class DepartamentoTablas extends Controller
             array_push($Comentarios, [$item->comentario,$item->carrera]);
            
         
-           
+            }
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -1359,7 +1505,16 @@ class DepartamentoTablas extends Controller
         $numElementos6 = count($Serpregunta_6);
         $numElementos7 = count($Serpregunta_7);
         
-
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        array_push($Datos, ($suma5 / 1));
+        array_push($Datos, ($suma6 / 1));
+        array_push($Datos, ($suma7 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
@@ -1367,7 +1522,7 @@ class DepartamentoTablas extends Controller
         array_push($Datos, ($suma5 / $numElementos5));
         array_push($Datos, ($suma6 / $numElementos6));
         array_push($Datos, ($suma7 / $numElementos7));
-
+         }
 
        
        
@@ -1455,7 +1610,7 @@ class DepartamentoTablas extends Controller
        
     }
 
-    public function ParseActividadesCulturalesDeportivas($DepartamentoP,$cicloP){
+    public function ParseActividadesCulturalesDeportivas($DepartamentoP,$cicloP, $cicloinicio1 ,$ciclofin1){
        
         $Comentarios = [];
         $registros = ActividadesCulturalesDeportivas::all();
@@ -1467,12 +1622,19 @@ class DepartamentoTablas extends Controller
         $Serpregunta_3=[];
         $Serpregunta_4=[];
         
+        $inicio = new DateTime ($cicloinicio1);
+        $fin = new DateTime ($ciclofin1);
+
         foreach ($registros as $item) {
+            $fecha = new  DateTime ($item->created_at) ;
+
+            if ($fecha >= $inicio && $fecha <= $fin) {
             array_push($Serpregunta_1, $item->Serpregunta_1);
             array_push($Serpregunta_2, $item->Serpregunta_2);
             array_push($Serpregunta_3, $item->Serpregunta_3);
             array_push($Serpregunta_4, $item->Serpregunta_4);
             array_push($Comentarios, [$item->comentario,$item->carrera]);
+            }
             
         }
         $suma1 = array_sum($Serpregunta_1);
@@ -1485,10 +1647,20 @@ class DepartamentoTablas extends Controller
         $numElementos3 = count($Serpregunta_3);
         $numElementos4 = count($Serpregunta_4);
 
+
+        if ($numElementos1 == 0) {
+        array_push($Datos, ($suma1 / 1));
+        array_push($Datos, ($suma2 / 1));
+        array_push($Datos, ($suma3 / 1));
+        array_push($Datos, ($suma4 / 1));
+        }
+        else{
         array_push($Datos, ($suma1 / $numElementos1));
         array_push($Datos, ($suma2 / $numElementos2));
         array_push($Datos, ($suma3 / $numElementos3));
         array_push($Datos, ($suma4 / $numElementos4));
+        }
+
 
         $repeticionesp1=[];
         $repeticionesp2=[];
@@ -1518,10 +1690,10 @@ class DepartamentoTablas extends Controller
         array_push($repeticionesp4, $this->c($Serpregunta_4,5));
 
         $Encuesta1 = array(
-            "Serpregunta_1" => $repeticionesp1,
-            "Serpregunta_2" => $repeticionesp2,
-            "Serpregunta_3" => $repeticionesp3,
-            "Serpregunta_4" => $repeticionesp4
+            "1. El horario establecido para las actividades es adecuado." => $repeticionesp1,
+            "2. El catálogo de actividades a las que puedes inscribirte es idóneo." => $repeticionesp2,
+            "3. El trato que recibes del personal que te atiende en las actividades es adecuado." => $repeticionesp3,
+            "4. La publicidad y difusión dada a las actividades es adecuada." => $repeticionesp4
         );
     
         foreach ($Encuesta1 as $clave => &$valor) {
