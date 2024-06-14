@@ -102,10 +102,12 @@ class DepartamentoInicio extends Controller
             array_push($Estrucpregunta_4, $item->Estrucpregunta_4);
             array_push($Estrucpregunta_5, $item->Estrucpregunta_5);
             array_push($Estrucpregunta_6, $item->Estrucpregunta_6);
+            array_push($FechaDeAlta, $item->created_at);
             
             
         }
-
+        
+        
         $suma1 = array_sum($Serpregunta_1);
         $suma2 = array_sum($Serpregunta_2);
         $suma3 = array_sum($Serpregunta_3);

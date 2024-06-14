@@ -38,7 +38,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col py-2">
                 <button class="btn btn-light" onclick="goBack()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-arrow-left-square" viewBox="0 0 16 16">
@@ -54,8 +54,8 @@
                     </svg>
                 </button>
             </div>
-            <div class="col"></div>
-            <div class="col"></div>
+            <div class="col py-2"></div>
+            <div class="col py-2"></div>
         </div>
     </div>
 
@@ -68,82 +68,68 @@
 
     <div class="container">
         <div class="row">
-            <div class="col"></div>
-            <div class="col">
+            <div class="col py-2"></div>
+            <div class="col py-2">
                 <h1> <label id="tit"></label> </h1>
             </div>
-            <div class="col"></div>
+            <div class="col py-2"></div>
         </div>
+
         <div class="row">
-            <div class="col">
-                <div>
+            <div class="col py-2"></div>
+            <div class="col py-2">  <div>
                     <canvas id="myChart1"></canvas>
-                    <h4>2024-02-01 2024-06-01</h4> <br>
+                    <h4>grafica de reslutados histotco </h4> <br>
+
+                    
+                </div></div>
+            <div class="col py-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col py-2">
+                <div>
                     <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2024-02-01','2024-06-20')">Preguntas</button>
+                        onclick="OnClicbtnPreguntas('2024-02-01','2024-06-20')">'2024-02-01'-'2024-06-20'</button>
                 </div>
             </div>
-            <div class="col">
-            <div>
-                    <canvas id="myChart2"></canvas>
-                    <h4>2024-07-01 2024-12-01</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2024-07-01','2024-12-01')">Preguntas</button>
-                </div>
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2024-07-01','2024-12-20')">'2024-07-01'-'2024-12-20'</button>
             </div>
-            <div class="col">
-            <div>
-                    <canvas id="myChart3"></canvas>
-                    <h4>2025-02-01 2025-07-01</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2025-02-01','2025-07-01')">Preguntas</button>
-                </div>
+            <div class="col py-2">
+                <button class="btn btn-primary" style="background:#7A0611"
+                onclick="OnClicbtnPreguntas('2025-02-01','2025-06-20')">'2025-02-01'-'2025-06-20'</button>
             </div>
         </div>
         <div class="row">
-            <div class="col">
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+            onclick="OnClicbtnPreguntas('2025-07-01','2025-12-20')">'2025-07-01'-'2025-12-20'</button>
+            </div>
+            <div class="col py-2">
                 <div>
-                    <canvas id="myChart4"></canvas>
-                    <h4>2025-07-01 2024-12-01</h4> <br>
                     <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2025-07-01','2025-12-01')">Preguntas</button>
+                        onclick="OnClicbtnPreguntas('2026-02-01','2024-06-20')">'2026-02-01'-'2024-06-20'</button>
                 </div>
             </div>
-            <div class="col">
-            <div>
-                    <canvas id="myChart5"></canvas>
-                    <h4>2026-02-01 2026-06-01</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2026-02-01','2026-06-01')">Preguntas</button>
-                </div>
-            </div>
-            <div class="col">
-            <div>
-                    <canvas id="myChart6"></canvas>
-                    <h4>2026-07-01 2025-12-01</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2026-07-01','2026-12-01')">Preguntas</button>
-                </div>
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2026-07-01','2024-12-20')">'2026-07-01'-'2024-12-20'</button>
             </div>
         </div>
         <div class="row">
-            <div class="col">
+        <div class="col py-2">
                 <div>
-                    <canvas id="myChart7"></canvas>
-                    <h4>2027-02-01 2027-06-01</h4> <br>
                     <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2027-02-01','2027-06-01')">Preguntas</button>
+                        onclick="OnClicbtnPreguntas('2027-02-01','2024-06-20')">'2027-02-01'-'2024-06-20'</button>
                 </div>
             </div>
-            <div class="col">
-            <div>
-                    <canvas id="myChart8"></canvas>
-                    <h4>2027-07-01 2027-12-01</h4> <br>
-                    <button class="btn btn-primary" style="background:#7A0611"
-                        onclick="OnClicbtnPreguntas('2027-07-01','2027-12-01')">Preguntas</button>
-                </div>
+            <div class="col py-2">
+            <button class="btn btn-primary" style="background:#7A0611"
+                        onclick="OnClicbtnPreguntas('2027-07-01','2024-12-20')">'2027-07-01'-'2024-12-20'</button>
             </div>
-            <div class="col">
+            <div class="col py-2">
             
             </div>
         </div>
@@ -164,14 +150,7 @@
 
 
         const ctx1 = document.getElementById('myChart1').getContext('2d');
-        const ctx2 = document.getElementById('myChart2').getContext('2d'); 
-        const ctx3 = document.getElementById('myChart3').getContext('2d');
-        const ctx4 = document.getElementById('myChart4').getContext('2d');
-        const ctx5 = document.getElementById('myChart5').getContext('2d'); 
-        const ctx6 = document.getElementById('myChart6').getContext('2d');
-        const ctx7 = document.getElementById('myChart7').getContext('2d');
-        const ctx8 = document.getElementById('myChart8').getContext('2d'); 
-       
+        
 
 
         const tit = document.getElementById('tit').innerHTML = titulo;
@@ -202,167 +181,7 @@
                 }
             }
         });
-        new Chart(ctx2, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx3, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx4, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx5, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx6, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx7, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-        new Chart(ctx8, {
-            type: 'bar',
-            data: {
-                labels: preguntas,
-
-
-                datasets: [{
-                    label: 'porsentaje de respuestas',
-                    data: datos,
-                    backgroundColor: 'rgba(128, 0, 0,1)',
-                    borderColor: 'rgb(128, 0, 0,1)',
-
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
+        
         
 
 

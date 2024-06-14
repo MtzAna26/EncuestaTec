@@ -21,6 +21,7 @@ class ServicioSocialController extends Controller
         $request->validate([
             'no_control' => 'unique:alumnos',
             'carrera' => 'unique:alumnos',
+            'semestre' => 'unique:alumnos',
             'Serpregunta_1' => 'required',
             'Serpregunta_2' => 'required',
             'Serpregunta_3' => 'required',
@@ -41,6 +42,7 @@ class ServicioSocialController extends Controller
                 $evaluacion->alumno_id = $alumno->id;
                 $evaluacion->no_control = $alumno->no_control;
                 $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->semestre = $alumno->semestre;
                 $evaluacion->periodo_id = $periodo->id;
                 $evaluacion->calcularPromedioFinal();
             }

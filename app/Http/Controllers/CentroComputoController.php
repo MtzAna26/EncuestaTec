@@ -22,6 +22,7 @@ class CentroComputoController extends Controller
         $validatedData = $request->validate([
             'no_control' => 'unique:alumnos',
             'carrera' => 'unique:alumnos',
+            'semestre' => 'unique:alumnos',
             'Serpregunta_1' => 'required|integer',
             'Serpregunta_2' => 'required|integer',
             'Serpregunta_3' => 'required|integer',
@@ -43,6 +44,7 @@ class CentroComputoController extends Controller
                 $evaluacion->alumno_id = $alumno->id;
                 $evaluacion->no_control = $alumno->no_control;
                 $evaluacion->carrera = $alumno->carrera;
+                $evaluacion->semestre = $alumno->semestre;
                 $evaluacion->periodo_id = $periodo->id;  
                 $evaluacion->calcularPromedioFinal();
             }
