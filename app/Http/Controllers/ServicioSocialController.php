@@ -51,6 +51,11 @@ class ServicioSocialController extends Controller
         return redirect()->route('encuestas.servicios_escolares')->with('success', '¡Encuesta enviada correctamente!');
     }
 
+    public function omitirEncuesta()
+{
+    return redirect()->route('encuestas.servicios_escolares');
+}
+
     //Para el admin
     public function mostrarFormularioGrafica(Request $request)
     {

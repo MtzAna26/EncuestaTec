@@ -214,6 +214,7 @@ Route::get('/servicio_social/pdf', [PDFController::class, 'generateServicioSocia
 // Periodos para Servicio Social
 Route::get('/servicio_social/periodos', [ServicioSocialController::class, 'mostrarPeriodos'])->name('servicio_social.mostrarPeriodos');
 
+Route::get('/omitir-encuesta', [ServicioSocialController::class, 'omitirEncuesta'])->name('encuestas.omitir_encuesta');
 
 // Departamento de Servicios Escolares (encuestas)
 Route::get('/servicios_escolares', [ServiciosEscolaresController::class, 'mostrarFormulario'])->name('encuestas.servicios_escolares');

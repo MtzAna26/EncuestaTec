@@ -25,26 +25,20 @@
 
     <div class="additional-text">
         
-        <!-- Enlace para seleccionar departamento -->
         <a id="seleccionarDepartamento" href="#" class="button">DEPARTAMENTO</a>
-        
-        <!-- Aquí se mostrará la lista de departamentos al hacer clic -->
+
         <div id="departamentosContainer" style="display: none;"></div>
 
-        <!-- Otros enlaces -->
         <a href="{{ route('login') }}" class="button">ADMINISTRADOR</a>
         <a href="{{ route('alumno.register') }}" class="button">ESTUDIANTES TecNM</a>
+
+        <a href="{{ route('buzon.quejas') }}" class="button">BUZÓN DE QUEJAS</a>
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Obtener el contenedor donde se mostrará la lista de departamentos
             const departamentosContainer = document.getElementById('departamentosContainer');
-
-            // Crear el elemento select para mostrar los departamentos
             const selectDepartamento = document.createElement('select');
-
-            // Agregar opciones de departamentos
             const departamentos = [
                 'SELECCIONA DEPARTAMENTO',
                 'CENTRO DE INFORMACIÓN',
@@ -67,24 +61,17 @@
                 selectDepartamento.appendChild(opcion);
             });
 
-            // Agregar el select de departamentos al contenedor
             departamentosContainer.appendChild(selectDepartamento);
-
-            // Manejar el evento de cambio en el select
             selectDepartamento.addEventListener('change', function() {
-                // Obtener el departamento seleccionado
                 const departamentoSeleccionado = selectDepartamento.value;
 
-                // Redirigir al departamento seleccionado
                 window.location.href = "{{ route('departamento.login') }}" + "?departamento=" + departamentoSeleccionado;
             });
 
-            // Manejar el evento de clic en el enlace "DEPARTAMENTO"
             const enlaceDepartamento = document.getElementById('seleccionarDepartamento');
             enlaceDepartamento.addEventListener('click', function(event) {
-                event.preventDefault(); // Prevenir el comportamiento predeterminado del enlace
+                event.preventDefault(); 
                 
-                // Mostrar el contenedor de departamentos y ocultar el enlace "DEPARTAMENTO"
                 departamentosContainer.style.display = 'block';
                 enlaceDepartamento.style.display = 'none';
             });
