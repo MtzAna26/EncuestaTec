@@ -339,7 +339,7 @@ Route::get('/Estado/cambiar/{estado}', function ($estado) {
     $data['Activa']=$estado;
     $newJsonString = json_encode($data, JSON_PRETTY_PRINT);
 
-    if (file_put_contents('C:\xampp\htdocs\EncuestaTec\configEncuesta.json', $newJsonString) === false) {
+    if (file_put_contents('..\configEncuesta.json', $newJsonString) === false) {
         die('Error al guardar el archivo JSON');
     }
     return  $data ;
