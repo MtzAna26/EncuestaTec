@@ -25,6 +25,10 @@
         <strong>{{ Session::get('success') }}</strong>
     </div>
 @endif
+<!-- Omitir Encuesta Button -->
+<a href="{{ route('encuestas.omitir_encuesta') }}" class="btn btn-secondary bg-red-700 hover:bg-red-900 text-white font-bold py-2 px-4 rounded">
+    Omitir encuesta, en caso de llevar servicio social
+</a>
     <div class="container mx-auto px-4 bg-gray-200">
         <h2 class="text-3xl font-semibold mb-4">DEPARTAMENTO DE SERVICIO SOCIAL </h2>
         <h1 class="text-3xl font-semibold mb-4">¡Participa en nuestra encuesta!</h1>
