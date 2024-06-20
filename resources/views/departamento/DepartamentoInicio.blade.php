@@ -79,7 +79,7 @@
             <div class="col py-2"></div>
             <div class="col py-2">  <div>
                     <canvas id="myChart1"></canvas>
-                    <h4>grafica de reslutados histotco </h4> <br>
+                    <h4>Grafica General De Resultados</h4> <br>
 
                     
                 </div></div>

@@ -65,9 +65,6 @@
         
         @if ($Es == "v")
         <div class="container">
-
-            
-            <body>
                 <a href="/buzon-de-quejas">
                     <button
                         class="bg-red-900 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
@@ -89,18 +86,27 @@
                 </a>
         </div>
         @else
-        <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mt-4" role="alert">
-            <strong class="font-bold">¡Advertencia!</strong>
-            <span class="block sm:inline">Por el momento las encuestas no se encuentran disponibles, para más información favor de pasar al departamento de calidad.</span>
-            <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
-                <svg class="fill-current h-6 w-6 text-yellow-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Cerrar</title><path d="M14.348 5.652a.5.5 0 1 0-.707-.707L10 8.586 6.36 4.946a.5.5 0 1 0-.707.707l3.64 3.64-3.64 3.64a.5.5 0 0 0 .707.707l3.64-3.64 3.64 3.64a.5.5 0 0 0 .707-.707L10.707 10l3.64-3.64z"/></svg>
-            </span>
+        <div class="container">
+                <a href="/buzon-de-quejas">
+                    <button
+                        class="bg-red-900 hover:bg-red-600 text-white font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">
+                        Buzón de Quejas
+                    </button>
+                </a>
+                <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded relative mt-4" role="alert">
+                    <strong class="font-bold">¡Advertencia!</strong>
+                    <span class="block sm:inline">Por el momento las encuestas no se encuentran disponibles, para más información favor de pasar al departamento de calidad.</span>
+                    <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+                        <svg class="fill-current h-6 w-6 text-yellow-500" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><title>Cerrar</title><path d="M14.348 5.652a.5.5 0 1 0-.707-.707L10 8.586 6.36 4.946a.5.5 0 1 0-.707.707l3.64 3.64-3.64 3.64a.5.5 0 0 0 .707.707l3.64-3.64 3.64 3.64a.5.5 0 0 0 .707-.707L10.707 10l3.64-3.64z"/></svg>
+                    </span>
+                </div>
         </div>
+        
         @endif
         
     </div>
     
-</body>
+
 
     </body>
 
