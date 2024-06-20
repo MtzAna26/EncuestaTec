@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7d21fe8c8d76d011529f58bfaba97736",
+    "content-hash": "4afc4ad63f44ed9b49d39490678fe677",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -6713,7 +6713,6 @@
             },
             "time": "2024-03-20T20:09:31+00:00"
         },
-        
         {
             "name": "mockery/mockery",
             "version": "1.6.11",
