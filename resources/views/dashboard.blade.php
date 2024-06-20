@@ -440,7 +440,7 @@
                     '<button id="myButton" class="bg-pink-700 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded">Encuestas activas</button>'
 
                 document.getElementById('myButton').onclick = function() {
-
+                    console.log("desarollo f");
                     fun("f")
                     activo = "f"
                 }
@@ -448,7 +448,7 @@
                 div.innerHTML =
                     '<button id="myButton" class="bg-red-700 hover:bg-red-500 text-white font-bold py-2 px-4 rounded">Encuestas desactivadas </button> '
                 document.getElementById('myButton').onclick = function() {
-
+                    console.log("desarollo v");
                     fun("v")
                     activo = "v"
                 }
